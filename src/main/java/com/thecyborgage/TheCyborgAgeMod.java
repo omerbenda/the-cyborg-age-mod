@@ -1,5 +1,6 @@
 package com.thecyborgage;
 
+import com.thecyborgage.init.TCAItems;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -13,5 +14,7 @@ public class TheCyborgAgeMod {
   public static final String MOD_ID = "thecyborgage";
   public static final Logger LOGGER = LogUtils.getLogger();
 
-  public TheCyborgAgeMod(IEventBus modEventBus, ModContainer modContainer) {}
+  public TheCyborgAgeMod(IEventBus modEventBus, ModContainer modContainer) {
+    TCAItems.register(modEventBus);
+  }
 }
