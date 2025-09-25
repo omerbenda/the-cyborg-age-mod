@@ -14,6 +14,7 @@ import top.theillusivec4.curios.api.type.capability.ICurio;
 public class TCACuriosEvents {
   @SubscribeEvent
   public static void registerCapabilities(RegisterCapabilitiesEvent evt) {
+    registerItem(evt, TCAItems.CYBORG_CORE);
     registerItem(evt, TCAItems.NIGHT_VISION_LENS);
   }
 
