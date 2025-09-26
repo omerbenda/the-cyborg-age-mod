@@ -1,3 +1,4 @@
 {
-  "item.thecyborgage.night_vision_lens": "Night Vision Lens"
+  "item.thecyborgage.night_vision_lens": "Night Vision Lens",
+  "thecyborgage.cyborg_core.energy_tooltip": "Energy: %d"
 }

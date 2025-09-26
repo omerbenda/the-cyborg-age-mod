@@ -36,6 +36,8 @@ public class CyborgCore extends Item implements ICurioItem {
     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
 
     tooltipComponents.add(
-        Component.literal(String.valueOf(stack.getOrDefault(TCADataComponents.CORE_ENERGY, 0))));
+        Component.translatable(
+            "thecyborgage.cyborg_core.energy_tooltip",
+            stack.getOrDefault(TCADataComponents.CORE_ENERGY, 0)));
   }
 }
