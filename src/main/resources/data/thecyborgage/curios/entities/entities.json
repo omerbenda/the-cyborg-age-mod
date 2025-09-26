@@ -4,6 +4,7 @@
   ],
   "slots": [
     "head",
-    "core"
+    "core",
+    "leg"
   ]
 }

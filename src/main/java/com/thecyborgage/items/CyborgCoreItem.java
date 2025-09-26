@@ -9,11 +9,11 @@ import net.minecraft.world.item.TooltipFlag;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class CyborgCore extends Item implements ICurioItem {
+public class CyborgCoreItem extends Item implements ICurioItem {
   private static final int MAX_ENERGY = 10000;
   private static final int RECHARGE_RATE = 10;
 
-  public CyborgCore(Properties properties) {
+  public CyborgCoreItem(Properties properties) {
     super(properties);
   }
 

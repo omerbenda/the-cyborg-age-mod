@@ -16,6 +16,7 @@ public class TCACuriosEvents {
   public static void registerCapabilities(RegisterCapabilitiesEvent evt) {
     registerItem(evt, TCAItems.CYBORG_CORE);
     registerItem(evt, TCAItems.NIGHT_VISION_LENS);
+    registerItem(evt, TCAItems.CYBORG_LEG);
   }
 
   private static void registerItem(RegisterCapabilitiesEvent evt, ItemLike item) {

@@ -9,10 +9,10 @@ import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class NightVisionLens extends Item implements ICurioItem {
+public class NightVisionLensItem extends Item implements ICurioItem {
   private static final int ENERGY_USAGE = 10;
 
-  public NightVisionLens(Properties properties) {
+  public NightVisionLensItem(Properties properties) {
     super(properties);
   }
 
