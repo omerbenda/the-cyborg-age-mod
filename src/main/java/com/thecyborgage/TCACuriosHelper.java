@@ -1,0 +1,37 @@
+package com.thecyborgage;
+
+import com.thecyborgage.init.TCADataComponents;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotResult;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
+
+import java.util.Optional;
+
+public class TCACuriosHelper {
+  public static boolean tryConsumeEntityCoreEnergy(LivingEntity entity, int energy) {
+    Optional<ICuriosItemHandler> optionalItemHandler = CuriosApi.getCuriosInventory(entity);
+
+    if (optionalItemHandler.isEmpty()) {
+      return false;
+    }
+
+    Optional<SlotResult> optionalSlotResult = optionalItemHandler.get().findCurio("core", 0);
+
+    if (optionalSlotResult.isEmpty()) {
+      return false;
+    }
+
+    ItemStack coreItemStack = optionalSlotResult.get().stack();
+    int coreEnergy = coreItemStack.getOrDefault(TCADataComponents.CORE_ENERGY, 0);
+
+    if (coreEnergy < energy) {
+      return false;
+    }
+
+    coreItemStack.set(TCADataComponents.CORE_ENERGY, Math.max(coreEnergy - energy, 0));
+
+    return true;
+  }
+}
