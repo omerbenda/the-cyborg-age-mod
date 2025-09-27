@@ -21,7 +21,7 @@ public class CyborgCoreItem extends Item implements ICurioItem {
   public void curioTick(SlotContext slotContext, ItemStack stack) {
     ICurioItem.super.curioTick(slotContext, stack);
 
-    if (slotContext.entity().getKnownMovement().length() > 0.25) {
+    if (slotContext.entity().isSprinting()) {
       int energy = stack.getOrDefault(TCADataComponents.CORE_ENERGY, 0);
       stack.set(TCADataComponents.CORE_ENERGY, Math.min(energy + RECHARGE_RATE, MAX_ENERGY));
     }

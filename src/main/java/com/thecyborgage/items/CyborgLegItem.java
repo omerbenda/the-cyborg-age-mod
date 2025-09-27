@@ -1,6 +1,7 @@
 package com.thecyborgage.items;
 
 import com.thecyborgage.TCACuriosHelper;
+import com.thecyborgage.TCAEntityHelper;
 import com.thecyborgage.TheCyborgAgeMod;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
@@ -11,8 +12,8 @@ import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class CyborgLegItem extends Item implements ICurioItem {
-  public static final int ENERGY_USAGE = 10;
-  public static final float SPEED_INCREASE = 0.15F;
+  public static final int ENERGY_USAGE = 50;
+  public static final float SPEED_INCREASE = 0.5F;
   public static final ResourceLocation SPEED_MODIFIER_RESOURCE =
       ResourceLocation.fromNamespaceAndPath(
           TheCyborgAgeMod.MOD_ID, "attribute.cyborg_leg.speed_modifier");
@@ -33,15 +34,38 @@ public class CyborgLegItem extends Item implements ICurioItem {
       return;
     }
 
-    if (TCACuriosHelper.tryConsumeEntityCoreEnergy(entity, ENERGY_USAGE)) {
+    if (TCACuriosHelper.canConsumeEntityCoreEnergy(entity, ENERGY_USAGE)) {
       speedAttribute.addOrUpdateTransientModifier(
           new AttributeModifier(
               SPEED_MODIFIER_RESOURCE,
               SPEED_INCREASE,
               AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+
+      if (TCAEntityHelper.isEntityMovingHorizontal(entity)) {
+        TCACuriosHelper.tryConsumeEntityCoreEnergy(entity, ENERGY_USAGE);
+      }
     } else {
       speedAttribute.removeModifier(SPEED_MODIFIER_RESOURCE);
     }
+  }
+
+  @Override
+  public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
+    ICurioItem.super.onEquip(slotContext, prevStack, stack);
+
+    LivingEntity entity = slotContext.entity();
+    AttributeMap attributes = entity.getAttributes();
+    AttributeInstance speedAttribute = attributes.getInstance(Attributes.MOVEMENT_SPEED);
+
+    if (speedAttribute == null) {
+      return;
+    }
+
+    speedAttribute.addOrUpdateTransientModifier(
+        new AttributeModifier(
+            SPEED_MODIFIER_RESOURCE,
+            SPEED_INCREASE,
+            AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
   }
 
   @Override
