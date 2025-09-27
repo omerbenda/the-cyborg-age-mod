@@ -1,5 +1,6 @@
 package com.thecyborgage;
 
+import com.thecyborgage.init.TCACreativeModeTabs;
 import com.thecyborgage.init.TCADataComponents;
 import com.thecyborgage.init.TCAItems;
 import org.slf4j.Logger;
@@ -18,5 +19,6 @@ public class TheCyborgAgeMod {
   public TheCyborgAgeMod(IEventBus modEventBus, ModContainer modContainer) {
     TCADataComponents.register(modEventBus);
     TCAItems.register(modEventBus);
+    TCACreativeModeTabs.register(modEventBus);
   }
 }

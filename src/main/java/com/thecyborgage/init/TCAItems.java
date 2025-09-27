@@ -13,11 +13,12 @@ public class TCAItems {
       DeferredRegister.createItems(TheCyborgAgeMod.MOD_ID);
 
   public static final DeferredItem<CyborgCoreItem> CYBORG_CORE =
-      ITEMS.registerItem("cyborg_core", CyborgCoreItem::new);
+      ITEMS.registerItem("cyborg_core", (properties) -> new CyborgCoreItem(properties.stacksTo(1)));
   public static final DeferredItem<NightVisionLensItem> NIGHT_VISION_LENS =
-      ITEMS.registerItem("night_vision_lens", NightVisionLensItem::new);
+      ITEMS.registerItem(
+          "night_vision_lens", (properties) -> new NightVisionLensItem(properties.stacksTo(1)));
   public static final DeferredItem<CyborgLegItem> CYBORG_LEG =
-      ITEMS.registerItem("cyborg_leg", CyborgLegItem::new);
+      ITEMS.registerItem("cyborg_leg", (properties) -> new CyborgLegItem(properties.stacksTo(1)));
 
   public static void register(IEventBus bus) {
     ITEMS.register(bus);
