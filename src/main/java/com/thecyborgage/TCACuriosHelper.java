@@ -42,7 +42,7 @@ public class TCACuriosHelper {
     return true;
   }
 
-  private static Optional<ItemStack> getEntityCoreItemStack(LivingEntity entity) {
+  public static Optional<ItemStack> getEntityCoreItemStack(LivingEntity entity) {
     Optional<ICuriosItemHandler> optionalItemHandler = CuriosApi.getCuriosInventory(entity);
 
     if (optionalItemHandler.isEmpty()) {

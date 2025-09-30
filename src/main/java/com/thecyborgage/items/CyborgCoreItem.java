@@ -40,4 +40,14 @@ public class CyborgCoreItem extends Item implements ICurioItem {
             "thecyborgage.cyborg_core.energy_tooltip",
             stack.getOrDefault(TCADataComponents.CORE_ENERGY, 0)));
   }
+
+  public static int getCoreEnergy(ItemStack coreItemStack) {
+    Integer energy = coreItemStack.get(TCADataComponents.CORE_ENERGY);
+
+    if (energy == null) {
+      throw new RuntimeException();
+    }
+
+    return energy;
+  }
 }
