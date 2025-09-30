@@ -17,6 +17,10 @@ public class CyborgCoreItem extends Item implements ICurioItem {
     super(properties);
   }
 
+  public int getMaxEnergy() {
+    return MAX_ENERGY;
+  }
+
   @Override
   public void curioTick(SlotContext slotContext, ItemStack stack) {
     ICurioItem.super.curioTick(slotContext, stack);
@@ -39,15 +43,5 @@ public class CyborgCoreItem extends Item implements ICurioItem {
         Component.translatable(
             "thecyborgage.cyborg_core.energy_tooltip",
             stack.getOrDefault(TCADataComponents.CORE_ENERGY, 0)));
-  }
-
-  public static int getCoreEnergy(ItemStack coreItemStack) {
-    Integer energy = coreItemStack.get(TCADataComponents.CORE_ENERGY);
-
-    if (energy == null) {
-      throw new RuntimeException();
-    }
-
-    return energy;
   }
 }

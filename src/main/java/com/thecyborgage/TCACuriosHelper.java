@@ -1,8 +1,9 @@
 package com.thecyborgage;
 
-import com.thecyborgage.init.TCADataComponents;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
@@ -18,7 +19,7 @@ public class TCACuriosHelper {
     }
 
     ItemStack coreItemStack = optionalCoreItemStack.get();
-    int coreEnergy = coreItemStack.getOrDefault(TCADataComponents.CORE_ENERGY, 0);
+    int coreEnergy = coreItemStack.getCapability(Capabilities.EnergyStorage.ITEM).getEnergyStored();
 
     return coreEnergy >= energy;
   }
@@ -31,13 +32,13 @@ public class TCACuriosHelper {
     }
 
     ItemStack coreItemStack = optionalCoreItemStack.get();
-    int coreEnergy = coreItemStack.getOrDefault(TCADataComponents.CORE_ENERGY, 0);
+    IEnergyStorage coreEnergyStorage = coreItemStack.getCapability(Capabilities.EnergyStorage.ITEM);
 
-    if (coreEnergy < energy) {
+    if (coreEnergyStorage == null || coreEnergyStorage.getEnergyStored() < energy) {
       return false;
     }
 
-    coreItemStack.set(TCADataComponents.CORE_ENERGY, Math.max(coreEnergy - energy, 0));
+    coreEnergyStorage.extractEnergy(energy, false);
 
     return true;
   }

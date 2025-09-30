@@ -3,7 +3,6 @@ package com.thecyborgage.events;
 import com.mojang.blaze3d.platform.Window;
 import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.TheCyborgAgeMod;
-import com.thecyborgage.items.CyborgCoreItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -11,6 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
 
 import java.util.Optional;
@@ -25,7 +25,7 @@ public class TCAScreenEvents {
 
     if (playerCoreItem.isPresent()) {
       ItemStack coreItemStack = playerCoreItem.get();
-      int energy = CyborgCoreItem.getCoreEnergy(coreItemStack);
+      int energy = coreItemStack.getCapability(Capabilities.EnergyStorage.ITEM).getEnergyStored();
 
       GuiGraphics graphics = evt.getGuiGraphics();
       Window window = minecraft.getWindow();
