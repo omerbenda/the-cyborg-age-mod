@@ -34,7 +34,7 @@ public class CyborgLegItem extends Item implements ICurioItem {
       return;
     }
 
-    if (TCACuriosHelper.canConsumeEntityCoreEnergy(entity, ENERGY_USAGE)) {
+    if (TCACuriosHelper.consumeEntityCoreEnergy(entity, ENERGY_USAGE, true)) {
       speedAttribute.addOrUpdateTransientModifier(
           new AttributeModifier(
               SPEED_MODIFIER_RESOURCE,
@@ -42,7 +42,7 @@ public class CyborgLegItem extends Item implements ICurioItem {
               AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
 
       if (TCAEntityHelper.isEntityMovingHorizontal(entity)) {
-        TCACuriosHelper.tryConsumeEntityCoreEnergy(entity, ENERGY_USAGE);
+        TCACuriosHelper.consumeEntityCoreEnergy(entity, ENERGY_USAGE);
       }
     } else {
       speedAttribute.removeModifier(SPEED_MODIFIER_RESOURCE);

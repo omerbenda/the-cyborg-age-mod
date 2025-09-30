@@ -1,18 +1,16 @@
 package com.thecyborgage.items;
 
 import com.thecyborgage.TCACuriosHelper;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class NightVisionLensItem extends Item implements ICurioItem {
-  private static final int ENERGY_USAGE = 10;
+public class CyborgGeneratorLegItem extends Item implements ICurioItem {
+  private static final int CHARGE_RATE = 100;
 
-  public NightVisionLensItem(Properties properties) {
+  public CyborgGeneratorLegItem(Properties properties) {
     super(properties);
   }
 
@@ -21,8 +19,8 @@ public class NightVisionLensItem extends Item implements ICurioItem {
     ICurioItem.super.curioTick(slotContext, stack);
     LivingEntity entity = slotContext.entity();
 
-    if (TCACuriosHelper.consumeEntityCoreEnergy(entity, ENERGY_USAGE)) {
-      entity.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 220, 0));
+    if (entity.isSprinting()) {
+      TCACuriosHelper.addEntityCoreEnergy(entity, CHARGE_RATE);
     }
   }
 }

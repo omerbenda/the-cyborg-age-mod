@@ -2,6 +2,7 @@ package com.thecyborgage.init;
 
 import com.thecyborgage.TheCyborgAgeMod;
 import com.thecyborgage.items.CyborgCoreItem;
+import com.thecyborgage.items.CyborgGeneratorLegItem;
 import com.thecyborgage.items.CyborgLegItem;
 import com.thecyborgage.items.NightVisionLensItem;
 import net.neoforged.bus.api.IEventBus;
@@ -19,6 +20,10 @@ public class TCAItems {
           "night_vision_lens", (properties) -> new NightVisionLensItem(properties.stacksTo(1)));
   public static final DeferredItem<CyborgLegItem> CYBORG_LEG =
       ITEMS.registerItem("cyborg_leg", (properties) -> new CyborgLegItem(properties.stacksTo(1)));
+  public static final DeferredItem<CyborgGeneratorLegItem> CYBORG_GENERATOR_LEG =
+      ITEMS.registerItem(
+          "cyborg_generator_leg",
+          (properties -> new CyborgGeneratorLegItem(properties.stacksTo(1))));
 
   public static void register(IEventBus bus) {
     ITEMS.register(bus);

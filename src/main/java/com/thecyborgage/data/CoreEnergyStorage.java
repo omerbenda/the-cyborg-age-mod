@@ -31,7 +31,7 @@ public class CoreEnergyStorage implements IEnergyStorage {
   public int receiveEnergy(int energy, boolean simulate) {
     int stackEnergy = this.getStackEnergy();
     int maxEnergy = this.getMaxEnergyStored();
-    int toReceive = Math.min(energy, maxEnergy - energy);
+    int toReceive = Math.min(energy, maxEnergy - stackEnergy);
 
     if (!simulate && toReceive > 0) {
       this.setStackEnergy(stackEnergy + toReceive);
@@ -43,13 +43,16 @@ public class CoreEnergyStorage implements IEnergyStorage {
   @Override
   public int extractEnergy(int energy, boolean simulate) {
     int stackEnergy = this.getStackEnergy();
-    int toExtract = Math.min(energy, stackEnergy);
 
-    if (!simulate && toExtract > 0) {
-      this.setStackEnergy(stackEnergy - toExtract);
+    if (energy > stackEnergy) {
+      return 0;
     }
 
-    return toExtract;
+    if (!simulate) {
+      this.setStackEnergy(stackEnergy - energy);
+    }
+
+    return energy;
   }
 
   @Override

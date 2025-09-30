@@ -26,6 +26,7 @@ public class TCACreativeModeTabs {
                         output.accept(TCAItems.CYBORG_CORE);
                         output.accept(TCAItems.NIGHT_VISION_LENS);
                         output.accept(TCAItems.CYBORG_LEG);
+                        output.accept(TCAItems.CYBORG_GENERATOR_LEG);
                       })
                   .build());
 

@@ -11,39 +11,46 @@ import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import java.util.Optional;
 
 public class TCACuriosHelper {
-  public static boolean canConsumeEntityCoreEnergy(LivingEntity entity, int energy) {
-    Optional<ItemStack> optionalCoreItemStack = getEntityCoreItemStack(entity);
-
-    if (optionalCoreItemStack.isEmpty()) {
-      return false;
-    }
-
-    ItemStack coreItemStack = optionalCoreItemStack.get();
-    int coreEnergy = coreItemStack.getCapability(Capabilities.EnergyStorage.ITEM).getEnergyStored();
-
-    return coreEnergy >= energy;
+  public static boolean addEntityCoreEnergy(LivingEntity entity, int energy) {
+    return addEntityCoreEnergy(entity, energy, false);
   }
 
-  public static boolean tryConsumeEntityCoreEnergy(LivingEntity entity, int energy) {
-    Optional<ItemStack> optionalCoreItemStack = getEntityCoreItemStack(entity);
+  public static boolean addEntityCoreEnergy(LivingEntity entity, int energy, boolean simulate) {
+    Optional<IEnergyStorage> optionalEnergyStorage =
+        TCACuriosHelper.getEntityCoreEnergyStorage(entity);
 
-    if (optionalCoreItemStack.isEmpty()) {
+    if (optionalEnergyStorage.isEmpty()) {
       return false;
     }
 
-    ItemStack coreItemStack = optionalCoreItemStack.get();
-    IEnergyStorage coreEnergyStorage = coreItemStack.getCapability(Capabilities.EnergyStorage.ITEM);
+    IEnergyStorage coreEnergyStorage = optionalEnergyStorage.get();
 
-    if (coreEnergyStorage == null || coreEnergyStorage.getEnergyStored() < energy) {
-      return false;
-    }
-
-    coreEnergyStorage.extractEnergy(energy, false);
-
-    return true;
+    return coreEnergyStorage.receiveEnergy(energy, simulate) != 0;
   }
 
-  public static Optional<ItemStack> getEntityCoreItemStack(LivingEntity entity) {
+  public static boolean consumeEntityCoreEnergy(LivingEntity entity, int energy) {
+    return consumeEntityCoreEnergy(entity, energy, false);
+  }
+
+  public static boolean consumeEntityCoreEnergy(LivingEntity entity, int energy, boolean simulate) {
+    Optional<IEnergyStorage> optionalEnergyStorage =
+        TCACuriosHelper.getEntityCoreEnergyStorage(entity);
+
+    if (optionalEnergyStorage.isEmpty()) {
+      return false;
+    }
+
+    IEnergyStorage coreEnergyStorage = optionalEnergyStorage.get();
+
+    return coreEnergyStorage.extractEnergy(energy, simulate) != 0;
+  }
+
+  public static Optional<IEnergyStorage> getEntityCoreEnergyStorage(LivingEntity entity) {
+    return getEntityCoreItemStack(entity)
+        .map((stack) -> stack.getCapability(Capabilities.EnergyStorage.ITEM));
+  }
+
+  private static Optional<ItemStack> getEntityCoreItemStack(LivingEntity entity) {
     Optional<ICuriosItemHandler> optionalItemHandler = CuriosApi.getCuriosInventory(entity);
 
     if (optionalItemHandler.isEmpty()) {

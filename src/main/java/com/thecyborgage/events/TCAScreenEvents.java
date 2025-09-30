@@ -7,11 +7,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 
 import java.util.Optional;
 
@@ -21,15 +20,15 @@ public class TCAScreenEvents {
   public static void onPostRenderGui(RenderGuiLayerEvent.Post evt) {
     Minecraft minecraft = Minecraft.getInstance();
     Player player = minecraft.player;
-    Optional<ItemStack> playerCoreItem = TCACuriosHelper.getEntityCoreItemStack(player);
+    Optional<IEnergyStorage> playerCoreEnergyStorage =
+        TCACuriosHelper.getEntityCoreEnergyStorage(player);
 
-    if (playerCoreItem.isPresent()) {
-      ItemStack coreItemStack = playerCoreItem.get();
-      int energy = coreItemStack.getCapability(Capabilities.EnergyStorage.ITEM).getEnergyStored();
+    if (playerCoreEnergyStorage.isPresent()) {
+      IEnergyStorage energyStorage = playerCoreEnergyStorage.get();
 
       GuiGraphics graphics = evt.getGuiGraphics();
       Window window = minecraft.getWindow();
-      String text = String.valueOf(energy);
+      String text = String.valueOf(energyStorage.getEnergyStored());
       Font font = minecraft.font;
 
       graphics.drawString(

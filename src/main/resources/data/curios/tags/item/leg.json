@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "thecyborgage:cyborg_leg"
+    "thecyborgage:cyborg_leg",
+    "thecyborgage:cyborg_generator_leg"
   ]
 }
