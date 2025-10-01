@@ -1,10 +1,7 @@
 package com.thecyborgage.init;
 
 import com.thecyborgage.TheCyborgAgeMod;
-import com.thecyborgage.items.CyborgCoreItem;
-import com.thecyborgage.items.CyborgGeneratorLegItem;
-import com.thecyborgage.items.CyborgLegItem;
-import com.thecyborgage.items.NightVisionLensItem;
+import com.thecyborgage.items.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -24,6 +21,8 @@ public class TCAItems {
       ITEMS.registerItem(
           "cyborg_generator_leg",
           (properties -> new CyborgGeneratorLegItem(properties.stacksTo(1))));
+  public static final DeferredItem<SolarHatItem> SOLAR_HAT =
+      ITEMS.registerItem("solar_hat", (properties -> new SolarHatItem(properties.stacksTo(1))));
 
   public static void register(IEventBus bus) {
     ITEMS.register(bus);
