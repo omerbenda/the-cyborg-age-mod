@@ -8,6 +8,6 @@ public class TCAEntityHelper {
   public static boolean isEntityMovingHorizontal(LivingEntity entity) {
     Vec3 horizontalMovement = entity.getKnownMovement().with(Direction.Axis.Y, 0);
 
-    return entity.onGround() && horizontalMovement.lengthSqr() > 0.01;
+    return horizontalMovement.lengthSqr() > 0.01;
   }
 }
