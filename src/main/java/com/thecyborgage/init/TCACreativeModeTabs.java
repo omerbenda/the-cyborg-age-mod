@@ -28,6 +28,7 @@ public class TCACreativeModeTabs {
                         output.accept(TCAItems.CYBORG_LEG);
                         output.accept(TCAItems.CYBORG_GENERATOR_LEG);
                         output.accept(TCAItems.SOLAR_HAT);
+                        output.accept(TCAItems.THERMAL_GENERATOR);
                       })
                   .build());
 
