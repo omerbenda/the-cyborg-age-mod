@@ -33,6 +33,6 @@ public class ThermalGenerator extends Item implements ICurioItem {
       heatValue *= RAIN_COEFFICIENT;
     }
 
-    TCACuriosHelper.addEntityCoreEnergy(entity, (int) heatValue);
+    TCACuriosHelper.addEntityCoreEnergy(entity, Math.max((int) heatValue, 0));
   }
 }
