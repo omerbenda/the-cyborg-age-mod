@@ -26,6 +26,9 @@ public class TCAItems {
   public static final DeferredItem<ThermalGenerator> THERMAL_GENERATOR =
       ITEMS.registerItem(
           "thermal_generator", (properties -> new ThermalGenerator(properties.stacksTo(1))));
+  public static final DeferredItem<CyborgVisor> CYBORG_VISOR =
+      ITEMS.registerItem(
+          "cyborg_visor", (properties -> new CyborgVisor(properties.stacksTo(1))));
 
   public static void register(IEventBus bus) {
     ITEMS.register(bus);

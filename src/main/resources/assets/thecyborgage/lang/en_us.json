@@ -6,5 +6,6 @@
   "item.thecyborgage.solar_hat": "Solar Hat",
   "item.thecyborgage.thermal_generator": "Thermal Generator",
   "itemGroup.thecyborgage.the_cyborg_age_tab": "The Cyborg Age",
-  "thecyborgage.cyborg_core.energy_tooltip": "Energy: %d"
+  "thecyborgage.cyborg_core.energy_tooltip": "Energy: %d",
+  "thecyborgage.cyborg_visor.nearest_player": "Nearest player: %s"
 }

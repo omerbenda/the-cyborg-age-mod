@@ -1,5 +1,6 @@
 package com.thecyborgage;
 
+import com.thecyborgage.init.TCAItems;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -62,5 +63,12 @@ public class TCACuriosHelper {
     Optional<SlotResult> optionalCoreSlot = optionalItemHandler.get().findCurio("core", 0);
 
     return optionalCoreSlot.map(SlotResult::stack);
+  }
+
+  public static Optional<ItemStack> getEntityCyborgVisor(LivingEntity entity) {
+    return CuriosApi.getCuriosInventory(entity)
+        .flatMap(
+            (itemHandler) ->
+                itemHandler.findFirstCurio(TCAItems.CYBORG_VISOR.get()).map(SlotResult::stack));
   }
 }

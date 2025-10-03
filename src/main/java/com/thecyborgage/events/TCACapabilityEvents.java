@@ -22,6 +22,7 @@ public class TCACapabilityEvents {
     registerCurioItem(evt, TCAItems.CYBORG_GENERATOR_LEG);
     registerCurioItem(evt, TCAItems.SOLAR_HAT);
     registerCurioItem(evt, TCAItems.THERMAL_GENERATOR);
+    registerCurioItem(evt, TCAItems.CYBORG_VISOR);
 
     evt.registerItem(
         Capabilities.EnergyStorage.ITEM,
