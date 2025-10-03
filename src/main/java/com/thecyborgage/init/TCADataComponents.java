@@ -23,6 +23,9 @@ public class TCADataComponents {
           "player_radar_nearest_player",
           builder ->
               builder.persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8));
+  public static final Supplier<DataComponentType<Integer>> PLAYER_RADAR_TICK_COUNTER =
+      DATA_COMPONENTS.registerComponentType(
+          "player_radar_tick_counter", builder -> builder.persistent(Codec.INT));
 
   public static void register(IEventBus bus) {
     DATA_COMPONENTS.register(bus);

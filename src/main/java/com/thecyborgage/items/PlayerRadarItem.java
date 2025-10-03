@@ -1,5 +1,6 @@
 package com.thecyborgage.items;
 
+import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.init.TCADataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -17,6 +18,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class PlayerRadarItem extends Item implements ICurioItem {
+  private static final int SEARCH_TICK_RATE = 20;
+  private static final int ENERGY_USAGE = 25;
+
   public PlayerRadarItem(Properties properties) {
     super(properties);
   }
@@ -29,11 +33,19 @@ public class PlayerRadarItem extends Item implements ICurioItem {
     Level level = entity.level();
 
     if (!level.isClientSide()) {
-      setNearestPlayer(entity, stack);
+      int ticks = stack.getOrDefault(TCADataComponents.PLAYER_RADAR_TICK_COUNTER, 0);
+
+      if (ticks >= SEARCH_TICK_RATE) {
+        setNearestPlayer(entity, stack);
+        stack.set(TCADataComponents.PLAYER_RADAR_TICK_COUNTER, 0);
+      } else if (TCACuriosHelper.consumeEntityCoreEnergy(entity, ENERGY_USAGE)) {
+        stack.set(
+            TCADataComponents.PLAYER_RADAR_TICK_COUNTER, Math.min(ticks + 1, SEARCH_TICK_RATE));
+      }
     }
   }
 
-  private void setNearestPlayer(LivingEntity entity, ItemStack stack) {
+  private static void setNearestPlayer(LivingEntity entity, ItemStack stack) {
     Optional<ServerPlayer> optionalNearestPlayer = getNearestPlayer(entity);
 
     if (optionalNearestPlayer.isEmpty()) {
