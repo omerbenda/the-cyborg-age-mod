@@ -4,6 +4,7 @@ import com.mojang.blaze3d.platform.Window;
 import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.TheCyborgAgeMod;
 import com.thecyborgage.init.TCADataComponents;
+import com.thecyborgage.init.TCAItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -15,6 +16,8 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 
+import java.util.Optional;
+
 @EventBusSubscriber(modid = TheCyborgAgeMod.MOD_ID)
 public class TCAScreenEvents {
   @SubscribeEvent
@@ -23,38 +26,64 @@ public class TCAScreenEvents {
     Player player = minecraft.player;
     GuiGraphics graphics = evt.getGuiGraphics();
 
-    TCACuriosHelper.getEntityCoreEnergyStorage(player)
-        .ifPresent((energyStorage) -> renderCoreEnergy(graphics, energyStorage));
-    TCACuriosHelper.getEntityCyborgVisor(player).ifPresent((stack) -> renderVisor(graphics, stack));
+    TCACuriosHelper.getEntityCurioItem(player, TCAItems.CYBORG_VISOR.get())
+        .ifPresent((stack) -> renderVisor(graphics));
   }
 
-  private static void renderCoreEnergy(GuiGraphics graphics, IEnergyStorage energyStorage) {
+  private static void renderVisor(GuiGraphics graphics) {
+    renderSidebar(graphics);
+    renderCoreEnergy(graphics);
+  }
+
+  private static void renderSidebar(GuiGraphics graphics) {
     Minecraft minecraft = Minecraft.getInstance();
     Window window = minecraft.getWindow();
+
+    Optional<ItemStack> optionalPlayerRadar =
+        TCACuriosHelper.getEntityCurioItem(minecraft.player, TCAItems.PLAYER_RADAR.get());
+
+    if (optionalPlayerRadar.isEmpty()) {
+      return;
+    }
+
+    ItemStack playerRadar = optionalPlayerRadar.get();
+    String nearestPlayer = playerRadar.get(TCADataComponents.PLAYER_RADAR_NEAREST_PLAYER);
+
+    if (nearestPlayer == null) {
+      return;
+    }
+
+    Component nearestPlayerText =
+        Component.translatable("thecyborgage.cyborg_visor.nearest_player", nearestPlayer);
+    Font font = minecraft.font;
+
+    graphics.drawString(
+        font,
+        nearestPlayerText,
+        window.getGuiScaledWidth() - font.width(nearestPlayerText),
+        0,
+        0x00ff00);
+  }
+
+  private static void renderCoreEnergy(GuiGraphics graphics) {
+    Minecraft minecraft = Minecraft.getInstance();
+    Window window = minecraft.getWindow();
+    Optional<IEnergyStorage> optionalEnergyStorage =
+        TCACuriosHelper.getEntityCoreEnergyStorage(minecraft.player);
+
+    if (optionalEnergyStorage.isEmpty()) {
+      return;
+    }
+
+    IEnergyStorage energyStorage = optionalEnergyStorage.get();
     String text = String.valueOf(energyStorage.getEnergyStored());
     Font font = minecraft.font;
 
     graphics.drawString(
         font,
         text,
-        window.getGuiScaledWidth() / 2 + 8,
+        window.getGuiScaledWidth() / 2 + 10,
         (window.getGuiScaledHeight() - font.lineHeight) / 2,
         0xffffff);
-  }
-
-  private static void renderVisor(GuiGraphics graphics, ItemStack stack) {
-    Minecraft minecraft = Minecraft.getInstance();
-    Window window = minecraft.getWindow();
-    String nearestPlayer = stack.get(TCADataComponents.VISOR_NEAREST_PLAYER);
-
-    if (nearestPlayer == null) {
-      return;
-    }
-
-    Component text =
-        Component.translatable("thecyborgage.cyborg_visor.nearest_player", nearestPlayer);
-    Font font = minecraft.font;
-
-    graphics.drawString(font, text, window.getGuiScaledWidth() - font.width(text), 0, 0x00ff00);
   }
 }

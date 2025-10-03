@@ -18,9 +18,9 @@ public class TCADataComponents {
           "core_energy",
           builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
 
-  public static final Supplier<DataComponentType<String>> VISOR_NEAREST_PLAYER =
+  public static final Supplier<DataComponentType<String>> PLAYER_RADAR_NEAREST_PLAYER =
       DATA_COMPONENTS.registerComponentType(
-          "visor_nearest_player",
+          "player_radar_nearest_player",
           builder ->
               builder.persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8));
 

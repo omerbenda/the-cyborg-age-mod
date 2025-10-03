@@ -1,8 +1,7 @@
 {
   "replace": false,
   "values": [
-    "thecyborgage:night_vision_lens",
     "thecyborgage:solar_hat",
-    "thecyborgage:cyborg_visor"
+    "thecyborgage:player_radar"
   ]
 }

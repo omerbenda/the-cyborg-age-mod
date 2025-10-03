@@ -2,6 +2,7 @@ package com.thecyborgage.init;
 
 import com.thecyborgage.TheCyborgAgeMod;
 import com.thecyborgage.items.*;
+import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -26,9 +27,11 @@ public class TCAItems {
   public static final DeferredItem<ThermalGenerator> THERMAL_GENERATOR =
       ITEMS.registerItem(
           "thermal_generator", (properties -> new ThermalGenerator(properties.stacksTo(1))));
-  public static final DeferredItem<CyborgVisor> CYBORG_VISOR =
+  public static final DeferredItem<Item> CYBORG_VISOR =
+      ITEMS.registerSimpleItem("cyborg_visor", new Item.Properties().stacksTo(1));
+  public static final DeferredItem<PlayerRadarItem> PLAYER_RADAR =
       ITEMS.registerItem(
-          "cyborg_visor", (properties -> new CyborgVisor(properties.stacksTo(1))));
+          "player_radar", (properties -> new PlayerRadarItem(properties.stacksTo(1))));
 
   public static void register(IEventBus bus) {
     ITEMS.register(bus);

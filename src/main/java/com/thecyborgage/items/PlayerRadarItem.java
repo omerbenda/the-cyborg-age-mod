@@ -1,11 +1,13 @@
 package com.thecyborgage.items;
 
 import com.thecyborgage.init.TCADataComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
@@ -14,8 +16,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
-public class CyborgVisor extends Item implements ICurioItem {
-  public CyborgVisor(Properties properties) {
+public class PlayerRadarItem extends Item implements ICurioItem {
+  public PlayerRadarItem(Properties properties) {
     super(properties);
   }
 
@@ -35,13 +37,13 @@ public class CyborgVisor extends Item implements ICurioItem {
     Optional<ServerPlayer> optionalNearestPlayer = getNearestPlayer(entity);
 
     if (optionalNearestPlayer.isEmpty()) {
-      stack.remove(TCADataComponents.VISOR_NEAREST_PLAYER);
+      stack.remove(TCADataComponents.PLAYER_RADAR_NEAREST_PLAYER);
 
       return;
     }
 
     ServerPlayer nearestPlayer = optionalNearestPlayer.get();
-    stack.set(TCADataComponents.VISOR_NEAREST_PLAYER, nearestPlayer.getName().getString());
+    stack.set(TCADataComponents.PLAYER_RADAR_NEAREST_PLAYER, nearestPlayer.getName().getString());
   }
 
   private static Optional<ServerPlayer> getNearestPlayer(LivingEntity entity) {
@@ -57,5 +59,22 @@ public class CyborgVisor extends Item implements ICurioItem {
     return players.stream()
         .filter((player) -> !player.is(entity))
         .min(Comparator.comparingDouble(entity::distanceToSqr));
+  }
+
+  @Override
+  public void appendHoverText(
+      ItemStack stack,
+      TooltipContext context,
+      List<Component> tooltipComponents,
+      TooltipFlag tooltipFlag) {
+    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+
+    String nearestPlayer = stack.get(TCADataComponents.PLAYER_RADAR_NEAREST_PLAYER);
+
+    if (nearestPlayer != null) {
+      tooltipComponents.add(
+          Component.translatable(
+              "thecyborgage.player_radar.nearest_player_tooltip", nearestPlayer));
+    }
   }
 }
