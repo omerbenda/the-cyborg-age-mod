@@ -4,13 +4,10 @@ import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.TCAEntityHelper;
 import com.thecyborgage.TheCyborgAgeMod;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.ItemAttributeModifiers;
-import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -80,13 +77,6 @@ public class CyborgLegItem extends Item implements ICurioItem {
     }
 
     speedAttribute.removeModifier(SPEED_MODIFIER_RESOURCE);
-  }
-
-  @Override
-  public @NotNull ItemAttributeModifiers getDefaultAttributeModifiers(@NotNull ItemStack stack) {
-    return super.getDefaultAttributeModifiers(stack)
-        .withModifierAdded(
-            Attributes.MOVEMENT_SPEED, this.createAttributeModifier(), EquipmentSlotGroup.ANY);
   }
 
   private AttributeModifier createAttributeModifier() {

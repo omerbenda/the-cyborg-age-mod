@@ -13,5 +13,5 @@ public class TheCyborgAgeClient {
   public TheCyborgAgeClient(ModContainer container) {}
 
   @SubscribeEvent
-  static void onClientSetup(FMLClientSetupEvent event) {}
+  public static void onClientSetup(FMLClientSetupEvent evt) {}
 }
