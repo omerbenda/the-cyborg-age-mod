@@ -9,11 +9,11 @@ import net.minecraft.world.level.Level;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class ThermalGenerator extends Item implements ICurioItem {
+public class ThermalGeneratorItem extends Item implements ICurioItem {
   private static final float TEMPERATURE_COEFFICIENT = 2.0F;
   private static final float RAIN_COEFFICIENT = 0.2F;
 
-  public ThermalGenerator(Properties properties) {
+  public ThermalGeneratorItem(Properties properties) {
     super(properties);
   }
 

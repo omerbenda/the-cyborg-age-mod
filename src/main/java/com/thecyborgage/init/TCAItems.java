@@ -24,9 +24,9 @@ public class TCAItems {
           (properties -> new CyborgGeneratorLegItem(properties.stacksTo(1))));
   public static final DeferredItem<SolarHatItem> SOLAR_HAT =
       ITEMS.registerItem("solar_hat", (properties -> new SolarHatItem(properties.stacksTo(1))));
-  public static final DeferredItem<ThermalGenerator> THERMAL_GENERATOR =
+  public static final DeferredItem<ThermalGeneratorItem> THERMAL_GENERATOR =
       ITEMS.registerItem(
-          "thermal_generator", (properties -> new ThermalGenerator(properties.stacksTo(1))));
+          "thermal_generator", (properties -> new ThermalGeneratorItem(properties.stacksTo(1))));
   public static final DeferredItem<Item> CYBORG_VISOR =
       ITEMS.registerSimpleItem("cyborg_visor", new Item.Properties().stacksTo(1));
   public static final DeferredItem<PlayerRadarItem> PLAYER_RADAR =
