@@ -1,0 +1,14 @@
+{
+  "item.thecyborgage.cyborg_core": "Cyborg Core",
+  "item.thecyborgage.night_vision_lens": "Night Vision Lens",
+  "item.thecyborgage.cyborg_leg": "Cyborg Leg",
+  "item.thecyborgage.cyborg_generator_leg": "Cyborg Generator Leg",
+  "item.thecyborgage.solar_hat": "Solar Hat",
+  "item.thecyborgage.thermal_generator": "Thermal Generator",
+  "item.thecyborgage.cyborg_visor": "Cyborg Visor",
+  "item.thecyborgage.player_radar": "Player Radar",
+  "itemGroup.thecyborgage.the_cyborg_age_tab": "The Cyborg Age",
+  "thecyborgage.cyborg_core.energy_tooltip": "Energy: %d",
+  "thecyborgage.player_radar.nearest_player_tooltip": "Nearest player: %s",
+  "thecyborgage.cyborg_visor.nearest_player": "Nearest player: %s"
+}
