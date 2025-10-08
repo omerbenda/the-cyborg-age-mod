@@ -1,4 +1,4 @@
-package com.thecyborgage.events;
+package com.thecyborgage.client;
 
 import com.mojang.blaze3d.platform.Window;
 import com.thecyborgage.TCACuriosHelper;
@@ -11,6 +11,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
@@ -18,7 +19,7 @@ import net.neoforged.neoforge.energy.IEnergyStorage;
 
 import java.util.Optional;
 
-@EventBusSubscriber(modid = TheCyborgAgeMod.MOD_ID)
+@EventBusSubscriber(modid = TheCyborgAgeMod.MOD_ID, value = Dist.CLIENT)
 public class TCAScreenEvents {
   @SubscribeEvent
   public static void onPostRenderGui(RenderGuiLayerEvent.Post evt) {
