@@ -1,0 +1,28 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_fragment": {
+      "conditions": {
+        "items": [
+          {
+            "items": "thecyborgage:cyborg_fragment"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_fragment"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "thecyborgage:cyborg_core",
+      "thecyborgage:cyborg_leg",
+      "thecyborgage:cyborg_generator_leg",
+      "thecyborgage:player_radar"
+    ]
+  }
+}

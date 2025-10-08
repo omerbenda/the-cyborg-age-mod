@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "f": {
+      "item": "thecyborgage:cyborg_fragment"
+    },
+    "I": {
+      "item": "minecraft:iron_block"
+    },
+    "L": {
+      "item": "minecraft:lodestone"
+    }
+  },
+  "pattern": [
+    "fRf",
+    "ILI",
+    "fIf"
+  ],
+  "result": {
+    "count": 1,
+    "id": "thecyborgage:player_radar"
+  }
+}

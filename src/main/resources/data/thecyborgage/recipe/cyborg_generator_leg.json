@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "f": {
+      "item": "thecyborgage:cyborg_fragment"
+    },
+    "b": {
+      "item": "minecraft:iron_boots"
+    },
+    "r": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "pattern": [
+    "frf",
+    "frf",
+    "fbf"
+  ],
+  "result": {
+    "count": 1,
+    "id": "thecyborgage:cyborg_generator_leg"
+  }
+}
