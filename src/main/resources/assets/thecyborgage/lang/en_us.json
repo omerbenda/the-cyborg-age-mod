@@ -11,5 +11,6 @@
   "itemGroup.thecyborgage.the_cyborg_age_tab": "The Cyborg Age",
   "thecyborgage.cyborg_core.energy_tooltip": "Energy: %d",
   "thecyborgage.player_radar.nearest_player_tooltip": "Nearest player: %s",
-  "thecyborgage.cyborg_visor.nearest_player": "Nearest player: %s"
+  "thecyborgage.cyborg_visor.nearest_player": "Nearest player: %s",
+  "entity.thecyborgage.cyborg": "Cyborg"
 }
