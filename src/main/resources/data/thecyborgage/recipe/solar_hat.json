@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "f": {
+      "item": "thecyborgage:cyborg_fragment"
+    },
+    "d": {
+      "item": "minecraft:daylight_detector"
+    },
+    "l": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "i": {
+      "item": "minecraft:iron_helmet"
+    }
+  },
+  "pattern": [
+    "ldl",
+    "fif",
+    "f f"
+  ],
+  "result": {
+    "count": 1,
+    "id": "thecyborgage:solar_hat"
+  }
+}
