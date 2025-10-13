@@ -23,6 +23,7 @@ public class TCACreativeModeTabs {
                   .icon(() -> new ItemStack(TCAItems.CYBORG_CORE.get()))
                   .displayItems(
                       (param, output) -> {
+                        output.accept(TCAItems.CYBORG_FRAGMENT);
                         output.accept(TCAItems.CYBORG_CORE);
                         output.accept(TCAItems.NIGHT_VISION_LENS);
                         output.accept(TCAItems.CYBORG_LEG);

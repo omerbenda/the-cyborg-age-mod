@@ -11,6 +11,8 @@ public class TCAItems {
   public static final DeferredRegister.Items ITEMS =
       DeferredRegister.createItems(TheCyborgAgeMod.MOD_ID);
 
+  public static final DeferredItem<Item> CYBORG_FRAGMENT =
+      ITEMS.registerSimpleItem("cyborg_fragment");
   public static final DeferredItem<CyborgCoreItem> CYBORG_CORE =
       ITEMS.registerItem("cyborg_core", (properties) -> new CyborgCoreItem(properties.stacksTo(1)));
   public static final DeferredItem<NightVisionLensItem> NIGHT_VISION_LENS =

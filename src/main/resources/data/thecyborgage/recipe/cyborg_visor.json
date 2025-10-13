@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "f": {
+      "item": "thecyborgage:cyborg_fragment"
+    },
+    "g": {
+      "item": "minecraft:lime_stained_glass_pane"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "ffi",
+    "ggi",
+    "ffi"
+  ],
+  "result": {
+    "count": 1,
+    "id": "thecyborgage:cyborg_visor"
+  }
+}
