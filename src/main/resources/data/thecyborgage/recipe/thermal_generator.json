@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "f": {
+      "item": "thecyborgage:cyborg_fragment"
+    },
+    "w": {
+      "item": "minecraft:water_bucket"
+    },
+    "r": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "pattern": [
+    "fff",
+    "wrw",
+    "fff"
+  ],
+  "result": {
+    "count": 1,
+    "id": "thecyborgage:thermal_generator"
+  }
+}

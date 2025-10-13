@@ -1,5 +1,9 @@
-package com.thecyborgage;
+package com.thecyborgage.client;
 
+import com.thecyborgage.TheCyborgAgeMod;
+import com.thecyborgage.client.renderers.CyborgRenderer;
+import com.thecyborgage.init.TCAEntities;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -13,5 +17,7 @@ public class TheCyborgAgeClient {
   public TheCyborgAgeClient(ModContainer container) {}
 
   @SubscribeEvent
-  public static void onClientSetup(FMLClientSetupEvent evt) {}
+  public static void onClientSetup(FMLClientSetupEvent evt) {
+    EntityRenderers.register(TCAEntities.CYBORG.get(), CyborgRenderer::new);
+  }
 }
