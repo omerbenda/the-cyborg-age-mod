@@ -39,31 +39,51 @@ public class TCAScreenEvents {
   private static void renderSidebar(GuiGraphics graphics) {
     Minecraft minecraft = Minecraft.getInstance();
     Window window = minecraft.getWindow();
-
-    Optional<ItemStack> optionalPlayerRadar =
-        TCACuriosHelper.getEntityCurioItem(minecraft.player, TCAItems.PLAYER_RADAR.get());
-
-    if (optionalPlayerRadar.isEmpty()) {
-      return;
-    }
-
-    ItemStack playerRadar = optionalPlayerRadar.get();
-    String nearestPlayer = playerRadar.get(TCADataComponents.PLAYER_RADAR_NEAREST_PLAYER);
-
-    if (nearestPlayer == null) {
-      return;
-    }
-
-    Component nearestPlayerText =
-        Component.translatable("thecyborgage.cyborg_visor.nearest_player", nearestPlayer);
+    Player player = minecraft.player;
     Font font = minecraft.font;
 
-    graphics.drawString(
-        font,
-        nearestPlayerText,
-        window.getGuiScaledWidth() - font.width(nearestPlayerText),
-        0,
-        0x00ff00);
+    int drawHeight = 0;
+
+    Optional<ItemStack> optionalPlayerRadar =
+        TCACuriosHelper.getEntityCurioItem(player, TCAItems.PLAYER_RADAR.get());
+
+    if (optionalPlayerRadar.isPresent()) {
+      ItemStack playerRadar = optionalPlayerRadar.get();
+      String nearestPlayer = playerRadar.get(TCADataComponents.PLAYER_RADAR_NEAREST_PLAYER);
+
+      if (nearestPlayer != null) {
+        Component nearestPlayerText =
+            Component.translatable("thecyborgage.cyborg_visor.nearest_player", nearestPlayer);
+
+        graphics.drawString(
+            font,
+            nearestPlayerText,
+            window.getGuiScaledWidth() - font.width(nearestPlayerText),
+            drawHeight,
+            0x00ff00);
+
+        drawHeight += font.lineHeight;
+      }
+    }
+
+    Optional<ItemStack> optionalThermalGenerator =
+        TCACuriosHelper.getEntityCurioItem(player, TCAItems.THERMAL_GENERATOR.get());
+
+    if (optionalThermalGenerator.isPresent()) {
+      Component temperatureText =
+          Component.translatable(
+              "thecyborgage.cyborg_visor.temperature",
+              minecraft.level.getBiome(player.blockPosition()).value().getBaseTemperature());
+
+      graphics.drawString(
+          font,
+          temperatureText,
+          window.getGuiScaledWidth() - font.width(temperatureText),
+          drawHeight,
+          0x00ff00);
+
+      drawHeight += font.lineHeight;
+    }
   }
 
   private static void renderCoreEnergy(GuiGraphics graphics) {
