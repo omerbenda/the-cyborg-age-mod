@@ -37,6 +37,8 @@ public class TCAScreenEvents {
   }
 
   private static void renderSidebar(GuiGraphics graphics) {
+    final int textColor = 0x00ff00;
+
     Minecraft minecraft = Minecraft.getInstance();
     Window window = minecraft.getWindow();
     Player player = minecraft.player;
@@ -60,7 +62,7 @@ public class TCAScreenEvents {
             nearestPlayerText,
             window.getGuiScaledWidth() - font.width(nearestPlayerText),
             drawHeight,
-            0x00ff00);
+            textColor);
 
         drawHeight += font.lineHeight;
       }
@@ -80,7 +82,7 @@ public class TCAScreenEvents {
           temperatureText,
           window.getGuiScaledWidth() - font.width(temperatureText),
           drawHeight,
-          0x00ff00);
+          textColor);
 
       drawHeight += font.lineHeight;
     }
