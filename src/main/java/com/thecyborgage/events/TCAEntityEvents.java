@@ -5,6 +5,7 @@ import com.thecyborgage.TheCyborgAgeMod;
 import com.thecyborgage.entities.CyborgEntity;
 import com.thecyborgage.init.TCAEntities;
 import com.thecyborgage.init.TCAItems;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.monster.Monster;
@@ -40,16 +41,18 @@ public class TCAEntityEvents {
   public static void onEntityDamaged(LivingDamageEvent.Post evt) {
     LivingEntity entity = evt.getEntity();
     Optional<IEnergyStorage> optionalCoreEnergyStorage =
-            TCACuriosHelper.getEntityCoreEnergyStorage(entity);
+        TCACuriosHelper.getEntityCoreEnergyStorage(entity);
 
-    Optional<ItemStack> optionalEnergyArmor =
-        TCACuriosHelper.getEntityCurioItem(entity, TCAItems.ENERGY_ARMOR.get());
+    if (optionalCoreEnergyStorage.isPresent()) {
+      Optional<ItemStack> optionalEnergyArmor =
+          TCACuriosHelper.getEntityCurioItem(entity, TCAItems.ENERGY_ARMOR.get());
 
-    if (optionalCoreEnergyStorage.isPresent() && optionalEnergyArmor.isPresent()) {
-      IEnergyStorage coreEnergyStorage = optionalCoreEnergyStorage.get();
+      if (!evt.getSource().is(DamageTypeTags.BYPASSES_ARMOR) && optionalEnergyArmor.isPresent()) {
+        IEnergyStorage coreEnergyStorage = optionalCoreEnergyStorage.get();
 
-      TCACuriosHelper.consumeEntityCoreEnergy(
-          entity, Math.min(1000, coreEnergyStorage.getEnergyStored()));
+        TCACuriosHelper.consumeEntityCoreEnergy(
+            entity, Math.min(1000, coreEnergyStorage.getEnergyStored()));
+      }
     }
   }
 }
