@@ -61,7 +61,7 @@ public class AttributeCyborgItem extends Item implements ICurioItem {
 
     IEnergyStorage coreEnergyStorage = optionalCoreEnergyStorage.get();
 
-    if (coreEnergyStorage.extractEnergy(this.energyUsage, true) != 0) {
+    if (coreEnergyStorage.extractEnergy(this.energyUsage, true) != -1) {
       attributeInstance.addOrUpdateTransientModifier(this.createAttributeModifier());
 
       if (this.shouldConsumeEnergy(slotContext, stack)) {

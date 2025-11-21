@@ -45,7 +45,7 @@ public class CoreEnergyStorage implements IEnergyStorage {
     int stackEnergy = this.getStackEnergy();
 
     if (energy > stackEnergy) {
-      return 0;
+      return -1;
     }
 
     if (!simulate) {
