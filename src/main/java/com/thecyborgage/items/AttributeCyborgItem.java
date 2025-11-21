@@ -7,11 +7,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.energy.IEnergyStorage;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
-
-import java.util.Optional;
 
 public class AttributeCyborgItem extends Item implements ICurioItem {
   private final ResourceLocation modifierResLoc;
@@ -52,20 +49,11 @@ public class AttributeCyborgItem extends Item implements ICurioItem {
       return;
     }
 
-    Optional<IEnergyStorage> optionalCoreEnergyStorage =
-        TCACuriosHelper.getEntityCoreEnergyStorage(entity);
-
-    if (optionalCoreEnergyStorage.isEmpty()) {
-      return;
-    }
-
-    IEnergyStorage coreEnergyStorage = optionalCoreEnergyStorage.get();
-
-    if (coreEnergyStorage.extractEnergy(this.energyUsage, true) != -1) {
+    if (TCACuriosHelper.consumeEntityCoreEnergy(entity, this.energyUsage, true)) {
       attributeInstance.addOrUpdateTransientModifier(this.createAttributeModifier());
 
       if (this.shouldConsumeEnergy(slotContext, stack)) {
-        coreEnergyStorage.extractEnergy(this.energyUsage, false);
+        TCACuriosHelper.consumeEntityCoreEnergy(entity, this.energyUsage);
       }
     } else {
       attributeInstance.removeModifier(this.modifierResLoc);
