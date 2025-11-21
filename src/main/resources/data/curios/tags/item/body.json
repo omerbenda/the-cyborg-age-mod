@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "thecyborgage:thermal_generator"
+    "thecyborgage:thermal_generator",
+    "thecyborgage:energy_armor"
   ]
 }

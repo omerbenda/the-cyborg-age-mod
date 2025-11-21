@@ -2,6 +2,9 @@ package com.thecyborgage.init;
 
 import com.thecyborgage.TheCyborgAgeMod;
 import com.thecyborgage.items.*;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -34,6 +37,18 @@ public class TCAItems {
   public static final DeferredItem<PlayerRadarItem> PLAYER_RADAR =
       ITEMS.registerItem(
           "player_radar", (properties -> new PlayerRadarItem(properties.stacksTo(1))));
+  public static final DeferredItem<AttributeCyborgItem> ENERGY_ARMOR =
+      ITEMS.registerItem(
+          "energy_armor",
+          (properties ->
+              new AttributeCyborgItem(
+                  properties.stacksTo(1),
+                  ResourceLocation.fromNamespaceAndPath(
+                      TheCyborgAgeMod.MOD_ID, "attribute.energy_armor.armor_modifier"),
+                  Attributes.ARMOR,
+                  6,
+                  AttributeModifier.Operation.ADD_VALUE,
+                  5)));
 
   public static void register(IEventBus bus) {
     ITEMS.register(bus);

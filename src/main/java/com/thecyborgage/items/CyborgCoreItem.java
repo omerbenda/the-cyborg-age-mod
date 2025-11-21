@@ -2,6 +2,7 @@ package com.thecyborgage.items;
 
 import com.thecyborgage.init.TCADataComponents;
 import java.util.List;
+
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
