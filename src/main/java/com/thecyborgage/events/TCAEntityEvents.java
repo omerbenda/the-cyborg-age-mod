@@ -1,15 +1,23 @@
 package com.thecyborgage.events;
 
+import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.TheCyborgAgeMod;
 import com.thecyborgage.entities.CyborgEntity;
 import com.thecyborgage.init.TCAEntities;
+import com.thecyborgage.init.TCAItems;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+
+import java.util.Optional;
 
 @EventBusSubscriber(modid = TheCyborgAgeMod.MOD_ID)
 public class TCAEntityEvents {
@@ -26,5 +34,22 @@ public class TCAEntityEvents {
         Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
         CyborgEntity::checkMobSpawnRules,
         RegisterSpawnPlacementsEvent.Operation.REPLACE);
+  }
+
+  @SubscribeEvent
+  public static void onEntityDamaged(LivingDamageEvent.Post evt) {
+    LivingEntity entity = evt.getEntity();
+    Optional<IEnergyStorage> optionalCoreEnergyStorage =
+            TCACuriosHelper.getEntityCoreEnergyStorage(entity);
+
+    Optional<ItemStack> optionalEnergyArmor =
+        TCACuriosHelper.getEntityCurioItem(entity, TCAItems.ENERGY_ARMOR.get());
+
+    if (optionalCoreEnergyStorage.isPresent() && optionalEnergyArmor.isPresent()) {
+      IEnergyStorage coreEnergyStorage = optionalCoreEnergyStorage.get();
+
+      TCACuriosHelper.consumeEntityCoreEnergy(
+          entity, Math.min(1000, coreEnergyStorage.getEnergyStored()));
+    }
   }
 }

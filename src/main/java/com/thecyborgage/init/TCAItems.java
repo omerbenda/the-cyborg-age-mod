@@ -48,7 +48,7 @@ public class TCAItems {
                   Attributes.ARMOR,
                   6,
                   AttributeModifier.Operation.ADD_VALUE,
-                  50)));
+                  5)));
 
   public static void register(IEventBus bus) {
     ITEMS.register(bus);
