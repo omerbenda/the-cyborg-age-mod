@@ -1,24 +1,26 @@
 package com.thecyborgage.items;
 
 import com.thecyborgage.TCACuriosHelper;
-import com.thecyborgage.TCAEntityHelper;
 import com.thecyborgage.TheCyborgAgeMod;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.*;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeMap;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class CyborgLegItem extends Item implements ICurioItem {
+public class EnergyArmor extends Item implements ICurioItem {
   public static final int ENERGY_USAGE = 50;
-  public static final float SPEED_INCREASE = 0.5F;
-  public static final ResourceLocation SPEED_MODIFIER_RESOURCE =
+  public static final int ARMOR_INCREASE = 6;
+  public static final ResourceLocation ARMOR_MODIFIER_RESOURCE =
       ResourceLocation.fromNamespaceAndPath(
-          TheCyborgAgeMod.MOD_ID, "attribute.cyborg_leg.speed_modifier");
+          TheCyborgAgeMod.MOD_ID, "attribute.energy_armor.armor_modifier");
 
-  public CyborgLegItem(Properties properties) {
+  public EnergyArmor(Properties properties) {
     super(properties);
   }
 
@@ -28,20 +30,17 @@ public class CyborgLegItem extends Item implements ICurioItem {
 
     LivingEntity entity = slotContext.entity();
     AttributeMap attributes = entity.getAttributes();
-    AttributeInstance speedAttribute = attributes.getInstance(Attributes.MOVEMENT_SPEED);
+    AttributeInstance armorAttribute = attributes.getInstance(Attributes.ARMOR);
 
-    if (speedAttribute == null) {
+    if (armorAttribute == null) {
       return;
     }
 
     if (TCACuriosHelper.consumeEntityCoreEnergy(entity, ENERGY_USAGE, true)) {
-      speedAttribute.addOrUpdateTransientModifier(this.createAttributeModifier());
-
-      if (TCAEntityHelper.isEntityMovingHorizontal(entity)) {
-        TCACuriosHelper.consumeEntityCoreEnergy(entity, ENERGY_USAGE);
-      }
+      armorAttribute.addOrUpdateTransientModifier(this.createAttributeModifier());
+      TCACuriosHelper.consumeEntityCoreEnergy(entity, ENERGY_USAGE);
     } else {
-      speedAttribute.removeModifier(SPEED_MODIFIER_RESOURCE);
+      armorAttribute.removeModifier(ARMOR_MODIFIER_RESOURCE);
     }
   }
 
@@ -51,13 +50,13 @@ public class CyborgLegItem extends Item implements ICurioItem {
 
     LivingEntity entity = slotContext.entity();
     AttributeMap attributes = entity.getAttributes();
-    AttributeInstance speedAttribute = attributes.getInstance(Attributes.MOVEMENT_SPEED);
+    AttributeInstance armorAttribute = attributes.getInstance(Attributes.ARMOR);
 
-    if (speedAttribute == null) {
+    if (armorAttribute == null) {
       return;
     }
 
-    speedAttribute.addOrUpdateTransientModifier(this.createAttributeModifier());
+    armorAttribute.addOrUpdateTransientModifier(this.createAttributeModifier());
   }
 
   @Override
@@ -66,17 +65,17 @@ public class CyborgLegItem extends Item implements ICurioItem {
 
     LivingEntity entity = slotContext.entity();
     AttributeMap attributes = entity.getAttributes();
-    AttributeInstance speedAttribute = attributes.getInstance(Attributes.MOVEMENT_SPEED);
+    AttributeInstance armorAttribute = attributes.getInstance(Attributes.ARMOR);
 
-    if (speedAttribute == null) {
+    if (armorAttribute == null) {
       return;
     }
 
-    speedAttribute.removeModifier(SPEED_MODIFIER_RESOURCE);
+    armorAttribute.removeModifier(ARMOR_MODIFIER_RESOURCE);
   }
 
   private AttributeModifier createAttributeModifier() {
     return new AttributeModifier(
-        SPEED_MODIFIER_RESOURCE, SPEED_INCREASE, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+        ARMOR_MODIFIER_RESOURCE, ARMOR_INCREASE, AttributeModifier.Operation.ADD_VALUE);
   }
 }

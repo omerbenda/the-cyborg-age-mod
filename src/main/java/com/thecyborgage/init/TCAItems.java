@@ -34,6 +34,8 @@ public class TCAItems {
   public static final DeferredItem<PlayerRadarItem> PLAYER_RADAR =
       ITEMS.registerItem(
           "player_radar", (properties -> new PlayerRadarItem(properties.stacksTo(1))));
+  public static final DeferredItem<EnergyArmor> ENERGY_ARMOR =
+      ITEMS.registerItem("energy_armor", (properties -> new EnergyArmor(properties.stacksTo(1))));
 
   public static void register(IEventBus bus) {
     ITEMS.register(bus);
