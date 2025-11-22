@@ -8,6 +8,7 @@
   "item.thecyborgage.thermal_generator": "Thermal Generator",
   "item.thecyborgage.cyborg_visor": "Cyborg Visor",
   "item.thecyborgage.player_radar": "Player Radar",
+  "item.thecyborgage.energy_armor": "Energy Armor",
   "itemGroup.thecyborgage.the_cyborg_age_tab": "The Cyborg Age",
   "thecyborgage.cyborg_core.energy_tooltip": "Energy: %d",
   "thecyborgage.player_radar.nearest_player_tooltip": "Nearest player: %s",
