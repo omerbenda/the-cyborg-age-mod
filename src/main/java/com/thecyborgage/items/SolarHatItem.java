@@ -10,7 +10,7 @@ import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class SolarHatItem extends Item implements ICurioItem {
-  private static final int CHARGE_RATE = 100;
+  private static final int CHARGE_RATE = 50;
 
   public SolarHatItem(Properties properties) {
     super(properties);

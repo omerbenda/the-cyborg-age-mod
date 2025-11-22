@@ -32,6 +32,7 @@ public class TCACreativeModeTabs {
                         output.accept(TCAItems.THERMAL_GENERATOR);
                         output.accept(TCAItems.CYBORG_VISOR);
                         output.accept(TCAItems.PLAYER_RADAR);
+                        output.accept(TCAItems.ENERGY_ARMOR);
                       })
                   .build());
 

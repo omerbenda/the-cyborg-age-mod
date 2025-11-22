@@ -20,11 +20,11 @@ public class CoreEnergyStorage implements IEnergyStorage {
   }
 
   private int getStackEnergy() {
-    return coreStack.getOrDefault(TCADataComponents.CORE_ENERGY, 0);
+    return this.coreStack.getOrDefault(TCADataComponents.CORE_ENERGY, 0);
   }
 
   private void setStackEnergy(int energy) {
-    coreStack.set(TCADataComponents.CORE_ENERGY, energy);
+    this.coreStack.set(TCADataComponents.CORE_ENERGY, energy);
   }
 
   @Override
@@ -45,7 +45,7 @@ public class CoreEnergyStorage implements IEnergyStorage {
     int stackEnergy = this.getStackEnergy();
 
     if (energy > stackEnergy) {
-      return 0;
+      return -1;
     }
 
     if (!simulate) {
