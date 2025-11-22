@@ -99,7 +99,19 @@ public class TCAScreenEvents {
     }
 
     IEnergyStorage energyStorage = optionalEnergyStorage.get();
-    String text = String.valueOf(energyStorage.getEnergyStored());
+    int energy = energyStorage.getEnergyStored();
+    String text;
+
+    if (energy > 1_000_000_000) {
+      text = String.format("%.2fB", energy / 1_000_000_000F);
+    } else if (energy > 1_000_000) {
+      text = String.format("%.2fM", energy / 1_000_000F);
+    } else if (energy > 1_000) {
+      text = String.format("%.2fK", energy / 1_000F);
+    } else {
+      text = String.valueOf(energy);
+    }
+
     Font font = minecraft.font;
 
     graphics.drawString(
