@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "f": {
+      "item": "thecyborgage:cyborg_fragment"
+    },
+    "d": {
+      "item": "minecraft:diamond_chestplate"
+    }
+  },
+  "pattern": [
+    "fff",
+    "fdf",
+    "fff"
+  ],
+  "result": {
+    "count": 1,
+    "id": "thecyborgage:energy_armor"
+  }
+}
