@@ -4,6 +4,9 @@ import com.thecyborgage.init.TCACreativeModeTabs;
 import com.thecyborgage.init.TCADataComponents;
 import com.thecyborgage.init.TCAEntities;
 import com.thecyborgage.init.TCAItems;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -22,5 +25,8 @@ public class TheCyborgAgeMod {
     TCAItems.register(modEventBus);
     TCACreativeModeTabs.register(modEventBus);
     TCAEntities.register(modEventBus);
+
+    modContainer.registerConfig(ModConfig.Type.SERVER, TCAConfig.CONFIG_SPEC);
+    modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
   }
 }

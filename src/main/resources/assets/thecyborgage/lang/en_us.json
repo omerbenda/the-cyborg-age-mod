@@ -14,5 +14,8 @@
   "thecyborgage.player_radar.nearest_player_tooltip": "Nearest player: %s",
   "thecyborgage.cyborg_visor.nearest_player": "Nearest player: %s",
   "thecyborgage.cyborg_visor.temperature": "Biome temperature: %.2f",
-  "entity.thecyborgage.cyborg": "Cyborg"
+  "entity.thecyborgage.cyborg": "Cyborg",
+  "thecyborgage.configuration.items": "Items",
+  "thecyborgage.configuration.cyborg_core": "Cyborg Core",
+  "thecyborgage.configuration.cyborg_core.max_energy": "Max Energy"
 }

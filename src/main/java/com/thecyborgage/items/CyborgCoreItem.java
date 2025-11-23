@@ -1,5 +1,6 @@
 package com.thecyborgage.items;
 
+import com.thecyborgage.TCAConfig;
 import com.thecyborgage.init.TCADataComponents;
 import java.util.List;
 
@@ -10,14 +11,12 @@ import net.minecraft.world.item.TooltipFlag;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class CyborgCoreItem extends Item implements ICurioItem {
-  private static final int MAX_ENERGY = 10000;
-
   public CyborgCoreItem(Properties properties) {
     super(properties);
   }
 
   public int getMaxEnergy() {
-    return MAX_ENERGY;
+    return TCAConfig.CONFIG.cyborgCoreMaxEnergy.get();
   }
 
   @Override
