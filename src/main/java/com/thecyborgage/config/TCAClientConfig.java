@@ -21,8 +21,12 @@ public class TCAClientConfig {
   public TCAClientConfig(ModConfigSpec.Builder builder) {
     builder.push("items");
 
+    builder.push("cyborg_visor");
+
     this.coreEnergyRenderLocation =
         builder.defineEnum("core_energy_render_location", RenderLocation.CROSSHAIR);
+
+    builder.pop();
 
     builder.pop();
   }
