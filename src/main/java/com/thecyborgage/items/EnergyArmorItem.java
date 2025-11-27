@@ -1,6 +1,6 @@
 package com.thecyborgage.items;
 
-import com.thecyborgage.TCAConfig;
+import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.TheCyborgAgeMod;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -20,11 +20,11 @@ public class EnergyArmorItem extends AttributeCyborgItem {
 
   @Override
   public double getAmount(SlotContext slotContext, ItemStack stack) {
-    return TCAConfig.CONFIG.energyArmorArmorValue.getAsInt();
+    return TCAServerConfig.CONFIG.energyArmorArmorValue.getAsInt();
   }
 
   @Override
   public int getEnergyUsage(SlotContext slotContext, ItemStack stack) {
-    return TCAConfig.CONFIG.energyArmorDischargeRate.getAsInt();
+    return TCAServerConfig.CONFIG.energyArmorDischargeRate.getAsInt();
   }
 }

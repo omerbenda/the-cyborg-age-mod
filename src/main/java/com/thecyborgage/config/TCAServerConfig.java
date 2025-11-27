@@ -1,14 +1,15 @@
-package com.thecyborgage;
+package com.thecyborgage.config;
 
 import net.neoforged.neoforge.common.ModConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
 
-public class TCAConfig {
-  public static final TCAConfig CONFIG;
+public class TCAServerConfig {
+  public static final TCAServerConfig CONFIG;
   public static final ModConfigSpec CONFIG_SPEC;
 
   static {
-    Pair<TCAConfig, ModConfigSpec> pair = new ModConfigSpec.Builder().configure(TCAConfig::new);
+    Pair<TCAServerConfig, ModConfigSpec> pair =
+        new ModConfigSpec.Builder().configure(TCAServerConfig::new);
 
     CONFIG = pair.getLeft();
     CONFIG_SPEC = pair.getRight();
@@ -28,7 +29,7 @@ public class TCAConfig {
   public final ModConfigSpec.IntValue energyArmorDischargeRate;
   public final ModConfigSpec.IntValue energyArmorHitDischarge;
 
-  public TCAConfig(ModConfigSpec.Builder builder) {
+  public TCAServerConfig(ModConfigSpec.Builder builder) {
     builder.push("items");
 
     builder.push("cyborg_core");

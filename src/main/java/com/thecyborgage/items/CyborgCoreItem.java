@@ -1,6 +1,6 @@
 package com.thecyborgage.items;
 
-import com.thecyborgage.TCAConfig;
+import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.init.TCADataComponents;
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class CyborgCoreItem extends Item implements ICurioItem {
   }
 
   public int getMaxEnergy() {
-    return TCAConfig.CONFIG.cyborgCoreMaxEnergy.getAsInt();
+    return TCAServerConfig.CONFIG.cyborgCoreMaxEnergy.getAsInt();
   }
 
   @Override

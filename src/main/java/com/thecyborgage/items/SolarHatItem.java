@@ -1,6 +1,6 @@
 package com.thecyborgage.items;
 
-import com.thecyborgage.TCAConfig;
+import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.TCACuriosHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
@@ -22,7 +22,7 @@ public class SolarHatItem extends Item implements ICurioItem {
     LivingEntity entity = slotContext.entity();
 
     if (receivesSun(entity.level(), entity.blockPosition())) {
-      TCACuriosHelper.addEntityCoreEnergy(entity, TCAConfig.CONFIG.solarHatChargeRate.getAsInt());
+      TCACuriosHelper.addEntityCoreEnergy(entity, TCAServerConfig.CONFIG.solarHatChargeRate.getAsInt());
     }
   }
 

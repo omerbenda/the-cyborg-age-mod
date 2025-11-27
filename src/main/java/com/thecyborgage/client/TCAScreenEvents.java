@@ -3,6 +3,8 @@ package com.thecyborgage.client;
 import com.mojang.blaze3d.platform.Window;
 import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.TheCyborgAgeMod;
+import com.thecyborgage.config.TCAClientConfig;
+import com.thecyborgage.enums.RenderLocation;
 import com.thecyborgage.init.TCADataComponents;
 import com.thecyborgage.init.TCAItems;
 import net.minecraft.client.Minecraft;
@@ -33,7 +35,7 @@ public class TCAScreenEvents {
 
   private static void renderVisor(GuiGraphics graphics) {
     renderSidebar(graphics);
-    renderCoreEnergy(graphics);
+    renderNearCrosshair(graphics);
   }
 
   private static void renderSidebar(GuiGraphics graphics) {
@@ -45,6 +47,24 @@ public class TCAScreenEvents {
     Font font = minecraft.font;
 
     int drawHeight = 0;
+
+    if (TCAClientConfig.CONFIG.coreEnergyRenderLocation.get() == RenderLocation.SIDEBAR) {
+      Optional<IEnergyStorage> optionalEnergyStorage =
+          TCACuriosHelper.getEntityCoreEnergyStorage(minecraft.player);
+
+      if (optionalEnergyStorage.isPresent()) {
+        IEnergyStorage energyStorage = optionalEnergyStorage.get();
+        int energy = energyStorage.getEnergyStored();
+        Component text =
+            Component.translatable(
+                "thecyborgage.cyborg_visor.core_energy", formatStringNumber(energy));
+
+        graphics.drawString(
+            font, text, window.getGuiScaledWidth() - font.width(text), drawHeight, textColor);
+
+        drawHeight += font.lineHeight;
+      }
+    }
 
     Optional<ItemStack> optionalPlayerRadar =
         TCACuriosHelper.getEntityCurioItem(player, TCAItems.PLAYER_RADAR.get());
@@ -88,37 +108,42 @@ public class TCAScreenEvents {
     }
   }
 
-  private static void renderCoreEnergy(GuiGraphics graphics) {
+  private static void renderNearCrosshair(GuiGraphics graphics) {
     Minecraft minecraft = Minecraft.getInstance();
     Window window = minecraft.getWindow();
-    Optional<IEnergyStorage> optionalEnergyStorage =
-        TCACuriosHelper.getEntityCoreEnergyStorage(minecraft.player);
 
-    if (optionalEnergyStorage.isEmpty()) {
-      return;
+    if (TCAClientConfig.CONFIG.coreEnergyRenderLocation.get() == RenderLocation.CROSSHAIR) {
+      Optional<IEnergyStorage> optionalEnergyStorage =
+          TCACuriosHelper.getEntityCoreEnergyStorage(minecraft.player);
+
+      if (optionalEnergyStorage.isEmpty()) {
+        return;
+      }
+
+      IEnergyStorage energyStorage = optionalEnergyStorage.get();
+      int energy = energyStorage.getEnergyStored();
+      String text = formatStringNumber(energy);
+
+      Font font = minecraft.font;
+
+      graphics.drawString(
+          font,
+          text,
+          window.getGuiScaledWidth() / 2 + 10,
+          (window.getGuiScaledHeight() - font.lineHeight) / 2,
+          0xffffff);
+    }
+  }
+
+  private static String formatStringNumber(int number) {
+    if (number >= 1_000_000_000) {
+      return String.format("%.2fB", number / 1_000_000_000F);
+    } else if (number >= 1_000_000) {
+      return String.format("%.2fM", number / 1_000_000F);
+    } else if (number >= 1_000) {
+      return String.format("%.2fK", number / 1_000F);
     }
 
-    IEnergyStorage energyStorage = optionalEnergyStorage.get();
-    int energy = energyStorage.getEnergyStored();
-    String text;
-
-    if (energy >= 1_000_000_000) {
-      text = String.format("%.2fB", energy / 1_000_000_000F);
-    } else if (energy >= 1_000_000) {
-      text = String.format("%.2fM", energy / 1_000_000F);
-    } else if (energy >= 1_000) {
-      text = String.format("%.2fK", energy / 1_000F);
-    } else {
-      text = String.valueOf(energy);
-    }
-
-    Font font = minecraft.font;
-
-    graphics.drawString(
-        font,
-        text,
-        window.getGuiScaledWidth() / 2 + 10,
-        (window.getGuiScaledHeight() - font.lineHeight) / 2,
-        0xffffff);
+    return String.valueOf(number);
   }
 }

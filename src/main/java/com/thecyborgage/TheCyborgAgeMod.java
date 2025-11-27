@@ -1,5 +1,7 @@
 package com.thecyborgage;
 
+import com.thecyborgage.config.TCAClientConfig;
+import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.init.TCACreativeModeTabs;
 import com.thecyborgage.init.TCADataComponents;
 import com.thecyborgage.init.TCAEntities;
@@ -26,7 +28,8 @@ public class TheCyborgAgeMod {
     TCACreativeModeTabs.register(modEventBus);
     TCAEntities.register(modEventBus);
 
-    modContainer.registerConfig(ModConfig.Type.SERVER, TCAConfig.CONFIG_SPEC);
+    modContainer.registerConfig(ModConfig.Type.SERVER, TCAServerConfig.CONFIG_SPEC);
+    modContainer.registerConfig(ModConfig.Type.CLIENT, TCAClientConfig.CONFIG_SPEC);
     modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
   }
 }

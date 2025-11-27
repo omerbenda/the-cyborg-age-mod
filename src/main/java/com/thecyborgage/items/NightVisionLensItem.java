@@ -1,6 +1,6 @@
 package com.thecyborgage.items;
 
-import com.thecyborgage.TCAConfig;
+import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.TCACuriosHelper;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -21,7 +21,7 @@ public class NightVisionLensItem extends Item implements ICurioItem {
     LivingEntity entity = slotContext.entity();
 
     if (TCACuriosHelper.consumeEntityCoreEnergy(
-        entity, TCAConfig.CONFIG.nightVisionLensDischargeRate.getAsInt())) {
+        entity, TCAServerConfig.CONFIG.nightVisionLensDischargeRate.getAsInt())) {
       entity.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 220, 0));
     }
   }

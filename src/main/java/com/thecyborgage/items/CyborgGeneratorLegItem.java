@@ -1,6 +1,6 @@
 package com.thecyborgage.items;
 
-import com.thecyborgage.TCAConfig;
+import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.TCACuriosHelper;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
@@ -19,7 +19,7 @@ public class CyborgGeneratorLegItem extends Item implements ICurioItem {
     LivingEntity entity = slotContext.entity();
 
     if (entity.isSprinting()) {
-      TCACuriosHelper.addEntityCoreEnergy(entity, TCAConfig.CONFIG.generatorLegChargeRate.getAsInt());
+      TCACuriosHelper.addEntityCoreEnergy(entity, TCAServerConfig.CONFIG.generatorLegChargeRate.getAsInt());
     }
   }
 }
