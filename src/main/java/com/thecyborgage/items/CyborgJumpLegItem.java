@@ -19,7 +19,7 @@ public class CyborgJumpLegItem extends AttributeCyborgItem {
 
   @Override
   public double getAmount(SlotContext slotContext, ItemStack stack) {
-    return 1;
+    return 0.6;
   }
 
   @Override
