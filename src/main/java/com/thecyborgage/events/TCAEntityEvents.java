@@ -75,7 +75,10 @@ public class TCAEntityEvents {
         IEnergyStorage coreEnergyStorage = optionalCoreEnergyStorage.get();
 
         TCACuriosHelper.consumeEntityCoreEnergy(
-            entity, Math.min(350, coreEnergyStorage.getEnergyStored()));
+            entity,
+            Math.min(
+                TCAServerConfig.CONFIG.cyborgJumpLegJumpDischarge.getAsInt(),
+                coreEnergyStorage.getEnergyStored()));
       }
     }
   }

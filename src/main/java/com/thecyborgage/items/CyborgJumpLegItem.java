@@ -1,6 +1,7 @@
 package com.thecyborgage.items;
 
 import com.thecyborgage.TheCyborgAgeMod;
+import com.thecyborgage.config.TCAServerConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -19,11 +20,11 @@ public class CyborgJumpLegItem extends AttributeCyborgItem {
 
   @Override
   public double getAmount(SlotContext slotContext, ItemStack stack) {
-    return 0.6;
+    return TCAServerConfig.CONFIG.cyborgJumpLegJumpValue.getAsDouble();
   }
 
   @Override
   public int getEnergyUsage(SlotContext slotContext, ItemStack stack) {
-    return 0;
+    return TCAServerConfig.CONFIG.cyborgJumpLegDischargeRate.getAsInt();
   }
 }
