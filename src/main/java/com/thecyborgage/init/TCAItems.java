@@ -20,6 +20,9 @@ public class TCAItems {
           "night_vision_lens", (properties) -> new NightVisionLensItem(properties.stacksTo(1)));
   public static final DeferredItem<CyborgLegItem> CYBORG_LEG =
       ITEMS.registerItem("cyborg_leg", (properties) -> new CyborgLegItem(properties.stacksTo(1)));
+  public static final DeferredItem<CyborgJumpLegItem> CYBORG_JUMP_LEG =
+      ITEMS.registerItem(
+          "cyborg_jump_leg", (properties -> new CyborgJumpLegItem(properties.stacksTo(1))));
   public static final DeferredItem<CyborgGeneratorLegItem> CYBORG_GENERATOR_LEG =
       ITEMS.registerItem(
           "cyborg_generator_leg",
