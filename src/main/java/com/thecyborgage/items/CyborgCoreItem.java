@@ -16,7 +16,7 @@ public class CyborgCoreItem extends Item implements ICurioItem {
   }
 
   public int getMaxEnergy() {
-    return TCAConfig.CONFIG.cyborgCoreMaxEnergy.get();
+    return TCAConfig.CONFIG.cyborgCoreMaxEnergy.getAsInt();
   }
 
   @Override

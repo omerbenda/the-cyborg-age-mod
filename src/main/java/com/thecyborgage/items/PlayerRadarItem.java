@@ -1,5 +1,6 @@
 package com.thecyborgage.items;
 
+import com.thecyborgage.TCAConfig;
 import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.init.TCADataComponents;
 import net.minecraft.network.chat.Component;
@@ -18,9 +19,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class PlayerRadarItem extends Item implements ICurioItem {
-  private static final int SEARCH_TICK_RATE = 20;
-  private static final int ENERGY_USAGE = 25;
-
   public PlayerRadarItem(Properties properties) {
     super(properties);
   }
@@ -34,13 +32,14 @@ public class PlayerRadarItem extends Item implements ICurioItem {
 
     if (!level.isClientSide()) {
       int ticks = stack.getOrDefault(TCADataComponents.PLAYER_RADAR_TICK_COUNTER, 0);
+      int tickRate = TCAConfig.CONFIG.playerRadarSearchTickRate.getAsInt();
 
-      if (ticks >= SEARCH_TICK_RATE) {
+      if (ticks >= tickRate) {
         setNearestPlayer(entity, stack);
         stack.set(TCADataComponents.PLAYER_RADAR_TICK_COUNTER, 0);
-      } else if (TCACuriosHelper.consumeEntityCoreEnergy(entity, ENERGY_USAGE)) {
-        stack.set(
-            TCADataComponents.PLAYER_RADAR_TICK_COUNTER, Math.min(ticks + 1, SEARCH_TICK_RATE));
+      } else if (TCACuriosHelper.consumeEntityCoreEnergy(
+          entity, TCAConfig.CONFIG.playerRadarDischargeRate.getAsInt())) {
+        stack.set(TCADataComponents.PLAYER_RADAR_TICK_COUNTER, Math.min(ticks + 1, tickRate));
       }
     }
   }
