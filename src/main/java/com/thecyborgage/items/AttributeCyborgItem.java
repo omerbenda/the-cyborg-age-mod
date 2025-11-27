@@ -35,6 +35,10 @@ public abstract class AttributeCyborgItem extends Item implements ICurioItem {
     return true;
   }
 
+  public int getMinEnergyRequired(SlotContext slotContext, ItemStack stack) {
+    return this.getEnergyUsage(slotContext, stack);
+  }
+
   @Override
   public void curioTick(SlotContext slotContext, ItemStack stack) {
     ICurioItem.super.curioTick(slotContext, stack);
@@ -48,7 +52,7 @@ public abstract class AttributeCyborgItem extends Item implements ICurioItem {
     }
 
     if (TCACuriosHelper.consumeEntityCoreEnergy(
-        entity, this.getEnergyUsage(slotContext, stack), true)) {
+        entity, this.getMinEnergyRequired(slotContext, stack), true)) {
       attributeInstance.addOrUpdateTransientModifier(
           this.createAttributeModifier(slotContext, stack));
 

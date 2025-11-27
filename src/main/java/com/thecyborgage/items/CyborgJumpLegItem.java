@@ -27,4 +27,9 @@ public class CyborgJumpLegItem extends AttributeCyborgItem {
   public int getEnergyUsage(SlotContext slotContext, ItemStack stack) {
     return TCAServerConfig.CONFIG.cyborgJumpLegDischargeRate.getAsInt();
   }
+
+  @Override
+  public int getMinEnergyRequired(SlotContext slotContext, ItemStack stack) {
+    return TCAServerConfig.CONFIG.cyborgJumpLegJumpDischarge.get();
+  }
 }
