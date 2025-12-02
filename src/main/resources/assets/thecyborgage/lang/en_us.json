@@ -43,5 +43,7 @@
   "thecyborgage.configuration.energy_armor_discharge_rate": "Discharge Rate",
   "thecyborgage.configuration.energy_armor_hit_discharge": "Hit Discharge",
   "thecyborgage.configuration.cyborg_visor": "Cyborg Visor",
-  "thecyborgage.configuration.core_energy_render_location": "Core Energy Render Location"
+  "thecyborgage.configuration.core_energy_render_location": "Core Energy Render Location",
+  "key.categories.thecyborgage": "The Cyborg Age",
+  "key.thecyborgage.toggle_cyborg_jump_leg": "Toggle Cyborg Jump Leg"
 }

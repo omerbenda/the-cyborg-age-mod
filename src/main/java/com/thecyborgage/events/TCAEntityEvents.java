@@ -4,6 +4,7 @@ import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.TheCyborgAgeMod;
 import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.entities.CyborgEntity;
+import com.thecyborgage.init.TCAAttachments;
 import com.thecyborgage.init.TCAEntities;
 import com.thecyborgage.init.TCAItems;
 import net.minecraft.tags.DamageTypeTags;
@@ -71,7 +72,8 @@ public class TCAEntityEvents {
       Optional<ItemStack> optionalJumpLeg =
           TCACuriosHelper.getEntityCurioItem(entity, TCAItems.CYBORG_JUMP_LEG.get());
 
-      if (optionalJumpLeg.isPresent()) {
+      if (optionalJumpLeg.isPresent()
+          && entity.getData(TCAAttachments.CYBORG_JUMP_LEG_TOGGLE_STATE)) {
         IEnergyStorage coreEnergyStorage = optionalCoreEnergyStorage.get();
 
         TCACuriosHelper.consumeEntityCoreEnergy(

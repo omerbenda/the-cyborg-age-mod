@@ -2,7 +2,9 @@ package com.thecyborgage.items;
 
 import com.thecyborgage.TheCyborgAgeMod;
 import com.thecyborgage.config.TCAServerConfig;
+import com.thecyborgage.init.TCAAttachments;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
@@ -31,5 +33,19 @@ public class CyborgJumpLegItem extends AttributeCyborgItem {
   @Override
   public int getMinEnergyRequired(SlotContext slotContext, ItemStack stack) {
     return TCAServerConfig.CONFIG.cyborgJumpLegJumpDischarge.get();
+  }
+
+  @Override
+  public boolean shouldApplyAttribute(SlotContext slotContext, ItemStack stack) {
+    Entity entity = slotContext.entity();
+
+    return entity.getData(TCAAttachments.CYBORG_JUMP_LEG_TOGGLE_STATE);
+  }
+
+  @Override
+  public boolean shouldConsumeEnergy(SlotContext slotContext, ItemStack stack) {
+    Entity entity = slotContext.entity();
+
+    return entity.getData(TCAAttachments.CYBORG_JUMP_LEG_TOGGLE_STATE);
   }
 }
