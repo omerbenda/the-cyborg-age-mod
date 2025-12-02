@@ -21,6 +21,7 @@
     "recipes": [
       "thecyborgage:cyborg_core",
       "thecyborgage:cyborg_leg",
+      "thecyborgage:cyborg_jump_leg",
       "thecyborgage:cyborg_generator_leg",
       "thecyborgage:player_radar",
       "thecyborgage:cyborg_visor",

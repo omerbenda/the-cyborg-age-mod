@@ -1,5 +1,6 @@
 package com.thecyborgage.items;
 
+import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.TCACuriosHelper;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -10,8 +11,6 @@ import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class NightVisionLensItem extends Item implements ICurioItem {
-  private static final int ENERGY_USAGE = 10;
-
   public NightVisionLensItem(Properties properties) {
     super(properties);
   }
@@ -21,7 +20,8 @@ public class NightVisionLensItem extends Item implements ICurioItem {
     ICurioItem.super.curioTick(slotContext, stack);
     LivingEntity entity = slotContext.entity();
 
-    if (TCACuriosHelper.consumeEntityCoreEnergy(entity, ENERGY_USAGE)) {
+    if (TCACuriosHelper.consumeEntityCoreEnergy(
+        entity, TCAServerConfig.CONFIG.nightVisionLensDischargeRate.getAsInt())) {
       entity.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 220, 0));
     }
   }

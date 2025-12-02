@@ -1,5 +1,6 @@
 package com.thecyborgage.items;
 
+import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.TCACuriosHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
@@ -10,9 +11,6 @@ import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class ThermalGeneratorItem extends Item implements ICurioItem {
-  private static final float TEMPERATURE_COEFFICIENT = 2.0F;
-  private static final float RAIN_COEFFICIENT = 0.2F;
-
   public ThermalGeneratorItem(Properties properties) {
     super(properties);
   }
@@ -27,10 +25,10 @@ public class ThermalGeneratorItem extends Item implements ICurioItem {
     float temperature = level.getBiome(blockPos).value().getBaseTemperature();
     boolean isRaining = level.isRainingAt(blockPos);
 
-    float heatValue = temperature * TEMPERATURE_COEFFICIENT;
+    double heatValue = temperature * TCAServerConfig.CONFIG.thermalGeneratorTempCoefficient.getAsDouble();
 
     if (isRaining) {
-      heatValue *= RAIN_COEFFICIENT;
+      heatValue *= TCAServerConfig.CONFIG.thermalGeneratorRainCoefficient.getAsDouble();
     }
 
     TCACuriosHelper.addEntityCoreEnergy(entity, Math.max((int) heatValue, 0));
