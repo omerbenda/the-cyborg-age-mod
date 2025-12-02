@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "f": {
+      "item": "thecyborgage:cyborg_fragment"
+    },
+    "b": {
+      "item": "minecraft:iron_boots"
+    },
+    "p": {
+      "item": "minecraft:piston"
+    }
+  },
+  "pattern": [
+    "fff",
+    "fbf",
+    "fpf"
+  ],
+  "result": {
+    "count": 1,
+    "id": "thecyborgage:cyborg_jump_leg"
+  }
+}
