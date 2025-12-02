@@ -19,6 +19,9 @@ public class TCAServerConfig {
   public final ModConfigSpec.IntValue generatorLegChargeRate;
   public final ModConfigSpec.DoubleValue cyborgLegSpeedBoost;
   public final ModConfigSpec.IntValue cyborgLegDischargeRate;
+  public final ModConfigSpec.DoubleValue cyborgJumpLegJumpValue;
+  public final ModConfigSpec.IntValue cyborgJumpLegJumpDischarge;
+  public final ModConfigSpec.IntValue cyborgJumpLegDischargeRate;
   public final ModConfigSpec.IntValue solarHatChargeRate;
   public final ModConfigSpec.IntValue playerRadarSearchTickRate;
   public final ModConfigSpec.IntValue playerRadarDischargeRate;
@@ -53,6 +56,19 @@ public class TCAServerConfig {
 
     this.cyborgLegDischargeRate =
         builder.defineInRange("cyborg_leg_discharge_rate", 50, 0, Integer.MAX_VALUE);
+
+    builder.pop();
+
+    builder.push("cyborg_jump_leg");
+
+    this.cyborgJumpLegJumpValue =
+        builder.defineInRange("cyborg_jump_leg_jump_value", 0.6D, 0.0D, Double.MAX_VALUE);
+
+    this.cyborgJumpLegJumpDischarge =
+        builder.defineInRange("cyborg_jump_leg_jump_discharge", 350, 0, Integer.MAX_VALUE);
+
+    this.cyborgJumpLegDischargeRate =
+        builder.defineInRange("cyborg_jump_leg_discharge_rate", 0, 0, Integer.MAX_VALUE);
 
     builder.pop();
 

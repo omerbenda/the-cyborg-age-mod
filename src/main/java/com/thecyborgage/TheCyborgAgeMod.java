@@ -2,10 +2,7 @@ package com.thecyborgage;
 
 import com.thecyborgage.config.TCAClientConfig;
 import com.thecyborgage.config.TCAServerConfig;
-import com.thecyborgage.init.TCACreativeModeTabs;
-import com.thecyborgage.init.TCADataComponents;
-import com.thecyborgage.init.TCAEntities;
-import com.thecyborgage.init.TCAItems;
+import com.thecyborgage.init.*;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
@@ -24,6 +21,7 @@ public class TheCyborgAgeMod {
 
   public TheCyborgAgeMod(IEventBus modEventBus, ModContainer modContainer) {
     TCADataComponents.register(modEventBus);
+    TCAAttachments.register(modEventBus);
     TCAItems.register(modEventBus);
     TCACreativeModeTabs.register(modEventBus);
     TCAEntities.register(modEventBus);

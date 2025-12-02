@@ -4,6 +4,7 @@
   "item.thecyborgage.night_vision_lens": "Night Vision Lens",
   "item.thecyborgage.cyborg_leg": "Cyborg Leg",
   "item.thecyborgage.cyborg_generator_leg": "Cyborg Generator Leg",
+  "item.thecyborgage.cyborg_jump_leg": "Cyborg Jump Leg",
   "item.thecyborgage.solar_hat": "Solar Hat",
   "item.thecyborgage.thermal_generator": "Thermal Generator",
   "item.thecyborgage.cyborg_visor": "Cyborg Visor",
@@ -15,6 +16,8 @@
   "thecyborgage.cyborg_visor.nearest_player": "Nearest player: %s",
   "thecyborgage.cyborg_visor.temperature": "Biome temperature: %.2f",
   "thecyborgage.cyborg_visor.core_energy": "Core Energy: %s",
+  "thecyborgage.cyborg_visor.cyborg_jump_leg_enabled": "Cyborg Jump Leg Enabled",
+  "thecyborgage.cyborg_visor.cyborg_jump_leg_disabled": "Cyborg Jump Leg Disabled",
   "entity.thecyborgage.cyborg": "Cyborg",
   "thecyborgage.configuration.items": "Items",
   "thecyborgage.configuration.cyborg_core": "Cyborg Core",
@@ -24,6 +27,10 @@
   "thecyborgage.configuration.cyborg_leg": "Cyborg Leg",
   "thecyborgage.configuration.cyborg_leg_speed_boost": "Speed Boost",
   "thecyborgage.configuration.cyborg_leg_discharge_rate": "Discharge Rate",
+  "thecyborgage.configuration.cyborg_jump_leg": "Cyborg Jump Leg",
+  "thecyborgage.configuration.cyborg_jump_leg_jump_value": "Jump Boost Value",
+  "thecyborgage.configuration.cyborg_jump_leg_jump_discharge": "Jump Discharge",
+  "thecyborgage.configuration.cyborg_jump_leg_discharge_rate": "Discharge Rate",
   "thecyborgage.configuration.solar_hat": "Solar Hat",
   "thecyborgage.configuration.solar_hat_charge_rate": "Charge Rate",
   "thecyborgage.configuration.player_radar": "Player Radar",
@@ -39,5 +46,7 @@
   "thecyborgage.configuration.energy_armor_discharge_rate": "Discharge Rate",
   "thecyborgage.configuration.energy_armor_hit_discharge": "Hit Discharge",
   "thecyborgage.configuration.cyborg_visor": "Cyborg Visor",
-  "thecyborgage.configuration.core_energy_render_location": "Core Energy Render Location"
+  "thecyborgage.configuration.core_energy_render_location": "Core Energy Render Location",
+  "key.categories.thecyborgage": "The Cyborg Age",
+  "key.thecyborgage.toggle_cyborg_jump_leg": "Toggle Cyborg Jump Leg"
 }

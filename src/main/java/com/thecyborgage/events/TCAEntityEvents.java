@@ -2,7 +2,9 @@ package com.thecyborgage.events;
 
 import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.TheCyborgAgeMod;
+import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.entities.CyborgEntity;
+import com.thecyborgage.init.TCAAttachments;
 import com.thecyborgage.init.TCAEntities;
 import com.thecyborgage.init.TCAItems;
 import net.minecraft.tags.DamageTypeTags;
@@ -17,6 +19,7 @@ import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingEvent;
 
 import java.util.Optional;
 
@@ -51,7 +54,33 @@ public class TCAEntityEvents {
         IEnergyStorage coreEnergyStorage = optionalCoreEnergyStorage.get();
 
         TCACuriosHelper.consumeEntityCoreEnergy(
-            entity, Math.min(1000, coreEnergyStorage.getEnergyStored()));
+            entity,
+            Math.min(
+                TCAServerConfig.CONFIG.energyArmorHitDischarge.getAsInt(),
+                coreEnergyStorage.getEnergyStored()));
+      }
+    }
+  }
+
+  @SubscribeEvent
+  public static void onEntityJump(LivingEvent.LivingJumpEvent evt) {
+    LivingEntity entity = evt.getEntity();
+    Optional<IEnergyStorage> optionalCoreEnergyStorage =
+        TCACuriosHelper.getEntityCoreEnergyStorage(entity);
+
+    if (optionalCoreEnergyStorage.isPresent()) {
+      Optional<ItemStack> optionalJumpLeg =
+          TCACuriosHelper.getEntityCurioItem(entity, TCAItems.CYBORG_JUMP_LEG.get());
+
+      if (optionalJumpLeg.isPresent()
+          && entity.getData(TCAAttachments.CYBORG_JUMP_LEG_TOGGLE_STATE)) {
+        IEnergyStorage coreEnergyStorage = optionalCoreEnergyStorage.get();
+
+        TCACuriosHelper.consumeEntityCoreEnergy(
+            entity,
+            Math.min(
+                TCAServerConfig.CONFIG.cyborgJumpLegJumpDischarge.getAsInt(),
+                coreEnergyStorage.getEnergyStored()));
       }
     }
   }
