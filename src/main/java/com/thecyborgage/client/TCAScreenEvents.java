@@ -5,6 +5,7 @@ import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.TheCyborgAgeMod;
 import com.thecyborgage.config.TCAClientConfig;
 import com.thecyborgage.enums.RenderLocation;
+import com.thecyborgage.init.TCAAttachments;
 import com.thecyborgage.init.TCADataComponents;
 import com.thecyborgage.init.TCAItems;
 import net.minecraft.client.Minecraft;
@@ -101,6 +102,25 @@ public class TCAScreenEvents {
           font,
           temperatureText,
           window.getGuiScaledWidth() - font.width(temperatureText),
+          drawHeight,
+          textColor);
+
+      drawHeight += font.lineHeight;
+    }
+
+    Optional<ItemStack> optionalCyborgJumpLeg =
+        TCACuriosHelper.getEntityCurioItem(player, TCAItems.CYBORG_JUMP_LEG.get());
+
+    if (optionalCyborgJumpLeg.isPresent()) {
+      Component enabledText =
+          player.getData(TCAAttachments.CYBORG_JUMP_LEG_TOGGLE_STATE)
+              ? Component.translatable("thecyborgage.cyborg_visor.cyborg_jump_leg_enabled")
+              : Component.translatable("thecyborgage.cyborg_visor.cyborg_jump_leg_disabled");
+
+      graphics.drawString(
+          font,
+          enabledText,
+          window.getGuiScaledWidth() - font.width(enabledText),
           drawHeight,
           textColor);
 
