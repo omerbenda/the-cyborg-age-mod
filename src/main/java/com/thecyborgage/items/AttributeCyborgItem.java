@@ -55,20 +55,22 @@ public abstract class AttributeCyborgItem extends Item implements ICurioItem {
       return;
     }
 
+    ResourceLocation formattedResLoc = formatResourceLocation(this.modifierResLoc, slotContext);
+
     if (TCACuriosHelper.consumeEntityCoreEnergy(
         entity, this.getMinEnergyRequired(slotContext, stack), true)) {
       if (this.shouldApplyAttribute(slotContext, stack)) {
         attributeInstance.addOrUpdateTransientModifier(
             this.createAttributeModifier(slotContext, stack));
       } else {
-        attributeInstance.removeModifier(this.modifierResLoc);
+        attributeInstance.removeModifier(formattedResLoc);
       }
 
       if (this.shouldConsumeEnergy(slotContext, stack)) {
         TCACuriosHelper.consumeEntityCoreEnergy(entity, this.getEnergyUsage(slotContext, stack));
       }
     } else {
-      attributeInstance.removeModifier(this.modifierResLoc);
+      attributeInstance.removeModifier(formattedResLoc);
     }
   }
 
@@ -84,11 +86,18 @@ public abstract class AttributeCyborgItem extends Item implements ICurioItem {
       return;
     }
 
-    attributeInstance.removeModifier(this.modifierResLoc);
+    attributeInstance.removeModifier(formatResourceLocation(this.modifierResLoc, slotContext));
   }
 
   private AttributeModifier createAttributeModifier(SlotContext slotContext, ItemStack stack) {
     return new AttributeModifier(
-        this.modifierResLoc, this.getAmount(slotContext, stack), this.operation);
+        formatResourceLocation(this.modifierResLoc, slotContext),
+        this.getAmount(slotContext, stack),
+        this.operation);
+  }
+
+  private static ResourceLocation formatResourceLocation(
+      ResourceLocation resLoc, SlotContext slotContext) {
+    return resLoc.withSuffix("." + slotContext.identifier() + "." + slotContext.index());
   }
 }
