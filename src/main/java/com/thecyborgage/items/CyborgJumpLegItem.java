@@ -3,12 +3,18 @@ package com.thecyborgage.items;
 import com.thecyborgage.TheCyborgAgeMod;
 import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.init.TCAAttachments;
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import top.theillusivec4.curios.api.SlotContext;
+
+import java.util.List;
 
 public class CyborgJumpLegItem extends AttributeCyborgItem {
   public CyborgJumpLegItem(Properties properties) {
@@ -47,5 +53,22 @@ public class CyborgJumpLegItem extends AttributeCyborgItem {
     Entity entity = slotContext.entity();
 
     return entity.getData(TCAAttachments.CYBORG_JUMP_LEG_TOGGLE_STATE);
+  }
+
+  @Override
+  public void appendHoverText(
+      ItemStack stack,
+      TooltipContext context,
+      List<Component> tooltipComponents,
+      TooltipFlag tooltipFlag) {
+    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+
+    Player player = Minecraft.getInstance().player;
+    boolean toggleState = player.getData(TCAAttachments.CYBORG_JUMP_LEG_TOGGLE_STATE);
+
+    tooltipComponents.add(
+        toggleState
+            ? Component.translatable("thecyborgage.cyborg_jump_leg.enabled_tooltip")
+            : Component.translatable("thecyborgage.cyborg_jump_leg.disabled_tooltip"));
   }
 }
