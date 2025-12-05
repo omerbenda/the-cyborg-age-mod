@@ -1,5 +1,6 @@
 package com.thecyborgage.config;
 
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -19,9 +20,11 @@ public class TCAServerConfig {
   public final ModConfigSpec.IntValue generatorLegChargeRate;
   public final ModConfigSpec.DoubleValue cyborgLegSpeedBoost;
   public final ModConfigSpec.IntValue cyborgLegDischargeRate;
+  public final ModConfigSpec.EnumValue<AttributeModifier.Operation> cyborgLegOperation;
   public final ModConfigSpec.DoubleValue cyborgJumpLegJumpValue;
   public final ModConfigSpec.IntValue cyborgJumpLegJumpDischarge;
   public final ModConfigSpec.IntValue cyborgJumpLegDischargeRate;
+  public final ModConfigSpec.EnumValue<AttributeModifier.Operation> cyborgJumpLegOperation;
   public final ModConfigSpec.IntValue solarHatChargeRate;
   public final ModConfigSpec.IntValue playerRadarSearchTickRate;
   public final ModConfigSpec.IntValue playerRadarDischargeRate;
@@ -31,6 +34,7 @@ public class TCAServerConfig {
   public final ModConfigSpec.IntValue energyArmorArmorValue;
   public final ModConfigSpec.IntValue energyArmorDischargeRate;
   public final ModConfigSpec.IntValue energyArmorHitDischarge;
+  public final ModConfigSpec.EnumValue<AttributeModifier.Operation> energyArmorOperation;
 
   public TCAServerConfig(ModConfigSpec.Builder builder) {
     builder.push("items");
@@ -57,6 +61,9 @@ public class TCAServerConfig {
     this.cyborgLegDischargeRate =
         builder.defineInRange("cyborg_leg_discharge_rate", 50, 0, Integer.MAX_VALUE);
 
+    this.cyborgLegOperation =
+        builder.defineEnum("cyborg_leg_operation", AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+
     builder.pop();
 
     builder.push("cyborg_jump_leg");
@@ -69,6 +76,10 @@ public class TCAServerConfig {
 
     this.cyborgJumpLegDischargeRate =
         builder.defineInRange("cyborg_jump_leg_discharge_rate", 0, 0, Integer.MAX_VALUE);
+
+    this.cyborgJumpLegOperation =
+        builder.defineEnum(
+            "cyborg_jump_leg_operation", AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
 
     builder.pop();
 
@@ -117,6 +128,9 @@ public class TCAServerConfig {
 
     this.energyArmorHitDischarge =
         builder.defineInRange("energy_armor_hit_discharge", 1000, 0, Integer.MAX_VALUE);
+
+    this.energyArmorOperation =
+        builder.defineEnum("energy_armor_operation", AttributeModifier.Operation.ADD_VALUE);
 
     builder.pop();
 

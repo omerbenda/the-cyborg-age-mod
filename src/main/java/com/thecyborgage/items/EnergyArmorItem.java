@@ -14,8 +14,7 @@ public class EnergyArmorItem extends AttributeCyborgItem {
         properties,
         ResourceLocation.fromNamespaceAndPath(
             TheCyborgAgeMod.MOD_ID, "attribute.energy_armor.armor_modifier"),
-        Attributes.ARMOR,
-        AttributeModifier.Operation.ADD_VALUE);
+        Attributes.ARMOR);
   }
 
   @Override
@@ -26,5 +25,10 @@ public class EnergyArmorItem extends AttributeCyborgItem {
   @Override
   public int getEnergyUsage(SlotContext slotContext, ItemStack stack) {
     return TCAServerConfig.CONFIG.energyArmorDischargeRate.getAsInt();
+  }
+
+  @Override
+  public AttributeModifier.Operation getOperation(SlotContext slotContext, ItemStack stack) {
+    return TCAServerConfig.CONFIG.energyArmorOperation.get();
   }
 }

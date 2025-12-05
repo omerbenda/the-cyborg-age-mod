@@ -14,23 +14,22 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 public abstract class AttributeCyborgItem extends Item implements ICurioItem {
   private final ResourceLocation modifierResLoc;
   private final Holder<Attribute> attribute;
-  private final AttributeModifier.Operation operation;
 
   public AttributeCyborgItem(
       Properties properties,
       ResourceLocation modifierResLoc,
-      Holder<Attribute> attribute,
-      AttributeModifier.Operation operation) {
+      Holder<Attribute> attribute) {
     super(properties);
 
     this.modifierResLoc = modifierResLoc;
     this.attribute = attribute;
-    this.operation = operation;
   }
 
   public abstract double getAmount(SlotContext slotContext, ItemStack stack);
 
   public abstract int getEnergyUsage(SlotContext slotContext, ItemStack stack);
+
+  public abstract AttributeModifier.Operation getOperation(SlotContext slotContext, ItemStack stack);
 
   public boolean shouldConsumeEnergy(SlotContext slotContext, ItemStack stack) {
     return true;
@@ -105,7 +104,7 @@ public abstract class AttributeCyborgItem extends Item implements ICurioItem {
     return new AttributeModifier(
         formatResourceLocation(this.modifierResLoc, slotContext),
         this.getAmount(slotContext, stack),
-        this.operation);
+        this.getOperation(slotContext, stack));
   }
 
   private static ResourceLocation formatResourceLocation(

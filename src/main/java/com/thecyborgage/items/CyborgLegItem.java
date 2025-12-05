@@ -14,11 +14,7 @@ public class CyborgLegItem extends AttributeCyborgItem {
           TheCyborgAgeMod.MOD_ID, "attribute.cyborg_leg.speed_modifier");
 
   public CyborgLegItem(Properties properties) {
-    super(
-        properties,
-        SPEED_MODIFIER_RESOURCE,
-        Attributes.MOVEMENT_SPEED,
-        AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+    super(properties, SPEED_MODIFIER_RESOURCE, Attributes.MOVEMENT_SPEED);
   }
 
   @Override
@@ -29,6 +25,11 @@ public class CyborgLegItem extends AttributeCyborgItem {
   @Override
   public int getEnergyUsage(SlotContext slotContext, ItemStack stack) {
     return TCAServerConfig.CONFIG.cyborgLegDischargeRate.getAsInt();
+  }
+
+  @Override
+  public AttributeModifier.Operation getOperation(SlotContext slotContext, ItemStack stack) {
+    return TCAServerConfig.CONFIG.cyborgLegOperation.get();
   }
 
   @Override

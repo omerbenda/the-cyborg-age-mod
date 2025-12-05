@@ -22,8 +22,7 @@ public class CyborgJumpLegItem extends AttributeCyborgItem {
         properties,
         ResourceLocation.fromNamespaceAndPath(
             TheCyborgAgeMod.MOD_ID, "attribute.cyborg_jump_leg.jump_modifier"),
-        Attributes.JUMP_STRENGTH,
-        AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+        Attributes.JUMP_STRENGTH);
   }
 
   @Override
@@ -34,6 +33,11 @@ public class CyborgJumpLegItem extends AttributeCyborgItem {
   @Override
   public int getEnergyUsage(SlotContext slotContext, ItemStack stack) {
     return TCAServerConfig.CONFIG.cyborgJumpLegDischargeRate.getAsInt();
+  }
+
+  @Override
+  public AttributeModifier.Operation getOperation(SlotContext slotContext, ItemStack stack) {
+    return TCAServerConfig.CONFIG.cyborgJumpLegOperation.get();
   }
 
   @Override
