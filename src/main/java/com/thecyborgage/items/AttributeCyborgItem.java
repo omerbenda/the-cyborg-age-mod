@@ -1,5 +1,6 @@
 package com.thecyborgage.items;
 
+import com.google.common.collect.Multimap;
 import com.thecyborgage.TCACuriosHelper;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
@@ -87,6 +88,17 @@ public abstract class AttributeCyborgItem extends Item implements ICurioItem {
     }
 
     attributeInstance.removeModifier(formatResourceLocation(this.modifierResLoc, slotContext));
+  }
+
+  @Override
+  public Multimap<Holder<Attribute>, AttributeModifier> getAttributeModifiers(
+      SlotContext slotContext, ResourceLocation id, ItemStack stack) {
+    Multimap<Holder<Attribute>, AttributeModifier> modifierMap =
+        ICurioItem.super.getAttributeModifiers(slotContext, id, stack);
+
+    modifierMap.put(this.attribute, createAttributeModifier(slotContext, stack));
+
+    return modifierMap;
   }
 
   private AttributeModifier createAttributeModifier(SlotContext slotContext, ItemStack stack) {
