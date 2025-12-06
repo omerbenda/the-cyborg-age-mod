@@ -2,6 +2,8 @@ package com.thecyborgage.init;
 
 import com.thecyborgage.TheCyborgAgeMod;
 import com.thecyborgage.items.*;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -13,6 +15,18 @@ public class TCAItems {
 
   public static final DeferredItem<Item> CYBORG_FRAGMENT =
       ITEMS.registerSimpleItem("cyborg_fragment");
+
+  public static final DeferredItem<Item> CORE_INTEGRATION_CIRCUIT =
+      ITEMS.registerItem(
+          "core_integration_circuit",
+          (properties) ->
+              new CurioSlotUnlockerItem(
+                  properties,
+                  "core",
+                  ResourceLocation.fromNamespaceAndPath(
+                      TheCyborgAgeMod.MOD_ID, "core_integration_circuit"),
+                  1,
+                  AttributeModifier.Operation.ADD_VALUE));
   public static final DeferredItem<CyborgCoreItem> CYBORG_CORE =
       ITEMS.registerItem("cyborg_core", (properties) -> new CyborgCoreItem(properties.stacksTo(1)));
   public static final DeferredItem<NightVisionLensItem> NIGHT_VISION_LENS =
