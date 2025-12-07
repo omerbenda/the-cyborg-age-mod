@@ -1,4 +1,5 @@
 {
   "size": 1,
-  "add_cosmetic": false
+  "add_cosmetic": false,
+  "icon": "thecyborgage:slot/eye_slot"
 }

@@ -1,4 +1,5 @@
 {
   "size": 0,
-  "add_cosmetic": false
+  "add_cosmetic": false,
+  "icon": "thecyborgage:slot/core_slot"
 }
