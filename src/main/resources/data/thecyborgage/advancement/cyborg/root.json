@@ -1,0 +1,34 @@
+{
+  "criteria": {
+    "has_fragment": {
+      "conditions": {
+        "items": [
+          {
+            "items": "thecyborgage:cyborg_fragment"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:textures/block/iron_block.png",
+    "description": {
+      "translate": "advancements.cyborg.root.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "thecyborgage:cyborg_fragment"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.cyborg.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_fragment"
+    ]
+  ]
+}
