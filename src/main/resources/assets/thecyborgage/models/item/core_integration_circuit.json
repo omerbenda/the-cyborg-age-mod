@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "thecyborgage:item/core_integration_circuit"
+  }
+}

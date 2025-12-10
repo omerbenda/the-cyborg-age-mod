@@ -24,6 +24,7 @@ public class TCACreativeModeTabs {
                   .displayItems(
                       (param, output) -> {
                         output.accept(TCAItems.CYBORG_FRAGMENT);
+                        output.accept(TCAItems.CORE_INTEGRATION_CIRCUIT);
                         output.accept(TCAItems.CYBORG_CORE);
                         output.accept(TCAItems.NIGHT_VISION_LENS);
                         output.accept(TCAItems.CYBORG_LEG);

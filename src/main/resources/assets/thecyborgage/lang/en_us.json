@@ -1,5 +1,6 @@
 {
   "item.thecyborgage.cyborg_fragment": "Cyborg Fragment",
+  "item.thecyborgage.core_integration_circuit": "Core Integration Circuit",
   "item.thecyborgage.cyborg_core": "Cyborg Core",
   "item.thecyborgage.night_vision_lens": "Night Vision Lens",
   "item.thecyborgage.cyborg_leg": "Cyborg Leg",
@@ -51,5 +52,7 @@
   "thecyborgage.configuration.core_energy_render_location": "Core Energy Render Location",
   "key.categories.thecyborgage": "The Cyborg Age",
   "key.thecyborgage.toggle_cyborg_jump_leg": "Toggle Cyborg Jump Leg",
-  "curios.modifiers.leg": "When on leg:"
+  "curios.modifiers.leg": "When on leg:",
+  "advancements.cyborg.root.title": "Welcome to the Cyborg Age",
+  "advancements.cyborg.root.description": "Upgrades, people. Upgrades."
 }
