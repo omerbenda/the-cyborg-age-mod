@@ -23,6 +23,7 @@ public class TheCyborgAgeMod {
     TCADataComponents.register(modEventBus);
     TCAAttachments.register(modEventBus);
     TCAItems.register(modEventBus);
+    TCABlocks.register(modEventBus);
     TCACreativeModeTabs.register(modEventBus);
     TCAEntities.register(modEventBus);
 

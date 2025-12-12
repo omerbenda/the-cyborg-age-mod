@@ -23,6 +23,7 @@ public class TCACreativeModeTabs {
                   .icon(() -> new ItemStack(TCAItems.CYBORG_CORE.get()))
                   .displayItems(
                       (param, output) -> {
+                        output.accept(TCAItems.CORE_WORKBENCH);
                         output.accept(TCAItems.CYBORG_FRAGMENT);
                         output.accept(TCAItems.CORE_INTEGRATION_CIRCUIT);
                         output.accept(TCAItems.CYBORG_CORE);

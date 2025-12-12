@@ -4,6 +4,7 @@ import com.thecyborgage.TheCyborgAgeMod;
 import com.thecyborgage.items.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -54,6 +55,9 @@ public class TCAItems {
   public static final DeferredItem<EnergyArmorItem> ENERGY_ARMOR =
       ITEMS.registerItem(
           "energy_armor", (properties -> new EnergyArmorItem(properties.stacksTo(1))));
+
+  public static final DeferredItem<BlockItem> CORE_WORKBENCH =
+      ITEMS.registerSimpleBlockItem(TCABlocks.CORE_WORKBENCH);
 
   public static void register(IEventBus bus) {
     ITEMS.register(bus);
