@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=east": {
+      "model": "thecyborgage:block/core_workbench",
+      "y": 90
+    },
+    "facing=north": {
       "model": "thecyborgage:block/core_workbench"
+    },
+    "facing=south": {
+      "model": "thecyborgage:block/core_workbench",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "thecyborgage:block/core_workbench",
+      "y": 270
     }
   }
 }
