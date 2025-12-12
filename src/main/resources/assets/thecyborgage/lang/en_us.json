@@ -13,6 +13,7 @@
   "item.thecyborgage.energy_armor": "Energy Armor",
   "block.thecyborgage.core_workbench": "Core Workbench",
   "itemGroup.thecyborgage.the_cyborg_age_tab": "The Cyborg Age",
+  "menu.title.thecyborgage.core_workbench": "Core Workbench",
   "thecyborgage.cyborg_core.energy_tooltip": "Energy: %d",
   "thecyborgage.player_radar.nearest_player_tooltip": "Nearest player: %s",
   "thecyborgage.cyborg_jump_leg.enabled_tooltip": "Enabled",
