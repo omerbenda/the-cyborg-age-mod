@@ -3,11 +3,13 @@ package com.thecyborgage.client;
 import com.mojang.blaze3d.platform.Window;
 import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.TheCyborgAgeMod;
+import com.thecyborgage.client.screens.CoreWorkbenchScreen;
 import com.thecyborgage.config.TCAClientConfig;
 import com.thecyborgage.enums.RenderLocation;
 import com.thecyborgage.init.TCAAttachments;
 import com.thecyborgage.init.TCADataComponents;
 import com.thecyborgage.init.TCAItems;
+import com.thecyborgage.init.TCAMenuTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -17,6 +19,7 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 
@@ -24,6 +27,11 @@ import java.util.Optional;
 
 @EventBusSubscriber(modid = TheCyborgAgeMod.MOD_ID, value = Dist.CLIENT)
 public class TCAScreenEvents {
+  @SubscribeEvent
+  public static void onRegisterMenuScreens(RegisterMenuScreensEvent evt) {
+    evt.register(TCAMenuTypes.CORE_WORKBENCH_MENU.get(), CoreWorkbenchScreen::new);
+  }
+
   @SubscribeEvent
   public static void onPostRenderGui(RenderGuiLayerEvent.Post evt) {
     Minecraft minecraft = Minecraft.getInstance();

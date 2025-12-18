@@ -1,0 +1,35 @@
+{
+  "parent": "thecyborgage:cyborg/root",
+  "criteria": {
+    "has_workbench": {
+      "conditions": {
+        "items": [
+          {
+            "items": "thecyborgage:core_workbench"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_workbench"
+    ]
+  ],
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.cyborg.core_workbench.description"
+    },
+    "frame": "task",
+    "icon": {
+      "count": 1,
+      "id": "thecyborgage:core_workbench"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.cyborg.core_workbench.title"
+    }
+  }
+}

@@ -21,10 +21,11 @@
       "count": 1,
       "id": "thecyborgage:cyborg_fragment"
     },
-    "show_toast": false,
+    "show_toast": true,
     "title": {
       "translate": "advancements.cyborg.root.title"
-    }
+    },
+    "frame": "task"
   },
   "requirements": [
     [

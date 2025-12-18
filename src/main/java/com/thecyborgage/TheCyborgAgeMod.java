@@ -23,8 +23,10 @@ public class TheCyborgAgeMod {
     TCADataComponents.register(modEventBus);
     TCAAttachments.register(modEventBus);
     TCAItems.register(modEventBus);
+    TCABlocks.register(modEventBus);
     TCACreativeModeTabs.register(modEventBus);
     TCAEntities.register(modEventBus);
+    TCAMenuTypes.register(modEventBus);
 
     modContainer.registerConfig(ModConfig.Type.SERVER, TCAServerConfig.CONFIG_SPEC);
     modContainer.registerConfig(ModConfig.Type.CLIENT, TCAClientConfig.CONFIG_SPEC);
