@@ -6,9 +6,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.stream.Stream;
 
 public class TCAItems {
   public static final DeferredRegister.Items ITEMS =
@@ -29,7 +33,17 @@ public class TCAItems {
                   1,
                   AttributeModifier.Operation.ADD_VALUE));
   public static final DeferredItem<CyborgCoreItem> CYBORG_CORE =
-      ITEMS.registerItem("cyborg_core", (properties) -> new CyborgCoreItem(properties.stacksTo(1)));
+      ITEMS.registerItem(
+          "cyborg_core",
+          (properties) ->
+              new CyborgCoreItem(
+                  properties
+                      .stacksTo(1)
+                      .component(
+                          TCADataComponents.ENERGY_ITEM_STORAGE,
+                          ItemContainerContents.fromItems(
+                              Stream.generate(() -> ItemStack.EMPTY).limit(4).toList()))));
+  public static final DeferredItem<Item> CORE_BATTERY = ITEMS.registerSimpleItem("core_battery");
   public static final DeferredItem<NightVisionLensItem> NIGHT_VISION_LENS =
       ITEMS.registerItem(
           "night_vision_lens", (properties) -> new NightVisionLensItem(properties.stacksTo(1)));
