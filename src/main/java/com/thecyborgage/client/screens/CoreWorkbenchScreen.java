@@ -18,6 +18,12 @@ public class CoreWorkbenchScreen extends AbstractContainerScreen<CoreWorkbenchMe
   }
 
   @Override
+  public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+    super.render(guiGraphics, mouseX, mouseY, partialTick);
+    this.renderTooltip(guiGraphics, mouseX, mouseY);
+  }
+
+  @Override
   protected void renderBg(GuiGraphics graphics, float partialTick, int mouseX, int mouseY) {
     int x = this.leftPos;
     int y = (this.height - this.imageHeight) / 2;
