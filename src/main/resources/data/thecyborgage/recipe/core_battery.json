@@ -5,17 +5,17 @@
     "f": {
       "item": "thecyborgage:cyborg_fragment"
     },
-    "R": {
-      "item": "minecraft:redstone_block"
+    "r": {
+      "item": "minecraft:redstone"
     }
   },
   "pattern": [
-    "fff",
-    "fRf",
-    "fff"
+    "frf",
+    "frf",
+    "frf"
   ],
   "result": {
     "count": 1,
-    "id": "thecyborgage:cyborg_core"
+    "id": "thecyborgage:core_battery"
   }
 }

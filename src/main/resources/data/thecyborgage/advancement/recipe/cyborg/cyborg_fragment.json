@@ -20,6 +20,7 @@
   "rewards": {
     "recipes": [
       "thecyborgage:cyborg_core",
+      "thecyborgage:core_battery",
       "thecyborgage:cyborg_leg",
       "thecyborgage:cyborg_jump_leg",
       "thecyborgage:cyborg_generator_leg",
