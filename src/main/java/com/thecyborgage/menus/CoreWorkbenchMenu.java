@@ -2,8 +2,11 @@ package com.thecyborgage.menus;
 
 import com.thecyborgage.init.TCABlocks;
 import com.thecyborgage.init.TCADataComponents;
+import com.thecyborgage.init.TCAItems;
 import com.thecyborgage.init.TCAMenuTypes;
 import com.thecyborgage.items.CyborgCoreItem;
+import com.thecyborgage.menus.slots.CoreBatterySlot;
+import com.thecyborgage.menus.slots.FilterSlot;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -38,13 +41,13 @@ public class CoreWorkbenchMenu extends AbstractContainerMenu {
   }
 
   private void addWorkbenchSlots() {
-    this.addSlot(new Slot(this.coreInventory, 0, 80, 35));
+    this.addSlot(new FilterSlot(TCAItems.CYBORG_CORE.get(), this.coreInventory, 0, 80, 35));
 
-    this.addSlot(new Slot(this.coreInventory, 1, 41, 21));
-    this.addSlot(new Slot(this.coreInventory, 2, 41, 49));
+    this.addSlot(new CoreBatterySlot(this, this.coreInventory, 1, 41, 21));
+    this.addSlot(new CoreBatterySlot(this, this.coreInventory, 2, 41, 49));
 
-    this.addSlot(new Slot(this.coreInventory, 3, 119, 21));
-    this.addSlot(new Slot(this.coreInventory, 4, 119, 49));
+    this.addSlot(new CoreBatterySlot(this, this.coreInventory, 3, 119, 21));
+    this.addSlot(new CoreBatterySlot(this, this.coreInventory, 4, 119, 49));
   }
 
   private void addInventorySlots() {
@@ -91,6 +94,10 @@ public class CoreWorkbenchMenu extends AbstractContainerMenu {
         ItemContainerContents.fromItems(
             this.coreInventory.getItems().stream().skip(1).limit(4).toList());
     coreSlotStack.set(TCADataComponents.ENERGY_ITEM_STORAGE, newContents);
+  }
+
+  public boolean hasCore() {
+    return this.hasSetContents;
   }
 
   @Override

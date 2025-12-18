@@ -43,7 +43,8 @@ public class TCAItems {
                           TCADataComponents.ENERGY_ITEM_STORAGE,
                           ItemContainerContents.fromItems(
                               Stream.generate(() -> ItemStack.EMPTY).limit(4).toList()))));
-  public static final DeferredItem<Item> CORE_BATTERY = ITEMS.registerSimpleItem("core_battery");
+  public static final DeferredItem<Item> CORE_BATTERY =
+      ITEMS.registerItem("core_battery", (properties -> new Item(properties.stacksTo(1))));
   public static final DeferredItem<NightVisionLensItem> NIGHT_VISION_LENS =
       ITEMS.registerItem(
           "night_vision_lens", (properties) -> new NightVisionLensItem(properties.stacksTo(1)));
