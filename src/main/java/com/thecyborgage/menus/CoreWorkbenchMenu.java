@@ -100,8 +100,43 @@ public class CoreWorkbenchMenu extends AbstractContainerMenu {
   }
 
   @Override
-  public ItemStack quickMoveStack(Player player, int i) {
-    return null;
+  public ItemStack quickMoveStack(Player player, int index) {
+    Slot slot = this.getSlot(index);
+
+    if (!slot.hasItem()) {
+      return ItemStack.EMPTY;
+    }
+
+    ItemStack originalStack = slot.getItem().copy();
+    ItemStack stack = originalStack.copy();
+
+    if (index < 5) {
+      if (!this.moveItemStackTo(originalStack, 5, 41, true)) {
+        return ItemStack.EMPTY;
+      }
+    } else if (index < 32) {
+      if (!this.moveItemStackTo(originalStack, 0, 5, false)) {
+        if (!this.moveItemStackTo(originalStack, 32, 41, false)) {
+          return ItemStack.EMPTY;
+        }
+      }
+    } else if (index < 41) {
+      if (!this.moveItemStackTo(originalStack, 0, 5, false)) {
+        if (!this.moveItemStackTo(originalStack, 5, 32, false)) {
+          return ItemStack.EMPTY;
+        }
+      }
+    }
+
+    if (originalStack.isEmpty()) {
+      slot.setByPlayer(ItemStack.EMPTY);
+    } else {
+      slot.setByPlayer(originalStack);
+    }
+
+    slot.setChanged();
+
+    return stack;
   }
 
   @Override
