@@ -16,6 +16,7 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemContainerContents;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
 
 public class CoreWorkbenchMenu extends AbstractContainerMenu {
   private final Inventory inventory;
@@ -108,5 +109,19 @@ public class CoreWorkbenchMenu extends AbstractContainerMenu {
   @Override
   public boolean stillValid(Player player) {
     return AbstractContainerMenu.stillValid(this.access, player, TCABlocks.CORE_WORKBENCH.get());
+  }
+
+  @Override
+  public void removed(Player player) {
+    ItemStack coreStack = this.coreInventory.getItem(0);
+
+    if (coreStack.isEmpty()) {
+      return;
+    }
+
+    ItemHandlerHelper.giveItemToPlayer(player, coreStack);
+    this.coreInventory.setItem(0, ItemStack.EMPTY);
+
+    super.removed(player);
   }
 }
