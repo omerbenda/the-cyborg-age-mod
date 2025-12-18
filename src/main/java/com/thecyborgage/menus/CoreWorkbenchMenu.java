@@ -1,11 +1,11 @@
 package com.thecyborgage.menus;
 
 import com.thecyborgage.init.TCABlocks;
-import com.thecyborgage.init.TCADataComponents;
 import com.thecyborgage.init.TCAItems;
 import com.thecyborgage.init.TCAMenuTypes;
 import com.thecyborgage.menus.slots.CoreBatterySlot;
 import com.thecyborgage.menus.slots.FilterSlot;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -70,7 +70,7 @@ public class CoreWorkbenchMenu extends AbstractContainerMenu {
       return;
     }
 
-    ItemContainerContents contents = coreSlotStack.get(TCADataComponents.ENERGY_ITEM_STORAGE);
+    ItemContainerContents contents = coreSlotStack.get(DataComponents.CONTAINER);
 
     if (contents == null) {
       return;
@@ -92,7 +92,7 @@ public class CoreWorkbenchMenu extends AbstractContainerMenu {
 
     ItemContainerContents newContents =
         ItemContainerContents.fromItems(this.coreInventory.getItems().stream().limit(4).toList());
-    coreSlotStack.set(TCADataComponents.ENERGY_ITEM_STORAGE, newContents);
+    coreSlotStack.set(DataComponents.CONTAINER, newContents);
   }
 
   public boolean hasCore() {

@@ -6,7 +6,6 @@ import java.util.function.Supplier;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.world.item.component.ItemContainerContents;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -18,15 +17,6 @@ public class TCADataComponents {
       DATA_COMPONENTS.registerComponentType(
           "core_energy",
           builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
-
-  public static final Supplier<DataComponentType<ItemContainerContents>> ENERGY_ITEM_STORAGE =
-      DATA_COMPONENTS.registerComponentType(
-          "energy_item_storage",
-          builder ->
-              builder
-                  .persistent(ItemContainerContents.CODEC)
-                  .networkSynchronized(ItemContainerContents.STREAM_CODEC));
-
   public static final Supplier<DataComponentType<String>> PLAYER_RADAR_NEAREST_PLAYER =
       DATA_COMPONENTS.registerComponentType(
           "player_radar_nearest_player",

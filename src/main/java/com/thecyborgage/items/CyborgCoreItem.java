@@ -4,6 +4,8 @@ import com.google.common.collect.Iterables;
 import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.init.TCADataComponents;
 import java.util.List;
+
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.Item;
@@ -21,7 +23,7 @@ public class CyborgCoreItem extends Item implements ICurioItem {
   public int getMaxEnergy(ItemStack itemStack) {
     int baseEnergy = TCAServerConfig.CONFIG.cyborgCoreMaxEnergy.getAsInt();
 
-    ItemContainerContents contents = itemStack.get(TCADataComponents.ENERGY_ITEM_STORAGE);
+    ItemContainerContents contents = itemStack.get(DataComponents.CONTAINER);
 
     if (contents == null) {
       return baseEnergy;

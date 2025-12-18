@@ -2,6 +2,7 @@ package com.thecyborgage.init;
 
 import com.thecyborgage.TheCyborgAgeMod;
 import com.thecyborgage.items.*;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.BlockItem;
@@ -40,7 +41,7 @@ public class TCAItems {
                   properties
                       .stacksTo(1)
                       .component(
-                          TCADataComponents.ENERGY_ITEM_STORAGE,
+                          DataComponents.CONTAINER,
                           ItemContainerContents.fromItems(
                               Stream.generate(() -> ItemStack.EMPTY).limit(4).toList()))));
   public static final DeferredItem<Item> CORE_BATTERY =
