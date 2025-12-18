@@ -63,23 +63,34 @@ public class CoreWorkbenchMenu extends AbstractContainerMenu {
     ItemStack coreSlotStack = this.coreInventory.getItem(0);
 
     if (coreSlotStack.isEmpty() || !(coreSlotStack.getItem() instanceof CyborgCoreItem)) {
-      this.hasSetContents = false;
+      if (this.hasSetContents) {
+        this.hasSetContents = false;
+        this.coreInventory.clearContent();
+      }
+
       return;
     }
 
     ItemContainerContents contents = coreSlotStack.get(TCADataComponents.ENERGY_ITEM_STORAGE);
 
-    if (contents == null || this.hasSetContents) {
+    if (contents == null) {
       return;
     }
 
-    this.hasSetContents = true;
-    int slotIndex = 1;
+    if (!this.hasSetContents) {
+      this.hasSetContents = true;
+      int slotIndex = 1;
 
-    for (ItemStack itemStack : contents.nonEmptyItemsCopy()) {
-      this.coreInventory.setItem(slotIndex, itemStack);
-      slotIndex++;
+      for (ItemStack itemStack : contents.nonEmptyItemsCopy()) {
+        this.coreInventory.setItem(slotIndex, itemStack);
+        slotIndex++;
+      }
     }
+
+    ItemContainerContents newContents =
+        ItemContainerContents.fromItems(
+            this.coreInventory.getItems().stream().skip(1).limit(4).toList());
+    coreSlotStack.set(TCADataComponents.ENERGY_ITEM_STORAGE, newContents);
   }
 
   @Override
