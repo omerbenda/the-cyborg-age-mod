@@ -62,7 +62,7 @@ public class CoreEnergyStorage implements IEnergyStorage {
 
   @Override
   public int getMaxEnergyStored() {
-    return this.coreItem.getMaxEnergy();
+    return this.coreItem.getMaxEnergy(this.coreStack);
   }
 
   @Override
