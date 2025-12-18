@@ -59,5 +59,7 @@
   "key.thecyborgage.toggle_cyborg_jump_leg": "Toggle Cyborg Jump Leg",
   "curios.modifiers.leg": "When on leg:",
   "advancements.cyborg.root.title": "Welcome to the Cyborg Age",
-  "advancements.cyborg.root.description": "Upgrades, people. Upgrades."
+  "advancements.cyborg.root.description": "Upgrades, people. Upgrades.",
+  "advancements.cyborg.core_workbench.title": "Batteries, Now Included",
+  "advancements.cyborg.core_workbench.description": "Obtain a Core Workbench"
 }
