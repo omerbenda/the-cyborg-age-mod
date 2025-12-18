@@ -76,10 +76,10 @@ public class CoreWorkbenchMenu extends AbstractContainerMenu {
       return;
     }
 
-    int slotIndex = 0;
-    for (ItemStack itemStack : contents.nonEmptyItemsCopy()) {
-      this.coreInventory.setItem(slotIndex, itemStack);
-      slotIndex++;
+    int contentsSize = contents.getSlots();
+
+    for (int index = 0; index < contentsSize; index++) {
+      this.coreInventory.setItem(index, contents.getStackInSlot(index));
     }
   }
 
@@ -91,7 +91,7 @@ public class CoreWorkbenchMenu extends AbstractContainerMenu {
     }
 
     ItemContainerContents newContents =
-        ItemContainerContents.fromItems(this.coreInventory.getItems().stream().limit(4).toList());
+        ItemContainerContents.fromItems(this.coreInventory.getItems());
     coreSlotStack.set(DataComponents.CONTAINER, newContents);
   }
 
