@@ -19,6 +19,7 @@
   ],
   "rewards": {
     "recipes": [
+      "thecyborgage:core_workbench",
       "thecyborgage:cyborg_core",
       "thecyborgage:core_battery",
       "thecyborgage:cyborg_leg",

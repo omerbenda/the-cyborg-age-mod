@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "f": {
+      "item": "thecyborgage:cyborg_fragment"
+    },
+    "r": {
+      "item": "minecraft:redstone"
+    },
+    "c": {
+      "item": "minecraft:crafting_table"
+    }
+  },
+  "pattern": [
+    "rrr",
+    "fcf",
+    "fff"
+  ],
+  "result": {
+    "count": 1,
+    "id": "thecyborgage:core_workbench"
+  }
+}
