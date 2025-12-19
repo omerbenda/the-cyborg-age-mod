@@ -16,6 +16,7 @@ public class TCAServerConfig {
   }
 
   public final ModConfigSpec.IntValue cyborgCoreMaxEnergy;
+  public final ModConfigSpec.IntValue coreBatteryStorage;
   public final ModConfigSpec.IntValue generatorLegChargeRate;
   public final ModConfigSpec.DoubleValue cyborgLegSpeedBoost;
   public final ModConfigSpec.IntValue cyborgLegDischargeRate;
@@ -39,6 +40,9 @@ public class TCAServerConfig {
 
     this.cyborgCoreMaxEnergy =
         builder.defineInRange("cyborg_core_max_energy", 10_000, 0, Integer.MAX_VALUE);
+
+    this.coreBatteryStorage =
+        builder.defineInRange("core_battery_storage", 10_000, 0, Integer.MAX_VALUE);
 
     builder.pop();
 

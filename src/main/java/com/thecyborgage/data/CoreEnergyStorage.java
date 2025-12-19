@@ -13,7 +13,7 @@ public class CoreEnergyStorage implements IEnergyStorage {
     this.coreStack = coreStack;
 
     if (!(coreStack.getItem() instanceof CyborgCoreItem castedCoreItem)) {
-      throw new RuntimeException();
+      throw new RuntimeException("Item needs to be of CyborgCoreItem type");
     }
 
     this.coreItem = castedCoreItem;
@@ -62,7 +62,7 @@ public class CoreEnergyStorage implements IEnergyStorage {
 
   @Override
   public int getMaxEnergyStored() {
-    return this.coreItem.getMaxEnergy();
+    return this.coreItem.getMaxEnergy(this.coreStack);
   }
 
   @Override

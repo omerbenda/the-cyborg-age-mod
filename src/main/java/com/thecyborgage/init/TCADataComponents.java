@@ -17,7 +17,6 @@ public class TCADataComponents {
       DATA_COMPONENTS.registerComponentType(
           "core_energy",
           builder -> builder.persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT));
-
   public static final Supplier<DataComponentType<String>> PLAYER_RADAR_NEAREST_PLAYER =
       DATA_COMPONENTS.registerComponentType(
           "player_radar_nearest_player",

@@ -5,17 +5,20 @@
     "f": {
       "item": "thecyborgage:cyborg_fragment"
     },
-    "R": {
-      "item": "minecraft:redstone_block"
+    "r": {
+      "item": "minecraft:redstone"
+    },
+    "c": {
+      "item": "minecraft:crafting_table"
     }
   },
   "pattern": [
-    "fff",
-    "fRf",
+    "rrr",
+    "fcf",
     "fff"
   ],
   "result": {
     "count": 1,
-    "id": "thecyborgage:cyborg_core"
+    "id": "thecyborgage:core_workbench"
   }
 }

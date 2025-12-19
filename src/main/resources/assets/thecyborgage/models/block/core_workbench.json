@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "thecyborgage:block/core_workbench_top",
+    "down": "thecyborgage:block/core_workbench_bottom",
+    "east": "thecyborgage:block/core_workbench_side",
+    "north": "thecyborgage:block/core_workbench_north",
+    "south": "thecyborgage:block/core_workbench_side",
+    "up": "thecyborgage:block/core_workbench_top",
+    "west": "thecyborgage:block/core_workbench_side"
+  }
+}
