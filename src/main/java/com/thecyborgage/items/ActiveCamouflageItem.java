@@ -2,10 +2,9 @@ package com.thecyborgage.items;
 
 import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.config.TCAServerConfig;
+import com.thecyborgage.init.TCAAttachments;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -25,11 +24,20 @@ public class ActiveCamouflageItem extends Item implements ICurioItem {
     ICurioItem.super.curioTick(slotContext, stack);
     LivingEntity entity = slotContext.entity();
 
-    if (entity.isCrouching()
-        && TCACuriosHelper.consumeEntityCoreEnergy(
-            entity, TCAServerConfig.CONFIG.activeCamouflageDischargeRate.getAsInt())) {
-      entity.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 5, 0));
-    }
+    boolean shouldCamouflage =
+        entity.isCrouching()
+            && TCACuriosHelper.consumeEntityCoreEnergy(
+                entity, TCAServerConfig.CONFIG.activeCamouflageDischargeRate.getAsInt());
+
+    entity.setData(TCAAttachments.ACTIVE_CAMOUFLAGE_STATE, shouldCamouflage);
+  }
+
+  @Override
+  public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
+    ICurioItem.super.onUnequip(slotContext, newStack, stack);
+    LivingEntity entity = slotContext.entity();
+
+    entity.setData(TCAAttachments.ACTIVE_CAMOUFLAGE_STATE, false);
   }
 
   @Override
