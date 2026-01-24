@@ -36,7 +36,20 @@ public class TCAItems {
                   ResourceLocation.fromNamespaceAndPath(
                       TheCyborgAgeMod.MOD_ID, "core_integration_circuit"),
                   1,
-                  AttributeModifier.Operation.ADD_VALUE));
+                  AttributeModifier.Operation.ADD_VALUE) {
+                @Override
+                public void appendHoverText(
+                    ItemStack stack,
+                    TooltipContext context,
+                    List<Component> tooltipComponents,
+                    TooltipFlag tooltipFlag) {
+                  super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+
+                  tooltipComponents.add(
+                      Component.translatable("thecyborgage.core_integration_circuit.tooltip")
+                          .withStyle(ChatFormatting.GRAY));
+                }
+              });
   public static final DeferredItem<CyborgCoreItem> CYBORG_CORE =
       ITEMS.registerItem(
           "cyborg_core",
