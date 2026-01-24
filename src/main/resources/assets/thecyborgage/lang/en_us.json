@@ -17,6 +17,8 @@
   "menu.title.thecyborgage.core_workbench": "Core Workbench",
   "thecyborgage.cyborg_core.energy_tooltip": "Energy: %d",
   "thecyborgage.cyborg_core.max_energy_tooltip": "Max Energy: %d",
+  "thecyborgage.cyborg_core.battery_count_tooltip": "Battery Count: %d",
+  "thecyborgage.core_battery.tooltip": "Increases Cyborg Core capacity",
   "thecyborgage.player_radar.nearest_player_tooltip": "Nearest player: %s",
   "thecyborgage.cyborg_jump_leg.enabled_tooltip": "Enabled",
   "thecyborgage.cyborg_jump_leg.disabled_tooltip": "Disabled",

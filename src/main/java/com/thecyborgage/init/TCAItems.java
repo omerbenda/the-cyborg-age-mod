@@ -2,17 +2,21 @@ package com.thecyborgage.init;
 
 import com.thecyborgage.TheCyborgAgeMod;
 import com.thecyborgage.items.*;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 public class TCAItems {
@@ -45,7 +49,23 @@ public class TCAItems {
                           ItemContainerContents.fromItems(
                               Stream.generate(() -> ItemStack.EMPTY).limit(4).toList()))));
   public static final DeferredItem<Item> CORE_BATTERY =
-      ITEMS.registerItem("core_battery", (properties -> new Item(properties.stacksTo(1))));
+      ITEMS.registerItem(
+          "core_battery",
+          (properties ->
+              new Item(properties.stacksTo(1)) {
+                @Override
+                public void appendHoverText(
+                    ItemStack stack,
+                    TooltipContext context,
+                    List<Component> tooltipComponents,
+                    TooltipFlag tooltipFlag) {
+                  super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+
+                  tooltipComponents.add(
+                      Component.translatable("thecyborgage.core_battery.tooltip")
+                          .withStyle(ChatFormatting.GRAY));
+                }
+              }));
   public static final DeferredItem<NightVisionLensItem> NIGHT_VISION_LENS =
       ITEMS.registerItem(
           "night_vision_lens", (properties) -> new NightVisionLensItem(properties.stacksTo(1)));
