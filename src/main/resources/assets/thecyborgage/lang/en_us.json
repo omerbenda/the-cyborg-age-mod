@@ -75,5 +75,7 @@
   "advancements.cyborg.root.title": "Welcome to the Cyborg Age",
   "advancements.cyborg.root.description": "Upgrades, people. Upgrades.",
   "advancements.cyborg.core_workbench.title": "Batteries, Now Included",
-  "advancements.cyborg.core_workbench.description": "Obtain a Core Workbench"
+  "advancements.cyborg.core_workbench.description": "Obtain a Core Workbench",
+  "thecyborgage.system.cyborg_jump_leg_state_enabled": "Cyborg Jump Leg enabled",
+  "thecyborgage.system.cyborg_jump_leg_state_disabled": "Cyborg Jump Leg disabled"
 }
