@@ -13,6 +13,8 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.List;
@@ -57,6 +59,7 @@ public class CyborgJumpLegItem extends AttributeCyborgItem {
   }
 
   @Override
+  @OnlyIn(Dist.CLIENT)
   public void appendHoverText(
       ItemStack stack,
       TooltipContext context,

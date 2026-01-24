@@ -16,12 +16,16 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.network.PacketDistributor;
 
 @Mod(value = TheCyborgAgeMod.MOD_ID, dist = Dist.CLIENT)
 @EventBusSubscriber(modid = TheCyborgAgeMod.MOD_ID, value = Dist.CLIENT)
 public class TheCyborgAgeClient {
-  public TheCyborgAgeClient(ModContainer container) {}
+  public TheCyborgAgeClient(ModContainer container) {
+    container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+  }
 
   @SubscribeEvent
   public static void onClientSetup(FMLClientSetupEvent evt) {
