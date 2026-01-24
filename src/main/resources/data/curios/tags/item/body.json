@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "thecyborgage:thermal_generator",
-    "thecyborgage:energy_armor"
+    "thecyborgage:energy_armor",
+    "thecyborgage:active_camouflage"
   ]
 }

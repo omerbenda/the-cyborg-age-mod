@@ -37,6 +37,7 @@ public class TCACreativeModeTabs {
                         output.accept(TCAItems.CYBORG_VISOR);
                         output.accept(TCAItems.PLAYER_RADAR);
                         output.accept(TCAItems.ENERGY_ARMOR);
+                        output.accept(TCAItems.ACTIVE_CAMOUFLAGE);
                       })
                   .build());
 

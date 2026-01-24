@@ -4,8 +4,6 @@ import com.thecyborgage.config.TCAClientConfig;
 import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.init.*;
 import net.neoforged.fml.config.ModConfig;
-import net.neoforged.neoforge.client.gui.ConfigurationScreen;
-import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -30,6 +28,5 @@ public class TheCyborgAgeMod {
 
     modContainer.registerConfig(ModConfig.Type.SERVER, TCAServerConfig.CONFIG_SPEC);
     modContainer.registerConfig(ModConfig.Type.CLIENT, TCAClientConfig.CONFIG_SPEC);
-    modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
   }
 }

@@ -3,10 +3,15 @@ package com.thecyborgage.items;
 import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.TCAEntityHelper;
 import com.thecyborgage.TheCyborgAgeMod;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import top.theillusivec4.curios.api.SlotContext;
+
+import java.util.List;
 
 public class CyborgLegItem extends AttributeCyborgItem {
   public static final ResourceLocation SPEED_MODIFIER_RESOURCE =
@@ -34,5 +39,17 @@ public class CyborgLegItem extends AttributeCyborgItem {
   @Override
   public boolean shouldConsumeEnergy(SlotContext slotContext, ItemStack stack) {
     return TCAEntityHelper.isEntityMovingHorizontal(slotContext.entity());
+  }
+
+  @Override
+  public void appendHoverText(
+      ItemStack stack,
+      TooltipContext context,
+      List<Component> tooltipComponents,
+      TooltipFlag tooltipFlag) {
+    super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+
+    tooltipComponents.add(
+        Component.translatable("thecyborgage.cyborg_leg.tooltip").withStyle(ChatFormatting.GRAY));
   }
 }

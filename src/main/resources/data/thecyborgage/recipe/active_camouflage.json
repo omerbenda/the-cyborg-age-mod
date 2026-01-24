@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "f": {
+      "item": "thecyborgage:cyborg_fragment"
+    },
+    "D": {
+      "item": "minecraft:diamond_block"
+    },
+    "g": {
+      "item": "minecraft:glass"
+    }
+  },
+  "pattern": [
+    "fgf",
+    "gDg",
+    "fgf"
+  ],
+  "result": {
+    "count": 1,
+    "id": "thecyborgage:active_camouflage"
+  }
+}
