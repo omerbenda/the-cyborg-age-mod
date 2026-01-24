@@ -104,6 +104,9 @@ public class TCAItems {
   public static final DeferredItem<EnergyArmorItem> ENERGY_ARMOR =
       ITEMS.registerItem(
           "energy_armor", (properties -> new EnergyArmorItem(properties.stacksTo(1))));
+  public static final DeferredItem<ActiveCamouflageItem> ACTIVE_CAMOUFLAGE =
+      ITEMS.registerItem(
+          "active_camouflage", (properties -> new ActiveCamouflageItem(properties.stacksTo(1))));
 
   public static final DeferredItem<BlockItem> CORE_WORKBENCH =
       ITEMS.registerSimpleBlockItem(TCABlocks.CORE_WORKBENCH);

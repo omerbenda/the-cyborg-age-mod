@@ -32,6 +32,7 @@ public class TCAServerConfig {
   public final ModConfigSpec.IntValue energyArmorArmorValue;
   public final ModConfigSpec.IntValue energyArmorDischargeRate;
   public final ModConfigSpec.IntValue energyArmorHitDischarge;
+  public final ModConfigSpec.IntValue activeCamouflageDischargeRate;
 
   public TCAServerConfig(ModConfigSpec.Builder builder) {
     builder.push("items");
@@ -121,6 +122,13 @@ public class TCAServerConfig {
 
     this.energyArmorHitDischarge =
         builder.defineInRange("energy_armor_hit_discharge", 1000, 0, Integer.MAX_VALUE);
+
+    builder.pop();
+
+    builder.push("active_camouflage");
+
+    this.activeCamouflageDischargeRate =
+        builder.defineInRange("active_camouflage_discharge_rate", 100, 0, Integer.MAX_VALUE);
 
     builder.pop();
 
