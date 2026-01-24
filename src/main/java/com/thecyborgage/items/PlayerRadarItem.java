@@ -3,6 +3,7 @@ package com.thecyborgage.items;
 import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.init.TCADataComponents;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -80,12 +81,15 @@ public class PlayerRadarItem extends Item implements ICurioItem {
       TooltipFlag tooltipFlag) {
     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
 
+    tooltipComponents.add(
+            Component.translatable("thecyborgage.player_radar.tooltip").withStyle(ChatFormatting.GRAY));
+
     String nearestPlayer = stack.get(TCADataComponents.PLAYER_RADAR_NEAREST_PLAYER);
 
     if (nearestPlayer != null) {
       tooltipComponents.add(
           Component.translatable(
-              "thecyborgage.player_radar.nearest_player_tooltip", nearestPlayer));
+              "thecyborgage.player_radar.nearest_player_tooltip", nearestPlayer).withStyle(ChatFormatting.GRAY));
     }
   }
 }

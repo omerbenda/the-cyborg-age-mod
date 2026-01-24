@@ -5,6 +5,7 @@ import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.init.TCADataComponents;
 import java.util.List;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
@@ -62,10 +63,23 @@ public class CyborgCoreItem extends Item implements ICurioItem {
 
     tooltipComponents.add(
         Component.translatable(
-            "thecyborgage.cyborg_core.energy_tooltip",
-            stack.getOrDefault(TCADataComponents.CORE_ENERGY, 0)));
+                "thecyborgage.cyborg_core.energy_tooltip",
+                stack.getOrDefault(TCADataComponents.CORE_ENERGY, 0))
+            .withStyle(ChatFormatting.GRAY));
+
     tooltipComponents.add(
         Component.translatable(
-            "thecyborgage.cyborg_core.max_energy_tooltip", this.getMaxEnergy(stack)));
+                "thecyborgage.cyborg_core.max_energy_tooltip", this.getMaxEnergy(stack))
+            .withStyle(ChatFormatting.GRAY));
+
+    ItemContainerContents contents = stack.get(DataComponents.CONTAINER);
+
+    if (contents != null) {
+      int batteryCount = Iterables.size(contents.nonEmptyItemsCopy());
+
+      tooltipComponents.add(
+          Component.translatable("thecyborgage.cyborg_core.battery_count_tooltip", batteryCount)
+              .withStyle(ChatFormatting.GRAY));
+    }
   }
 }

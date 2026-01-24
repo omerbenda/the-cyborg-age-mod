@@ -3,6 +3,7 @@ package com.thecyborgage.items;
 import com.thecyborgage.TheCyborgAgeMod;
 import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.init.TCAAttachments;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -62,6 +63,10 @@ public class CyborgJumpLegItem extends AttributeCyborgItem {
       List<Component> tooltipComponents,
       TooltipFlag tooltipFlag) {
     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+
+    tooltipComponents.add(
+        Component.translatable("thecyborgage.cyborg_jump_leg.tooltip")
+            .withStyle(ChatFormatting.GRAY));
 
     Player player = Minecraft.getInstance().player;
     boolean toggleState = player.getData(TCAAttachments.CYBORG_JUMP_LEG_TOGGLE_STATE);
