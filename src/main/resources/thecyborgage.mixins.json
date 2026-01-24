@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.thecyborgage.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ActiveCamouflageMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
