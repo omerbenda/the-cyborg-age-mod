@@ -55,7 +55,7 @@
   "thecyborgage.configuration.solar_hat": "Solar Hat",
   "thecyborgage.configuration.solar_hat_charge_rate": "Charge Rate",
   "thecyborgage.configuration.player_radar": "Player Radar",
-  "thecyborgage.configuration.player_radar_search_rate": "",
+  "thecyborgage.configuration.player_radar_search_rate": "Search Rate",
   "thecyborgage.configuration.player_radar_discharge_rate": "Discharge Rate",
   "thecyborgage.configuration.night_vision_lens": "Night Vision Lens",
   "thecyborgage.configuration.night_vision_lens_discharge_rate": "Discharge Rate",
