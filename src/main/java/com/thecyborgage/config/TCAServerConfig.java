@@ -33,6 +33,9 @@ public class TCAServerConfig {
   public final ModConfigSpec.IntValue energyArmorDischargeRate;
   public final ModConfigSpec.IntValue energyArmorHitDischarge;
   public final ModConfigSpec.IntValue activeCamouflageDischargeRate;
+  public final ModConfigSpec.IntValue miningHandDischarge;
+  public final ModConfigSpec.DoubleValue miningHandValue;
+  public final ModConfigSpec.BooleanValue miningHandIncreaseHarvest;
 
   public TCAServerConfig(ModConfigSpec.Builder builder) {
     builder.push("items");
@@ -129,6 +132,17 @@ public class TCAServerConfig {
 
     this.activeCamouflageDischargeRate =
         builder.defineInRange("active_camouflage_discharge_rate", 100, 0, Integer.MAX_VALUE);
+
+    builder.pop();
+
+    builder.push("mining_hand");
+
+    this.miningHandDischarge =
+        builder.defineInRange("mining_hand_discharge", 100, 0, Integer.MAX_VALUE);
+
+    this.miningHandValue = builder.defineInRange("mining_hand_value", 1.5D, 0.0D, Double.MAX_VALUE);
+
+    this.miningHandIncreaseHarvest = builder.define("mining_hand_increase_harvest", true);
 
     builder.pop();
 

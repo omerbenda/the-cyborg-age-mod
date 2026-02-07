@@ -1,7 +1,7 @@
 package com.thecyborgage.items;
 
 import com.thecyborgage.TheCyborgAgeMod;
-import com.thecyborgage.events.PlayerEvents;
+import com.thecyborgage.config.TCAServerConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -20,7 +20,7 @@ public class MiningHandItem extends AttributeCyborgItem {
 
   @Override
   public double getAmount(SlotContext slotContext, ItemStack stack) {
-    return 8;
+    return TCAServerConfig.CONFIG.miningHandValue.getAsDouble();
   }
 
   @Override
@@ -30,6 +30,6 @@ public class MiningHandItem extends AttributeCyborgItem {
 
   @Override
   public int getMinEnergyRequired(SlotContext slotContext, ItemStack stack) {
-    return PlayerEvents.MINING_HAND_MINE_DISCHARGE;
+    return TCAServerConfig.CONFIG.miningHandDischarge.getAsInt();
   }
 }

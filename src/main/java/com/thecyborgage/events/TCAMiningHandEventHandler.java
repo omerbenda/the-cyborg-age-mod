@@ -2,6 +2,7 @@ package com.thecyborgage.events;
 
 import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.TheCyborgAgeMod;
+import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.init.TCAItems;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -13,15 +14,14 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 
 @EventBusSubscriber(modid = TheCyborgAgeMod.MOD_ID)
-public class PlayerEvents {
-  public static final int MINING_HAND_MINE_DISCHARGE = 100; // TODO: Move to config
-
+public class TCAMiningHandEventHandler {
   @SubscribeEvent
   public static void onBlockBreak(BlockEvent.BreakEvent evt) {
     Player player = evt.getPlayer();
 
     if (shouldUseMiningHand(player)) {
-      TCACuriosHelper.consumeEntityCoreEnergy(player, MINING_HAND_MINE_DISCHARGE);
+      TCACuriosHelper.consumeEntityCoreEnergy(
+          player, TCAServerConfig.CONFIG.miningHandDischarge.getAsInt());
     }
   }
 
@@ -41,6 +41,7 @@ public class PlayerEvents {
     BlockState state = evt.getState();
 
     if (shouldUseMiningHand(player) && shouldUseMiningHandHarvest(player, state)) {
+      // Increase speed to wood speed if increasing harvest tier to wooden
       float originalSpeed = evt.getOriginalSpeed();
       float woodSpeed = Tiers.WOOD.getSpeed();
       evt.setNewSpeed(originalSpeed * woodSpeed);
@@ -49,11 +50,13 @@ public class PlayerEvents {
 
   private static boolean shouldUseMiningHand(Player player) {
     return hasMiningHandHarvest(player)
-        && TCACuriosHelper.consumeEntityCoreEnergy(player, MINING_HAND_MINE_DISCHARGE, true);
+        && TCACuriosHelper.consumeEntityCoreEnergy(
+            player, TCAServerConfig.CONFIG.miningHandDischarge.getAsInt(), true);
   }
 
   private static boolean shouldUseMiningHandHarvest(Player player, BlockState blockState) {
-    return !player.getMainHandItem().isCorrectToolForDrops(blockState)
+    return TCAServerConfig.CONFIG.miningHandIncreaseHarvest.getAsBoolean()
+        && !player.getMainHandItem().isCorrectToolForDrops(blockState)
         && !blockState.is(Tiers.WOOD.getIncorrectBlocksForDrops())
         && !ItemStack.EMPTY.isCorrectToolForDrops(blockState);
   }
