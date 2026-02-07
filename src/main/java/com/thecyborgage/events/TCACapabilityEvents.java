@@ -25,6 +25,7 @@ public class TCACapabilityEvents {
     registerCurioItem(evt, TCAItems.THERMAL_GENERATOR);
     registerCurioItem(evt, TCAItems.CYBORG_VISOR);
     registerCurioItem(evt, TCAItems.PLAYER_RADAR);
+    registerCurioItem(evt, TCAItems.MINING_HAND);
 
     evt.registerItem(
         Capabilities.EnergyStorage.ITEM,
