@@ -107,6 +107,8 @@ public class TCAItems {
   public static final DeferredItem<ActiveCamouflageItem> ACTIVE_CAMOUFLAGE =
       ITEMS.registerItem(
           "active_camouflage", (properties -> new ActiveCamouflageItem(properties.stacksTo(1))));
+  public static final DeferredItem<MiningHandItem> MINING_HAND =
+      ITEMS.registerItem("mining_hand", (properties -> new MiningHandItem(properties.stacksTo(1))));
 
   public static final DeferredItem<BlockItem> CORE_WORKBENCH =
       ITEMS.registerSimpleBlockItem(TCABlocks.CORE_WORKBENCH);
