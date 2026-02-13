@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @EventBusSubscriber(modid = TheCyborgAgeMod.MOD_ID)
-public class TCAMiningHandEventHandler {
+public class MiningHandEventHandler {
   @SubscribeEvent
   public static void onBlockBreak(BlockEvent.BreakEvent evt) {
     Player player = evt.getPlayer();
