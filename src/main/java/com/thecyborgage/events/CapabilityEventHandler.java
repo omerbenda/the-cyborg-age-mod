@@ -13,7 +13,7 @@ import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 
 @EventBusSubscriber(modid = TheCyborgAgeMod.MOD_ID)
-public class TCACapabilityEvents {
+public class CapabilityEventHandler {
   @SubscribeEvent
   public static void registerCapabilities(RegisterCapabilitiesEvent evt) {
     registerCurioItem(evt, TCAItems.CYBORG_CORE);
