@@ -21,7 +21,7 @@ import top.theillusivec4.curios.api.client.ICurioRenderer;
 public class SolarHatRenderer implements ICurioRenderer {
   private static final ResourceLocation TEXTURE =
       ResourceLocation.fromNamespaceAndPath(
-          TheCyborgAgeMod.MOD_ID, "textures/models/curios/solar_hat.png");
+          TheCyborgAgeMod.MOD_ID, "textures/entity/curios/solar_hat.png");
   private SolarHatModel model;
 
   @Override
