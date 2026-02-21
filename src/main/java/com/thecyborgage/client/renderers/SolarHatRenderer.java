@@ -46,7 +46,7 @@ public class SolarHatRenderer implements ICurioRenderer {
 
     humanoidModel.head.translateAndRotate(matrixStack);
 
-    SolarHatModel hatModel = getModel();
+    SolarHatModel hatModel = this.getModel();
 
     VertexConsumer vertexConsumer =
         ItemRenderer.getArmorFoilBuffer(
@@ -64,6 +64,7 @@ public class SolarHatRenderer implements ICurioRenderer {
           new SolarHatModel(
               Minecraft.getInstance().getEntityModels().bakeLayer(SolarHatModel.LAYER_LOCATION));
     }
+
     return this.model;
   }
 }
