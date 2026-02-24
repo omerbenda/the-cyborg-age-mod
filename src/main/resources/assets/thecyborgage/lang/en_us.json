@@ -84,5 +84,7 @@
   "advancements.cyborg.core_workbench.title": "Batteries, Now Included",
   "advancements.cyborg.core_workbench.description": "Obtain a Core Workbench",
   "thecyborgage.system.cyborg_jump_leg_state_enabled": "Cyborg Jump Leg enabled",
-  "thecyborgage.system.cyborg_jump_leg_state_disabled": "Cyborg Jump Leg disabled"
+  "thecyborgage.system.cyborg_jump_leg_state_disabled": "Cyborg Jump Leg disabled",
+  "thecyborgage.cyborg_manual.name": "Cyborg Manual",
+  "thecyborgage.cyborg_manual.landing_text": "Welcome to The Cyborg Age!"
 }
