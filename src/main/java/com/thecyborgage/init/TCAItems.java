@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -107,9 +108,17 @@ public class TCAItems {
   public static final DeferredItem<ActiveCamouflageItem> ACTIVE_CAMOUFLAGE =
       ITEMS.registerItem(
           "active_camouflage", (properties -> new ActiveCamouflageItem(properties.stacksTo(1))));
+  public static final DeferredItem<MiningHandItem> MINING_HAND =
+      ITEMS.registerItem("mining_hand", (properties -> new MiningHandItem(properties.stacksTo(1))));
 
   public static final DeferredItem<BlockItem> CORE_WORKBENCH =
       ITEMS.registerSimpleBlockItem(TCABlocks.CORE_WORKBENCH);
+
+  public static final DeferredItem<DeferredSpawnEggItem> CYBORG_SPAWN_EGG =
+      ITEMS.registerItem(
+          "cyborg_spawn_egg",
+          (properties) ->
+              new DeferredSpawnEggItem(TCAEntities.CYBORG, 0x787878, 0xDEDEDE, properties));
 
   public static void register(IEventBus bus) {
     ITEMS.register(bus);

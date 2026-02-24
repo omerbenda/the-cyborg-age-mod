@@ -9,6 +9,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
+import java.util.List;
 import java.util.Optional;
 
 public class TCACuriosHelper {
@@ -68,5 +69,11 @@ public class TCACuriosHelper {
   public static Optional<ItemStack> getEntityCurioItem(LivingEntity entity, Item item) {
     return CuriosApi.getCuriosInventory(entity)
         .flatMap((itemHandler) -> itemHandler.findFirstCurio(item).map(SlotResult::stack));
+  }
+
+  public static Optional<List<ItemStack>> getEntityCurioItemList(LivingEntity entity, Item item) {
+    return CuriosApi.getCuriosInventory(entity)
+        .map(
+            (itemHandler) -> itemHandler.findCurios(item).stream().map(SlotResult::stack).toList());
   }
 }

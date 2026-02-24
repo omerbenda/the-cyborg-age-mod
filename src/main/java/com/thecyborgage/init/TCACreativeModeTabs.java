@@ -23,6 +23,7 @@ public class TCACreativeModeTabs {
                   .icon(() -> new ItemStack(TCAItems.CYBORG_CORE.get()))
                   .displayItems(
                       (param, output) -> {
+                        output.accept(TCAItems.CYBORG_SPAWN_EGG);
                         output.accept(TCAItems.CORE_WORKBENCH);
                         output.accept(TCAItems.CYBORG_FRAGMENT);
                         output.accept(TCAItems.CORE_INTEGRATION_CIRCUIT);
@@ -38,6 +39,7 @@ public class TCACreativeModeTabs {
                         output.accept(TCAItems.PLAYER_RADAR);
                         output.accept(TCAItems.ENERGY_ARMOR);
                         output.accept(TCAItems.ACTIVE_CAMOUFLAGE);
+                        output.accept(TCAItems.MINING_HAND);
                       })
                   .build());
 

@@ -9,7 +9,7 @@ import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 @EventBusSubscriber(modid = TheCyborgAgeMod.MOD_ID)
-public class TCANetworkEvents {
+public class NetworkEventHandler {
   @SubscribeEvent
   public static void registerPayloads(RegisterPayloadHandlersEvent evt) {
     PayloadRegistrar registrar = evt.registrar("1");
