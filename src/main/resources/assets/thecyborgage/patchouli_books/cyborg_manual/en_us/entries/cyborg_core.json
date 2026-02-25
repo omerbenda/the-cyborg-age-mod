@@ -1,0 +1,16 @@
+{
+  "name": "Cyborg Core",
+  "icon": "thecyborgage:cyborg_core",
+  "category": "thecyborgage:items_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "thecyborgage:cyborg_core",
+      "text": "Powers your cybernetics.$(br)can be modified at the $(l:core_workbench)Core Workbench$(/l).$(br)Can only be used after applying the $(l:core_integration_circuit)Core Integration Circuit$(/l)."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "thecyborgage:cyborg_core"
+    }
+  ]
+}

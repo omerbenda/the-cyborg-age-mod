@@ -6,7 +6,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "thecyborgage:core_integration_circuit",
-      "text": "Allows the addition of cybernetics.$(br)Rarely dropped from $(l:cyborg)Cyborgs$(/l)."
+      "text": "Allows using the $(l:cyborg_core)Cyborg Core$(/l).$(br)Rarely dropped from $(l:cyborg)Cyborgs$(/l)."
     }
   ]
 }

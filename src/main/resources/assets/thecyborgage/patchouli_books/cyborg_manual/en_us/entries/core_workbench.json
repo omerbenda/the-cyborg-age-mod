@@ -1,0 +1,16 @@
+{
+  "name": "Core Workbench",
+  "icon": "thecyborgage:core_workbench",
+  "category": "thecyborgage:blocks_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "thecyborgage:core_workbench",
+      "text": "Allows modifying the $(l:cyborg_core)Cyborg Core$(/l)."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "thecyborgage:core_workbench"
+    }
+  ]
+}
