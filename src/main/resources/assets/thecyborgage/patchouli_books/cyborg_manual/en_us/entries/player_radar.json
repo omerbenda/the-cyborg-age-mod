@@ -1,0 +1,16 @@
+{
+  "name": "Player Radar",
+  "icon": "thecyborgage:player_radar",
+  "category": "thecyborgage:items_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "thecyborgage:player_radar",
+      "text": "Locates the nearest player."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "thecyborgage:player_radar"
+    }
+  ]
+}
