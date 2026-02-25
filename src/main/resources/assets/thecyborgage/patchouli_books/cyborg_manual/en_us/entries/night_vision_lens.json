@@ -1,0 +1,16 @@
+{
+  "name": "Night Vision Lens",
+  "icon": "thecyborgage:night_vision_lens",
+  "category": "thecyborgage:items_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "thecyborgage:night_vision_lens",
+      "text": "Grants night vision."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "thecyborgage:night_vision_lens"
+    }
+  ]
+}

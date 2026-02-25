@@ -1,0 +1,16 @@
+{
+  "name": "Energy Armor",
+  "icon": "thecyborgage:energy_armor",
+  "category": "thecyborgage:items_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "thecyborgage:energy_armor",
+      "text": "Increases armor using energy."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "thecyborgage:energy_armor"
+    }
+  ]
+}
