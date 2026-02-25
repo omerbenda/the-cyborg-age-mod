@@ -1,0 +1,12 @@
+{
+  "name": "Cyborg Fragment",
+  "icon": "thecyborgage:cyborg_fragment",
+  "category": "thecyborgage:items_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "thecyborgage:cyborg_fragment",
+      "text": "The main component for crafting cyborg items.$(br)Dropped from $(l:cyborg)Cyborgs$(/l)."
+    }
+  ]
+}

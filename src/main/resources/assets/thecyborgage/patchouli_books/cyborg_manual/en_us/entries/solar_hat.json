@@ -4,7 +4,8 @@
   "category": "thecyborgage:items_category",
   "pages": [
     {
-      "type": "patchouli:text",
+      "type": "patchouli:spotlight",
+      "item": "thecyborgage:solar_hat",
       "text": "This hat charges you using the power of the sun."
     },
     {
