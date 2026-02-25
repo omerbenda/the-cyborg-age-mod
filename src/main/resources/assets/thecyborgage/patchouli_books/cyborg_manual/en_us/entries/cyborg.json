@@ -1,0 +1,15 @@
+{
+  "name": "Cyborg",
+  "icon": "thecyborgage:cyborg_spawn_egg",
+  "category": "thecyborgage:mobs_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Found in the End, the Cyborg drops cyborg fragments and the core integration circuit."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "thecyborgage:cyborg"
+    }
+  ]
+}
