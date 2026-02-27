@@ -1,0 +1,16 @@
+{
+  "name": "Cyborg Jump Leg",
+  "icon": "thecyborgage:cyborg_jump_leg",
+  "category": "thecyborgage:items_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "thecyborgage:cyborg_jump_leg",
+      "text": "Increases jump height."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "thecyborgage:cyborg_jump_leg"
+    }
+  ]
+}

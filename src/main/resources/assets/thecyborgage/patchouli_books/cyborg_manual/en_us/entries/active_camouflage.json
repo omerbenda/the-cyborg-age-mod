@@ -1,0 +1,16 @@
+{
+  "name": "Active Camouflage",
+  "icon": "thecyborgage:active_camouflage",
+  "category": "thecyborgage:items_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "thecyborgage:active_camouflage",
+      "text": "Makes you totally invisible when crouching."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "thecyborgage:active_camouflage"
+    }
+  ]
+}

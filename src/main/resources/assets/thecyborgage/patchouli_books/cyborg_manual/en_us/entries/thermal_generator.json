@@ -1,0 +1,16 @@
+{
+  "name": "Thermal Generator",
+  "icon": "thecyborgage:thermal_generator",
+  "category": "thecyborgage:items_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "thecyborgage:thermal_generator",
+      "text": "Generates energy from ambient heat."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "thecyborgage:thermal_generator"
+    }
+  ]
+}

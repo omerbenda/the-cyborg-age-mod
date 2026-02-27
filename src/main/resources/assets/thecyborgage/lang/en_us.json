@@ -13,6 +13,7 @@
   "item.thecyborgage.player_radar": "Player Radar",
   "item.thecyborgage.energy_armor": "Energy Armor",
   "item.thecyborgage.active_camouflage": "Active Camouflage",
+  "item.thecyborgage.mining_hand": "Mining Hand",
   "item.thecyborgage.cyborg_spawn_egg": "Cyborg Spawn Egg",
   "block.thecyborgage.core_workbench": "Core Workbench",
   "itemGroup.thecyborgage.the_cyborg_age_tab": "The Cyborg Age",
@@ -84,5 +85,7 @@
   "advancements.cyborg.core_workbench.title": "Batteries, Now Included",
   "advancements.cyborg.core_workbench.description": "Obtain a Core Workbench",
   "thecyborgage.system.cyborg_jump_leg_state_enabled": "Cyborg Jump Leg enabled",
-  "thecyborgage.system.cyborg_jump_leg_state_disabled": "Cyborg Jump Leg disabled"
+  "thecyborgage.system.cyborg_jump_leg_state_disabled": "Cyborg Jump Leg disabled",
+  "thecyborgage.cyborg_manual.name": "Cyborg Manual",
+  "thecyborgage.cyborg_manual.landing_text": "Welcome to The Cyborg Age!"
 }
