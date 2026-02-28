@@ -1,0 +1,16 @@
+{
+  "name": "Mining Hand",
+  "icon": "thecyborgage:mining_hand",
+  "category": "thecyborgage:items_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "thecyborgage:mining_hand",
+      "text": "Improves mining speed.$(br)$(t:If enabled in server config)$(o)Increases default mining tier to wood$()$(/t)."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "thecyborgage:mining_hand"
+    }
+  ]
+}

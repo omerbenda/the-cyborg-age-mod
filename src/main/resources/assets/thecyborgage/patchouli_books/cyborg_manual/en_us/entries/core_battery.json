@@ -1,0 +1,16 @@
+{
+  "name": "Core Battery",
+  "icon": "thecyborgage:core_battery",
+  "category": "thecyborgage:items_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "thecyborgage:core_battery",
+      "text": "Increases $(l:cyborg_core)Cyborg Core$(/l) energy capacity.$(br)Can be inserted into the core in the $(l:core_workbench)Core Workbench$(/l)."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "thecyborgage:core_battery"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "entered_the_end": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "minecraft:the_end"
+      }
+    },
+    "has_the_book": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "patchouli:guide_book",
+            "predicates": {
+              "minecraft:components": {
+                "patchouli:book": "thecyborgage:cyborg_manual"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "entered_the_end",
+      "has_the_book"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "thecyborgage:cyborg_manual"
+    ]
+  }
+}

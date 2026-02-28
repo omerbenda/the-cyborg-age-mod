@@ -1,0 +1,16 @@
+{
+  "name": "Solar Hat",
+  "icon": "thecyborgage:solar_hat",
+  "category": "thecyborgage:items_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "thecyborgage:solar_hat",
+      "text": "This hat charges you using the power of the sun."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "thecyborgage:solar_hat"
+    }
+  ]
+}

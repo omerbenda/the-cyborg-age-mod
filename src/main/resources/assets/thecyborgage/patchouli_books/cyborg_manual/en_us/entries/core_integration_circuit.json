@@ -1,0 +1,12 @@
+{
+  "name": "Core Integration Circuit",
+  "icon": "thecyborgage:core_integration_circuit",
+  "category": "thecyborgage:items_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "thecyborgage:core_integration_circuit",
+      "text": "Allows using the $(l:cyborg_core)Cyborg Core$(/l).$(br)Rarely dropped from $(l:cyborg)Cyborgs$(/l)."
+    }
+  ]
+}
