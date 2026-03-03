@@ -2,11 +2,9 @@ package com.thecyborgage.client.renderers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.thecyborgage.TheCyborgAgeMod;
-import com.thecyborgage.client.models.SolarHatModel;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.Model;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.ItemRenderer;
@@ -18,11 +16,14 @@ import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
 
-public class SolarHatRenderer implements ICurioRenderer {
-  private static final ResourceLocation TEXTURE =
-      ResourceLocation.fromNamespaceAndPath(
-          TheCyborgAgeMod.MOD_ID, "textures/entity/curios/solar_hat.png");
-  private SolarHatModel model;
+public class HatCurioRenderer implements ICurioRenderer {
+  private final ResourceLocation texture;
+  protected final Model model;
+
+  public HatCurioRenderer(ResourceLocation texture, Model model) {
+    this.texture = texture;
+    this.model = model;
+  }
 
   @Override
   public <T extends LivingEntity, M extends EntityModel<T>> void render(
@@ -46,25 +47,13 @@ public class SolarHatRenderer implements ICurioRenderer {
 
     humanoidModel.head.translateAndRotate(matrixStack);
 
-    SolarHatModel hatModel = this.getModel();
-
     VertexConsumer vertexConsumer =
         ItemRenderer.getArmorFoilBuffer(
-            renderTypeBuffer, RenderType.armorCutoutNoCull(TEXTURE), stack.hasFoil());
+            renderTypeBuffer, RenderType.armorCutoutNoCull(this.texture), stack.hasFoil());
 
-    hatModel.renderToBuffer(
+    this.model.renderToBuffer(
         matrixStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 0xFFFFFFFF);
 
     matrixStack.popPose();
-  }
-
-  private SolarHatModel getModel() {
-    if (this.model == null) {
-      this.model =
-          new SolarHatModel(
-              Minecraft.getInstance().getEntityModels().bakeLayer(SolarHatModel.LAYER_LOCATION));
-    }
-
-    return this.model;
   }
 }
