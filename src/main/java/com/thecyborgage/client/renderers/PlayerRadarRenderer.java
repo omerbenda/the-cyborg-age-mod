@@ -19,7 +19,7 @@ import top.theillusivec4.curios.api.client.ICurioRenderer;
 
 public class PlayerRadarRenderer implements ICurioRenderer {
   private static final ResourceLocation TEXTURE =
-      ResourceLocation.fromNamespaceAndPath("thecyborgage", "textures/models/curios/radar_hat.png");
+      ResourceLocation.fromNamespaceAndPath("thecyborgage", "textures/entity/curios/player_radar.png");
   private PlayerRadarModel model;
 
   @Override

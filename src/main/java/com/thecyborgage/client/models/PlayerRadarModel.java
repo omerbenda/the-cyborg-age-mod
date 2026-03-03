@@ -35,7 +35,7 @@ public class PlayerRadarModel extends Model {
     PartDefinition base =
         partdefinition.addOrReplaceChild(
             "base",
-            CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -9.0F, -4.0F, 8.0F, 2.0F, 8.0F),
+            CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -10.0F, -4.0F, 8.0F, 2.0F, 8.0F),
             PartPose.ZERO);
 
     base.addOrReplaceChild(
