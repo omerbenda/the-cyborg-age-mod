@@ -3,15 +3,16 @@ package com.thecyborgage.client;
 import com.thecyborgage.TheCyborgAgeMod;
 import com.thecyborgage.client.models.PlayerRadarModel;
 import com.thecyborgage.client.models.SolarHatModel;
+import com.thecyborgage.client.renderers.AgingHatCurioRenderer;
 import com.thecyborgage.client.renderers.CyborgRenderer;
-import com.thecyborgage.client.renderers.PlayerRadarRenderer;
-import com.thecyborgage.client.renderers.SolarHatRenderer;
+import com.thecyborgage.client.renderers.HatCurioRenderer;
 import com.thecyborgage.init.TCAAttachments;
 import com.thecyborgage.init.TCAEntities;
 import com.thecyborgage.init.TCAItems;
 import com.thecyborgage.network.packets.ToggleValuePayload;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -42,8 +43,26 @@ public class TheCyborgAgeClient {
   private static void registerRenderers() {
     EntityRenderers.register(TCAEntities.CYBORG.get(), CyborgRenderer::new);
 
-    CuriosRendererRegistry.register(TCAItems.SOLAR_HAT.get(), SolarHatRenderer::new);
-    CuriosRendererRegistry.register(TCAItems.PLAYER_RADAR.get(), PlayerRadarRenderer::new);
+    CuriosRendererRegistry.register(
+        TCAItems.SOLAR_HAT.get(),
+        () ->
+            new HatCurioRenderer(
+                ResourceLocation.fromNamespaceAndPath(
+                    TheCyborgAgeMod.MOD_ID, "textures/entity/curios/solar_hat.png"),
+                new SolarHatModel(
+                    Minecraft.getInstance()
+                        .getEntityModels()
+                        .bakeLayer(SolarHatModel.LAYER_LOCATION))));
+    CuriosRendererRegistry.register(
+        TCAItems.PLAYER_RADAR.get(),
+        () ->
+            new AgingHatCurioRenderer(
+                ResourceLocation.fromNamespaceAndPath(
+                    TheCyborgAgeMod.MOD_ID, "textures/entity/curios/player_radar.png"),
+                new PlayerRadarModel(
+                    Minecraft.getInstance()
+                        .getEntityModels()
+                        .bakeLayer(PlayerRadarModel.LAYER_LOCATION))));
   }
 
   @SubscribeEvent

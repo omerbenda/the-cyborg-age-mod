@@ -2,10 +2,9 @@ package com.thecyborgage.client.renderers;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.thecyborgage.client.models.PlayerRadarModel;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.Model;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.ItemRenderer;
@@ -17,10 +16,14 @@ import net.minecraft.world.item.ItemStack;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.client.ICurioRenderer;
 
-public class PlayerRadarRenderer implements ICurioRenderer {
-  private static final ResourceLocation TEXTURE =
-      ResourceLocation.fromNamespaceAndPath("thecyborgage", "textures/entity/curios/player_radar.png");
-  private PlayerRadarModel model;
+public class HatCurioRenderer implements ICurioRenderer {
+  private final ResourceLocation texture;
+  protected final Model model;
+
+  public HatCurioRenderer(ResourceLocation texture, Model model) {
+    this.texture = texture;
+    this.model = model;
+  }
 
   @Override
   public <T extends LivingEntity, M extends EntityModel<T>> void render(
@@ -36,36 +39,21 @@ public class PlayerRadarRenderer implements ICurioRenderer {
       float ageInTicks,
       float netHeadYaw,
       float headPitch) {
-    LivingEntity entity = slotContext.entity();
+    if (!(renderLayerParent.getModel() instanceof HumanoidModel<?> humanoidModel)) {
+      return;
+    }
 
     matrixStack.pushPose();
 
-    if (renderLayerParent.getModel() instanceof HumanoidModel<?> humanoidModel) {
-      ICurioRenderer.followHeadRotations(entity, humanoidModel.head);
-      humanoidModel.head.translateAndRotate(matrixStack);
-    }
-
-    PlayerRadarModel playerRadarModel = this.getModel();
-
-    playerRadarModel.setupAnim(ageInTicks);
+    humanoidModel.head.translateAndRotate(matrixStack);
 
     VertexConsumer vertexConsumer =
         ItemRenderer.getArmorFoilBuffer(
-            renderTypeBuffer, RenderType.entityCutoutNoCull(TEXTURE), stack.hasFoil());
+            renderTypeBuffer, RenderType.armorCutoutNoCull(this.texture), stack.hasFoil());
 
-    playerRadarModel.renderToBuffer(
+    this.model.renderToBuffer(
         matrixStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 0xFFFFFFFF);
 
     matrixStack.popPose();
-  }
-
-  private PlayerRadarModel getModel() {
-    if (this.model == null) {
-      this.model =
-          new PlayerRadarModel(
-              Minecraft.getInstance().getEntityModels().bakeLayer(PlayerRadarModel.LAYER_LOCATION));
-    }
-
-    return this.model;
   }
 }

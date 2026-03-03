@@ -3,7 +3,6 @@ package com.thecyborgage.client.models;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.thecyborgage.TheCyborgAgeMod;
-import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -14,7 +13,7 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 
-public class PlayerRadarModel extends Model {
+public class PlayerRadarModel extends AgeableModel {
   public static final ModelLayerLocation LAYER_LOCATION =
       new ModelLayerLocation(
           ResourceLocation.fromNamespaceAndPath(TheCyborgAgeMod.MOD_ID, "player_radar"), "main");
@@ -46,10 +45,6 @@ public class PlayerRadarModel extends Model {
     return LayerDefinition.create(meshdefinition, 32, 32);
   }
 
-  public void setupAnim(float ageInTicks) {
-    this.radarDish.yRot = ageInTicks * 0.15F;
-  }
-
   @Override
   public void renderToBuffer(
       PoseStack poseStack,
@@ -58,5 +53,10 @@ public class PlayerRadarModel extends Model {
       int packedOverlay,
       int color) {
     this.root.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+  }
+
+  @Override
+  public void setAge(float ageInTicks) {
+    this.radarDish.yRot = ageInTicks * 0.15F;
   }
 }
