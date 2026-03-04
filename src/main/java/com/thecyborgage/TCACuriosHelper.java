@@ -13,13 +13,32 @@ import java.util.List;
 import java.util.Optional;
 
 public class TCACuriosHelper {
+  public static boolean setEntityCoreEnergy(LivingEntity entity, int energy) {
+    Optional<IEnergyStorage> optionalEnergyStorage = getEntityCoreEnergyStorage(entity);
+
+    if (optionalEnergyStorage.isEmpty()) {
+      return false;
+    }
+
+    IEnergyStorage energyStorage = optionalEnergyStorage.get();
+    int currentEnergy = energyStorage.getEnergyStored();
+    int energyDiff = Math.abs(currentEnergy - energy);
+
+    if (currentEnergy > energy) {
+      energyStorage.extractEnergy(energyDiff, false);
+    } else if (currentEnergy < energy) {
+      energyStorage.receiveEnergy(energy, false);
+    }
+
+    return true;
+  }
+
   public static boolean addEntityCoreEnergy(LivingEntity entity, int energy) {
     return addEntityCoreEnergy(entity, energy, false);
   }
 
   public static boolean addEntityCoreEnergy(LivingEntity entity, int energy, boolean simulate) {
-    Optional<IEnergyStorage> optionalEnergyStorage =
-        TCACuriosHelper.getEntityCoreEnergyStorage(entity);
+    Optional<IEnergyStorage> optionalEnergyStorage = getEntityCoreEnergyStorage(entity);
 
     if (optionalEnergyStorage.isEmpty()) {
       return false;
@@ -36,8 +55,7 @@ public class TCACuriosHelper {
   }
 
   public static boolean consumeEntityCoreEnergy(LivingEntity entity, int energy, boolean simulate) {
-    Optional<IEnergyStorage> optionalEnergyStorage =
-        TCACuriosHelper.getEntityCoreEnergyStorage(entity);
+    Optional<IEnergyStorage> optionalEnergyStorage = getEntityCoreEnergyStorage(entity);
 
     if (optionalEnergyStorage.isEmpty()) {
       return false;
