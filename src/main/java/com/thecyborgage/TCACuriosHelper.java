@@ -27,7 +27,7 @@ public class TCACuriosHelper {
     if (currentEnergy > energy) {
       energyStorage.extractEnergy(energyDiff, false);
     } else if (currentEnergy < energy) {
-      energyStorage.receiveEnergy(energy, false);
+      energyStorage.receiveEnergy(energyDiff, false);
     }
 
     return true;
