@@ -110,6 +110,9 @@ public class TCAItems {
           "active_camouflage", (properties -> new ActiveCamouflageItem(properties.stacksTo(1))));
   public static final DeferredItem<MiningHandItem> MINING_HAND =
       ITEMS.registerItem("mining_hand", (properties -> new MiningHandItem(properties.stacksTo(1))));
+  public static final DeferredItem<CyborgInterfaceItem> CYBORG_INTERFACE =
+      ITEMS.registerItem(
+          "cyborg_interface", (properties -> new CyborgInterfaceItem(properties.stacksTo(1))));
 
   public static final DeferredItem<BlockItem> CORE_WORKBENCH =
       ITEMS.registerSimpleBlockItem(TCABlocks.CORE_WORKBENCH);

@@ -40,6 +40,7 @@ public class TCACreativeModeTabs {
                         output.accept(TCAItems.ENERGY_ARMOR);
                         output.accept(TCAItems.ACTIVE_CAMOUFLAGE);
                         output.accept(TCAItems.MINING_HAND);
+                        output.accept(TCAItems.CYBORG_INTERFACE);
                       })
                   .build());
 
