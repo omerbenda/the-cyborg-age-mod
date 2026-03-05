@@ -43,16 +43,13 @@ public class CoreEnergyStorage implements IEnergyStorage {
   @Override
   public int extractEnergy(int energy, boolean simulate) {
     int stackEnergy = this.getStackEnergy();
-
-    if (energy > stackEnergy) {
-      return -1;
-    }
+    int usedEnergy = Math.min(energy, stackEnergy);
 
     if (!simulate) {
-      this.setStackEnergy(stackEnergy - energy);
+      this.setStackEnergy(stackEnergy - usedEnergy);
     }
 
-    return energy;
+    return usedEnergy;
   }
 
   @Override
