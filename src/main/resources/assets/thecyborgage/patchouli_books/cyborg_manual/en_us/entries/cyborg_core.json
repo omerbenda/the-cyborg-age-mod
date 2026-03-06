@@ -6,7 +6,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "thecyborgage:cyborg_core",
-      "text": "Powers your cybernetics.$(br)can be modified at the $(l:core_workbench)Core Workbench$(/l).$(br)Can only be used after applying the $(l:core_integration_circuit)Core Integration Circuit$(/l)."
+      "text": "Powers your cybernetics.$((br2)can be modified at the $l:core_workbench)Core Workbench$(/l).$(br2)Can only be used after applying the $(l:core_integration_circuit)Core Integration Circuit$(/l).$(br2)Compatible with some mods."
     },
     {
       "type": "patchouli:crafting",
