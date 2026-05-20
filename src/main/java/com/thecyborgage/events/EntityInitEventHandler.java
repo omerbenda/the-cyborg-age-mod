@@ -16,6 +16,7 @@ public class EntityInitEventHandler {
   @SubscribeEvent
   public static void onAttributeCreate(EntityAttributeCreationEvent event) {
     event.put(TCAEntities.CYBORG.get(), Monster.createMonsterAttributes().build());
+    event.put(TCAEntities.CYBORG_SCOUT.get(), Monster.createMonsterAttributes().build());
   }
 
   @SubscribeEvent

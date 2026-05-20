@@ -5,6 +5,7 @@ import com.thecyborgage.client.models.PlayerRadarModel;
 import com.thecyborgage.client.models.SolarHatModel;
 import com.thecyborgage.client.renderers.AgingHatCurioRenderer;
 import com.thecyborgage.client.renderers.CyborgRenderer;
+import com.thecyborgage.client.renderers.CyborgScoutRenderer;
 import com.thecyborgage.client.renderers.HatCurioRenderer;
 import com.thecyborgage.init.TCAAttachments;
 import com.thecyborgage.init.TCAEntities;
@@ -42,6 +43,7 @@ public class TheCyborgAgeClient {
 
   private static void registerRenderers() {
     EntityRenderers.register(TCAEntities.CYBORG.get(), CyborgRenderer::new);
+    EntityRenderers.register(TCAEntities.CYBORG_SCOUT.get(), CyborgScoutRenderer::new);
 
     CuriosRendererRegistry.register(
         TCAItems.SOLAR_HAT.get(),

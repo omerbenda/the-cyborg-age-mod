@@ -120,6 +120,12 @@ public class TCAItems {
           (properties) ->
               new DeferredSpawnEggItem(TCAEntities.CYBORG, 0x787878, 0xDEDEDE, properties));
 
+  public static final DeferredItem<DeferredSpawnEggItem> CYBORG_SCOUT_SPAWN_EGG =
+      ITEMS.registerItem(
+          "cyborg_scout_spawn_egg",
+          (properties) ->
+              new DeferredSpawnEggItem(TCAEntities.CYBORG_SCOUT, 0x787878, 0xFFDEDE, properties));
+
   public static void register(IEventBus bus) {
     ITEMS.register(bus);
   }
