@@ -25,6 +25,7 @@ public class TCACreativeModeTabs {
                       (param, output) -> {
                         output.accept(TCAItems.CYBORG_SPAWN_EGG);
                         output.accept(TCAItems.CYBORG_SCOUT_SPAWN_EGG);
+                        output.accept(TCAItems.CYBORG_BEACON);
                         output.accept(TCAItems.CORE_WORKBENCH);
                         output.accept(TCAItems.CYBORG_FRAGMENT);
                         output.accept(TCAItems.CORE_INTEGRATION_CIRCUIT);
