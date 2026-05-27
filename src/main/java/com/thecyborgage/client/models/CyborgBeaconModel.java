@@ -33,12 +33,12 @@ public class CyborgBeaconModel<T extends Entity> extends EntityModel<T> {
 
     partdefinition.addOrReplaceChild(
         "rod",
-        CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -24.0F, -2.0F, 4.0F, 24.0F, 4.0F),
+        CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, 10.0F, -2.0F, 4.0F, 14.0F, 4.0F),
         PartPose.ZERO);
 
     partdefinition.addOrReplaceChild(
         "bulb",
-        CubeListBuilder.create().texOffs(16, 0).addBox(-4.0F, -32.0F, -4.0F, 8.0F, 8.0F, 8.0F),
+        CubeListBuilder.create().texOffs(16, 0).addBox(-4.0F, 2.0F, -4.0F, 8.0F, 8.0F, 8.0F),
         PartPose.ZERO);
 
     return LayerDefinition.create(meshdefinition, 64, 64);
