@@ -30,8 +30,8 @@ public class CyborgBeaconBlock extends BaseEntityBlock {
 
   public static final IntegerProperty FLASH_STAGE = IntegerProperty.create("flash_stage", 0, 3);
 
-  private static final VoxelShape ROD_SHAPE = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 12.0D, 10.0D);
-  private static final VoxelShape BULB_SHAPE = Block.box(4.0D, 12.0D, 4.0D, 12.0D, 20.0D, 12.0D);
+  private static final VoxelShape ROD_SHAPE = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 8.0D, 10.0D);
+  private static final VoxelShape BULB_SHAPE = Block.box(4.0D, 8.0D, 4.0D, 12.0D, 16.0D, 12.0D);
   private static final VoxelShape COMPLETE_SHAPE = Shapes.or(ROD_SHAPE, BULB_SHAPE);
 
   public CyborgBeaconBlock(Properties properties) {

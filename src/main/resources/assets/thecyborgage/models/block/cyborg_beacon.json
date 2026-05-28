@@ -9,27 +9,27 @@
     {
       "name": "rod",
       "from": [6, 0, 6],
-      "to": [10, 14, 10],
+      "to": [10, 8, 10],
       "faces": {
-        "north": {"uv": [6, 2, 10, 16], "texture": "#rod"},
-        "east":  {"uv": [6, 2, 10, 16], "texture": "#rod"},
-        "south": {"uv": [6, 2, 10, 16], "texture": "#rod"},
-        "west":  {"uv": [6, 2, 10, 16], "texture": "#rod"},
+        "north": {"uv": [6, 8, 10, 16], "texture": "#rod"},
+        "east":  {"uv": [6, 8, 10, 16], "texture": "#rod"},
+        "south": {"uv": [6, 8, 10, 16], "texture": "#rod"},
+        "west":  {"uv": [6, 8, 10, 16], "texture": "#rod"},
         "up":    {"uv": [6, 6, 10, 10], "texture": "#rod"},
         "down":  {"uv": [6, 6, 10, 10], "texture": "#rod"}
       }
     },
     {
       "name": "bulb",
-      "from": [4, 14, 4],
-      "to": [12, 22, 12],
+      "from": [4, 8, 4],
+      "to": [12, 16, 12],
       "faces": {
-        "north": {"uv": [4, 4, 12, 12], "texture": "#bulb"},
-        "east":  {"uv": [4, 4, 12, 12], "texture": "#bulb"},
-        "south": {"uv": [4, 4, 12, 12], "texture": "#bulb"},
-        "west":  {"uv": [4, 4, 12, 12], "texture": "#bulb"},
-        "up":    {"uv": [4, 4, 12, 12], "texture": "#bulb"},
-        "down":  {"uv": [4, 4, 12, 12], "texture": "#bulb"}
+        "north": {"uv": [0, 0, 16, 16], "texture": "#bulb"},
+        "east":  {"uv": [0, 0, 16, 16], "texture": "#bulb"},
+        "south": {"uv": [0, 0, 16, 16], "texture": "#bulb"},
+        "west":  {"uv": [0, 0, 16, 16], "texture": "#bulb"},
+        "up":    {"uv": [0, 0, 16, 16], "texture": "#bulb"},
+        "down":  {"uv": [0, 0, 16, 16], "texture": "#bulb"}
       }
     }
   ]
