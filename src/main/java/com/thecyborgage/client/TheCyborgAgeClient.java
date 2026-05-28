@@ -1,7 +1,6 @@
 package com.thecyborgage.client;
 
 import com.thecyborgage.TheCyborgAgeMod;
-import com.thecyborgage.client.models.CyborgBeaconModel;
 import com.thecyborgage.client.models.PlayerRadarModel;
 import com.thecyborgage.client.models.SolarHatModel;
 import com.thecyborgage.client.renderers.*;
@@ -42,7 +41,6 @@ public class TheCyborgAgeClient {
   private static void registerRenderers() {
     EntityRenderers.register(TCAEntities.CYBORG.get(), CyborgRenderer::new);
     EntityRenderers.register(TCAEntities.CYBORG_SCOUT.get(), CyborgScoutRenderer::new);
-    EntityRenderers.register(TCAEntities.CYBORG_BEACON.get(), CyborgBeaconRenderer::new);
 
     CuriosRendererRegistry.register(
         TCAItems.SOLAR_HAT.get(),
@@ -70,8 +68,6 @@ public class TheCyborgAgeClient {
   private static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions evt) {
     evt.registerLayerDefinition(SolarHatModel.LAYER_LOCATION, SolarHatModel::createLayer);
     evt.registerLayerDefinition(PlayerRadarModel.LAYER_LOCATION, PlayerRadarModel::createLayer);
-    evt.registerLayerDefinition(
-        CyborgBeaconModel.LAYER_LOCATION, CyborgBeaconModel::createBodyLayer);
   }
 
   @SubscribeEvent

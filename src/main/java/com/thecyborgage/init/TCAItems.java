@@ -107,9 +107,6 @@ public class TCAItems {
   public static final DeferredItem<MiningHandItem> MINING_HAND =
       ITEMS.registerItem("mining_hand", MiningHandItem::new, new Item.Properties().stacksTo(1));
 
-  public static final DeferredItem<BlockItem> CORE_WORKBENCH =
-      ITEMS.registerSimpleBlockItem(TCABlocks.CORE_WORKBENCH);
-
   public static final DeferredItem<DeferredSpawnEggItem> CYBORG_SPAWN_EGG =
       ITEMS.registerItem(
           "cyborg_spawn_egg",
@@ -122,8 +119,11 @@ public class TCAItems {
           (properties) ->
               new DeferredSpawnEggItem(TCAEntities.CYBORG_SCOUT, 0x787878, 0xFFDEDE, properties));
 
-  public static final DeferredItem<CyborgBeaconItem> CYBORG_BEACON =
-      ITEMS.registerItem("cyborg_beacon", CyborgBeaconItem::new, new Item.Properties().stacksTo(1));
+  public static final DeferredItem<BlockItem> CORE_WORKBENCH =
+      ITEMS.registerSimpleBlockItem(TCABlocks.CORE_WORKBENCH);
+
+  public static final DeferredItem<BlockItem> CYBORG_BEACON =
+      ITEMS.registerSimpleBlockItem(TCABlocks.CYBORG_BEACON);
 
   public static void register(IEventBus bus) {
     ITEMS.register(bus);
