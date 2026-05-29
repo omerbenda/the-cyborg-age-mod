@@ -5,9 +5,11 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.thecyborgage.blocks.blockentities.CyborgBeaconBlockEntity;
 import com.thecyborgage.init.TCABlockEntities;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
@@ -75,5 +77,40 @@ public class CyborgBeaconBlock extends BaseEntityBlock {
         ? null
         : createTickerHelper(
             type, TCABlockEntities.CYBORG_BEACON.get(), CyborgBeaconBlockEntity::tick);
+  }
+
+  @Nullable
+  @Override
+  public BlockState getStateForPlacement(BlockPlaceContext context) {
+    BlockState state = this.defaultBlockState();
+
+    if (this.canSurvive(state, context.getLevel(), context.getClickedPos())) {
+      return state;
+    }
+
+    return null;
+  }
+
+  @Override
+  protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+    BlockPos belowPos = pos.below();
+    BlockState belowState = level.getBlockState(belowPos);
+
+    return belowState.isFaceSturdy(level, belowPos, Direction.UP);
+  }
+
+  @Override
+  public void neighborChanged(
+      BlockState state,
+      Level level,
+      BlockPos pos,
+      Block neighborBlock,
+      BlockPos fromPos,
+      boolean isMoving) {
+    super.neighborChanged(state, level, pos, neighborBlock, fromPos, isMoving);
+
+    if (!this.canSurvive(state, level, pos)) {
+      level.destroyBlock(pos, true);
+    }
   }
 }
