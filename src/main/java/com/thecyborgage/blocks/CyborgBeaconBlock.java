@@ -71,7 +71,9 @@ public class CyborgBeaconBlock extends BaseEntityBlock {
   @Override
   public <T extends BlockEntity> BlockEntityTicker<T> getTicker(
       Level level, BlockState state, BlockEntityType<T> type) {
-    return createTickerHelper(
-        type, TCABlockEntities.CYBORG_BEACON.get(), CyborgBeaconBlockEntity::tick);
+    return level.isClientSide()
+        ? null
+        : createTickerHelper(
+            type, TCABlockEntities.CYBORG_BEACON.get(), CyborgBeaconBlockEntity::tick);
   }
 }

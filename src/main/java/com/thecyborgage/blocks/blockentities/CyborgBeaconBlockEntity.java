@@ -30,14 +30,12 @@ public class CyborgBeaconBlockEntity extends BlockEntity {
   private int currentWave;
   private int ticksUntilNextWave;
   private final List<UUID> activeInvasionMobs;
-  private int flashTicks;
 
   public CyborgBeaconBlockEntity(BlockPos pos, BlockState state) {
     super(TCABlockEntities.CYBORG_BEACON.get(), pos, state);
 
     this.currentWave = 1;
     this.ticksUntilNextWave = WAVE_DELAY;
-    this.flashTicks = WAVE_DELAY;
     this.activeInvasionMobs = new ArrayList<>();
   }
 
@@ -58,7 +56,7 @@ public class CyborgBeaconBlockEntity extends BlockEntity {
       setChanged(level, pos, state);
     }
 
-    if (!be.activeInvasionMobs.isEmpty() || be.currentWave > MAX_WAVES) {
+    if (!be.activeInvasionMobs.isEmpty()) {
       trySetFlashStage(level, pos, state, 0);
 
       return;
@@ -70,7 +68,13 @@ public class CyborgBeaconBlockEntity extends BlockEntity {
       be.spawnWave(serverLevel);
       be.ticksUntilNextWave = WAVE_DELAY;
       be.currentWave++;
-      be.flashTicks = WAVE_DELAY;
+
+      if (be.currentWave > MAX_WAVES) {
+        level.destroyBlock(pos, false);
+
+        return;
+      }
+
       setChanged(level, pos, state);
 
       return;
@@ -121,7 +125,6 @@ public class CyborgBeaconBlockEntity extends BlockEntity {
     super.saveAdditional(tag, registries);
     tag.putInt("CurrentWave", this.currentWave);
     tag.putInt("TicksUntilNextWave", this.ticksUntilNextWave);
-    tag.putInt("FlashTicks", this.flashTicks);
 
     ListTag uuidList = new ListTag();
 
@@ -137,7 +140,6 @@ public class CyborgBeaconBlockEntity extends BlockEntity {
     super.loadAdditional(tag, registries);
     this.currentWave = tag.getInt("CurrentWave");
     this.ticksUntilNextWave = tag.getInt("TicksUntilNextWave");
-    this.flashTicks = tag.getInt("FlashTicks");
 
     this.activeInvasionMobs.clear();
     if (tag.contains("ActiveInvasionMobs", Tag.TAG_LIST)) {
