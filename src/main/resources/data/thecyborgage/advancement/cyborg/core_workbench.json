@@ -1,5 +1,5 @@
 {
-  "parent": "thecyborgage:cyborg/root",
+  "parent": "thecyborgage:cyborg/kill_cyborg",
   "criteria": {
     "has_workbench": {
       "conditions": {
@@ -18,7 +18,7 @@
     ]
   ],
   "display": {
-    "announce_to_chat": false,
+    "announce_to_chat": true,
     "description": {
       "translate": "advancements.cyborg.core_workbench.description"
     },

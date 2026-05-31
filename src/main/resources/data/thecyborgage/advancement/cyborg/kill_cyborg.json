@@ -1,0 +1,33 @@
+{
+  "parent": "thecyborgage:cyborg/kill_cyborg_scout",
+  "criteria": {
+    "killed_cyborg": {
+      "conditions": {
+        "entity": {
+          "type": "thecyborgage:cyborg"
+        }
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.cyborg.kill_cyborg.description"
+    },
+    "frame": "task",
+    "icon": {
+      "count": 1,
+      "id": "thecyborgage:core_integration_circuit"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.cyborg.kill_cyborg.title"
+    }
+  },
+  "requirements": [
+    [
+      "killed_cyborg"
+    ]
+  ]
+}
