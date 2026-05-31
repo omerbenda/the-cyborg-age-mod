@@ -21,6 +21,7 @@ public class TCAEntities {
           (res) ->
               EntityType.Builder.of(CyborgEntity::new, MobCategory.MONSTER)
                   .sized(0.6F, 1.8F)
+                  .clientTrackingRange(5)
                   .build(res.toString()));
 
   public static final Supplier<EntityType<CyborgScoutEntity>> CYBORG_SCOUT =

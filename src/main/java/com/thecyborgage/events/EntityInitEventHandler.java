@@ -1,6 +1,7 @@
 package com.thecyborgage.events;
 
 import com.thecyborgage.TheCyborgAgeMod;
+import com.thecyborgage.entities.CyborgEntity;
 import com.thecyborgage.init.TCAEntities;
 import net.minecraft.world.entity.monster.Monster;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -11,7 +12,7 @@ import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 public class EntityInitEventHandler {
   @SubscribeEvent
   public static void onAttributeCreate(EntityAttributeCreationEvent event) {
-    event.put(TCAEntities.CYBORG.get(), Monster.createMonsterAttributes().build());
+    event.put(TCAEntities.CYBORG.get(), CyborgEntity.createCyborgAttributes().build());
     event.put(TCAEntities.CYBORG_SCOUT.get(), Monster.createMonsterAttributes().build());
   }
 }
