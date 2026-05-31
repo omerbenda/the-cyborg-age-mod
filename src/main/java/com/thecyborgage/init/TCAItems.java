@@ -117,7 +117,7 @@ public class TCAItems {
       ITEMS.registerItem(
           "cyborg_scout_spawn_egg",
           (properties) ->
-              new DeferredSpawnEggItem(TCAEntities.CYBORG_SCOUT, 0x787878, 0xFFDEDE, properties));
+              new DeferredSpawnEggItem(TCAEntities.CYBORG_SCOUT, 0x676767, 0xFFAEAE, properties));
 
   public static final DeferredItem<BlockItem> CORE_WORKBENCH =
       ITEMS.registerSimpleBlockItem(TCABlocks.CORE_WORKBENCH);

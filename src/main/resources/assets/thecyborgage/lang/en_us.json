@@ -17,6 +17,7 @@
   "item.thecyborgage.cyborg_spawn_egg": "Cyborg Spawn Egg",
   "item.thecyborgage.cyborg_scout_spawn_egg": "Cyborg Scout Spawn Egg",
   "block.thecyborgage.core_workbench": "Core Workbench",
+  "block.thecyborgage.cyborg_beacon": "Cyborg Beacon",
   "itemGroup.thecyborgage.the_cyborg_age_tab": "The Cyborg Age",
   "menu.title.thecyborgage.core_workbench": "Core Workbench",
   "thecyborgage.cyborg_core.energy_tooltip": "Energy: %d",
