@@ -36,6 +36,9 @@ public class TCAServerConfig {
   public final ModConfigSpec.IntValue miningHandDischarge;
   public final ModConfigSpec.DoubleValue miningHandValue;
   public final ModConfigSpec.BooleanValue miningHandIncreaseHarvest;
+  public final ModConfigSpec.IntValue cyborgBeaconWaveCount;
+  public final ModConfigSpec.IntValue cyborgBeaconWaveDelay;
+  public final ModConfigSpec.IntValue cyborgBeaconCyborgsCount;
 
   public TCAServerConfig(ModConfigSpec.Builder builder) {
     builder.push("items");
@@ -143,6 +146,27 @@ public class TCAServerConfig {
     this.miningHandValue = builder.defineInRange("mining_hand_value", 1.5D, 0.0D, Double.MAX_VALUE);
 
     this.miningHandIncreaseHarvest = builder.define("mining_hand_increase_harvest", true);
+
+    builder.pop();
+
+    builder.pop();
+
+    builder.push("blocks");
+
+    builder.push("cyborg_beacon");
+
+    this.cyborgBeaconWaveCount =
+        builder.defineInRange("cyborg_beacon_wave_count", 3, 1, Integer.MAX_VALUE);
+
+    this.cyborgBeaconWaveDelay =
+        builder
+            .comment("The delay in ticks between waves.")
+            .defineInRange("cyborg_beacon_wave_delay", 160, 1, Integer.MAX_VALUE);
+
+    this.cyborgBeaconCyborgsCount =
+        builder
+            .comment("The scale of Cyborgs spawned in each wave.")
+            .defineInRange("cyborg_beacon_cyborg_count", 3, 1, Integer.MAX_VALUE);
 
     builder.pop();
 

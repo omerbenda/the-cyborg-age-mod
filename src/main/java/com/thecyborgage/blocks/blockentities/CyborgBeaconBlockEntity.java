@@ -1,6 +1,7 @@
 package com.thecyborgage.blocks.blockentities;
 
 import com.thecyborgage.blocks.CyborgBeaconBlock;
+import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.init.TCABlockEntities;
 import com.thecyborgage.init.TCAEntities;
 import net.minecraft.core.BlockPos;
@@ -23,8 +24,6 @@ import java.util.List;
 import java.util.UUID;
 
 public class CyborgBeaconBlockEntity extends BlockEntity {
-  private static final int MAX_WAVES = 3;
-  private static final int WAVE_DELAY = 160;
   private static final int[] flashSequence = {0, 1, 2, 3, 2, 1};
 
   private int currentWave;
@@ -35,7 +34,7 @@ public class CyborgBeaconBlockEntity extends BlockEntity {
     super(TCABlockEntities.CYBORG_BEACON.get(), pos, state);
 
     this.currentWave = 1;
-    this.ticksUntilNextWave = WAVE_DELAY;
+    this.ticksUntilNextWave = getWaveDelay();
     this.activeInvasionMobs = new ArrayList<>();
   }
 
@@ -66,10 +65,10 @@ public class CyborgBeaconBlockEntity extends BlockEntity {
 
     if (be.ticksUntilNextWave <= 0) {
       be.spawnWave(serverLevel);
-      be.ticksUntilNextWave = WAVE_DELAY;
+      be.ticksUntilNextWave = getWaveDelay();
       be.currentWave++;
 
-      if (be.currentWave > MAX_WAVES) {
+      if (be.currentWave > getWaveCount()) {
         level.destroyBlock(pos, false);
 
         return;
@@ -80,7 +79,7 @@ public class CyborgBeaconBlockEntity extends BlockEntity {
       return;
     }
 
-    int flashSeqIndex = ((WAVE_DELAY - be.ticksUntilNextWave) / 5) % flashSequence.length;
+    int flashSeqIndex = ((getWaveDelay() - be.ticksUntilNextWave) / 5) % flashSequence.length;
     int flashStage = flashSequence[flashSeqIndex];
     trySetFlashStage(level, pos, state, flashStage);
   }
@@ -91,7 +90,7 @@ public class CyborgBeaconBlockEntity extends BlockEntity {
 
     for (int i = 0; i < spawnCount; i++) {
       double angle = level.random.nextDouble() * Math.PI * 2;
-      int distance = 15 + level.random.nextInt(10);
+      int distance = 10 + level.random.nextInt(10);
       int spawnX = pos.getX() + (int) (Math.cos(angle) * distance);
       int spawnZ = pos.getZ() + (int) (Math.sin(angle) * distance);
       int spawnY = level.getHeight(Heightmap.Types.MOTION_BLOCKING, spawnX, spawnZ);
@@ -117,7 +116,7 @@ public class CyborgBeaconBlockEntity extends BlockEntity {
   }
 
   private static int getSpawnCount(int waveNum) {
-    return waveNum * 3;
+    return waveNum * getCyborgCount();
   }
 
   @Override
@@ -149,5 +148,17 @@ public class CyborgBeaconBlockEntity extends BlockEntity {
         this.activeInvasionMobs.add(NbtUtils.loadUUID(value));
       }
     }
+  }
+
+  private static int getWaveCount() {
+    return TCAServerConfig.CONFIG.cyborgBeaconWaveCount.getAsInt();
+  }
+
+  private static int getWaveDelay() {
+    return TCAServerConfig.CONFIG.cyborgBeaconWaveDelay.getAsInt();
+  }
+
+  private static int getCyborgCount() {
+    return TCAServerConfig.CONFIG.cyborgBeaconCyborgsCount.getAsInt();
   }
 }
