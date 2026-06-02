@@ -1,0 +1,12 @@
+{
+  "name": "Cyborg Beacon",
+  "icon": "thecyborgage:cyborg_beacon",
+  "category": "thecyborgage:blocks_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "thecyborgage:cyborg_beacon",
+      "text": "Dropped from $(l:cyborg_scout)Cyborg Scouts$(/l).$(br2)Place to spawn waves of $(l:cyborg)Cyborgs$(/l)."
+    }
+  ]
+}

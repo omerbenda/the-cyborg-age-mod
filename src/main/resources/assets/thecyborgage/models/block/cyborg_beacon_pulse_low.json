@@ -1,0 +1,6 @@
+{
+  "parent": "thecyborgage:block/cyborg_beacon",
+  "textures": {
+    "bulb": "thecyborgage:block/cyborg_beacon_bulb_low"
+  }
+}
