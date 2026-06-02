@@ -1,6 +1,7 @@
 package com.thecyborgage.events;
 
 import com.thecyborgage.TheCyborgAgeMod;
+import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.init.TCAEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.MinecraftServer;
@@ -21,8 +22,6 @@ import java.util.Random;
 
 @EventBusSubscriber(modid = TheCyborgAgeMod.MOD_ID)
 public class CyborgScoutSpawnEventHandler {
-  private static final int CHECK_INTERVAL = 24000;
-  private static final int SPAWN_CHANCE = 3;
   private static final int MIN_SPAWN_DISTANCE = 20;
   private static final int SPAWN_DISTANCE_ADDITION = 20;
 
@@ -39,12 +38,12 @@ public class CyborgScoutSpawnEventHandler {
 
     tickCounter++;
 
-    if (tickCounter >= CHECK_INTERVAL) {
+    if (tickCounter >= getSpawnInterval()) {
       tickCounter = 0;
       MinecraftServer server = serverLevel.getServer();
 
       if (isScoutSpawnEnabled(server)) {
-        if (random.nextInt(SPAWN_CHANCE) == 0) {
+        if (random.nextInt(getSpawnChance()) == 0) {
           ServerPlayer selectedPlayer = selectPlayer(server);
 
           if (selectedPlayer != null) {
@@ -102,5 +101,16 @@ public class CyborgScoutSpawnEventHandler {
         serverLevel.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, spawnPosXZ);
 
     TCAEntities.CYBORG_SCOUT.get().spawn(serverLevel, finalSpawnPos, MobSpawnType.EVENT);
+
+    TheCyborgAgeMod.LOGGER.info(
+        "Spawned a cyborg scout around " + player.getGameProfile().getName());
+  }
+
+  private static int getSpawnInterval() {
+    return TCAServerConfig.CONFIG.cyborgScoutSpawnInterval.getAsInt();
+  }
+
+  private static int getSpawnChance() {
+    return TCAServerConfig.CONFIG.cyborgScoutSpawnChance.getAsInt();
   }
 }

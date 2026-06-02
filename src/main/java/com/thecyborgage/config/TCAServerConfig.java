@@ -39,6 +39,8 @@ public class TCAServerConfig {
   public final ModConfigSpec.IntValue cyborgBeaconWaveCount;
   public final ModConfigSpec.IntValue cyborgBeaconWaveDelay;
   public final ModConfigSpec.IntValue cyborgBeaconCyborgsCount;
+  public final ModConfigSpec.IntValue cyborgScoutSpawnInterval;
+  public final ModConfigSpec.IntValue cyborgScoutSpawnChance;
 
   public TCAServerConfig(ModConfigSpec.Builder builder) {
     builder.push("items");
@@ -165,8 +167,27 @@ public class TCAServerConfig {
 
     this.cyborgBeaconCyborgsCount =
         builder
-            .comment("The scale of Cyborgs spawned in each wave.")
+            .comment("The scale of cyborgs spawned in each wave.")
             .defineInRange("cyborg_beacon_cyborg_count", 3, 1, Integer.MAX_VALUE);
+
+    builder.pop();
+
+    builder.pop();
+
+    builder.push("entities");
+
+    builder.push("cyborg_scout");
+
+    this.cyborgScoutSpawnInterval =
+        builder
+            .comment(
+                "The interval in ticks of rolling for spawning a cyborg scout, only after the Ender Dragon was killed.")
+            .defineInRange("cyborg_scout_spawn_interval", 24000, 1, Integer.MAX_VALUE);
+
+    this.cyborgScoutSpawnChance =
+        builder
+            .comment("The roll made for spawning a cyborg scout around a random player.")
+            .defineInRange("cyborg_scout_spawn_chance", 3, 1, Integer.MAX_VALUE);
 
     builder.pop();
 
