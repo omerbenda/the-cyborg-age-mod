@@ -3,11 +3,13 @@ package com.thecyborgage.events;
 import com.thecyborgage.TheCyborgAgeMod;
 import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.init.TCAEntities;
+import com.thecyborgage.init.TCASounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.PlayerList;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.dimension.end.EndDragonFight;
@@ -104,6 +106,14 @@ public class CyborgScoutSpawnEventHandler {
 
     TheCyborgAgeMod.LOGGER.info(
         "Spawned a cyborg scout around " + player.getGameProfile().getName());
+
+    level.playSound(
+        null,
+        finalSpawnPos,
+        TCASounds.CYBORG_SCOUT_SPAWN.get(),
+        SoundSource.HOSTILE,
+        2.0F,
+        0.9F + level.getRandom().nextFloat() * 0.2F);
   }
 
   private static int getSpawnInterval() {
