@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "flash_stage=0": {
+      "model": "thecyborgage:block/cyborg_beacon"
+    },
+    "flash_stage=1": {
+      "model": "thecyborgage:block/cyborg_beacon_pulse_low"
+    },
+    "flash_stage=2": {
+      "model": "thecyborgage:block/cyborg_beacon_pulse_med"
+    },
+    "flash_stage=3": {
+      "model": "thecyborgage:block/cyborg_beacon_pulse_high"
+    }
+  }
+}

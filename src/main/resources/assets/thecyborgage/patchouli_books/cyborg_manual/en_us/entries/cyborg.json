@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Found in the End, the Cyborg drops $(l:cyborg_fragment)cyborg fragments$(/l) and the $(l:core_integration_circuit)core integration circuit$(/l)."
+      "text": "Spawns from $(l:cyborg_beacon)Cyborg Beacon$(/l), the Cyborg drops $(l:cyborg_fragment)cyborg fragments$(/l) and the $(l:core_integration_circuit)core integration circuit$(/l)."
     },
     {
       "type": "patchouli:entity",

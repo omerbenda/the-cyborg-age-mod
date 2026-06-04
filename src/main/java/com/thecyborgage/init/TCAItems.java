@@ -54,14 +54,13 @@ public class TCAItems {
   public static final DeferredItem<CyborgCoreItem> CYBORG_CORE =
       ITEMS.registerItem(
           "cyborg_core",
-          (properties) ->
-              new CyborgCoreItem(
-                  properties
-                      .stacksTo(1)
-                      .component(
-                          DataComponents.CONTAINER,
-                          ItemContainerContents.fromItems(
-                              Stream.generate(() -> ItemStack.EMPTY).limit(4).toList()))));
+          CyborgCoreItem::new,
+          new Item.Properties()
+              .stacksTo(1)
+              .component(
+                  DataComponents.CONTAINER,
+                  ItemContainerContents.fromItems(
+                      Stream.generate(() -> ItemStack.EMPTY).limit(4).toList())));
   public static final DeferredItem<Item> CORE_BATTERY =
       ITEMS.registerItem(
           "core_battery",
@@ -84,41 +83,47 @@ public class TCAItems {
       ITEMS.registerItem(
           "night_vision_lens", (properties) -> new NightVisionLensItem(properties.stacksTo(1)));
   public static final DeferredItem<CyborgLegItem> CYBORG_LEG =
-      ITEMS.registerItem("cyborg_leg", (properties) -> new CyborgLegItem(properties.stacksTo(1)));
+      ITEMS.registerItem("cyborg_leg", CyborgLegItem::new, new Item.Properties().stacksTo(1));
   public static final DeferredItem<CyborgJumpLegItem> CYBORG_JUMP_LEG =
       ITEMS.registerItem(
-          "cyborg_jump_leg", (properties -> new CyborgJumpLegItem(properties.stacksTo(1))));
+          "cyborg_jump_leg", CyborgJumpLegItem::new, new Item.Properties().stacksTo(1));
   public static final DeferredItem<CyborgGeneratorLegItem> CYBORG_GENERATOR_LEG =
       ITEMS.registerItem(
-          "cyborg_generator_leg",
-          (properties -> new CyborgGeneratorLegItem(properties.stacksTo(1))));
+          "cyborg_generator_leg", CyborgGeneratorLegItem::new, new Item.Properties().stacksTo(1));
   public static final DeferredItem<SolarHatItem> SOLAR_HAT =
-      ITEMS.registerItem("solar_hat", (properties -> new SolarHatItem(properties.stacksTo(1))));
+      ITEMS.registerItem("solar_hat", SolarHatItem::new, new Item.Properties().stacksTo(1));
   public static final DeferredItem<ThermalGeneratorItem> THERMAL_GENERATOR =
       ITEMS.registerItem(
-          "thermal_generator", (properties -> new ThermalGeneratorItem(properties.stacksTo(1))));
+          "thermal_generator", ThermalGeneratorItem::new, new Item.Properties().stacksTo(1));
   public static final DeferredItem<Item> CYBORG_VISOR =
       ITEMS.registerSimpleItem("cyborg_visor", new Item.Properties().stacksTo(1));
   public static final DeferredItem<PlayerRadarItem> PLAYER_RADAR =
-      ITEMS.registerItem(
-          "player_radar", (properties -> new PlayerRadarItem(properties.stacksTo(1))));
+      ITEMS.registerItem("player_radar", PlayerRadarItem::new, new Item.Properties().stacksTo(1));
   public static final DeferredItem<EnergyArmorItem> ENERGY_ARMOR =
-      ITEMS.registerItem(
-          "energy_armor", (properties -> new EnergyArmorItem(properties.stacksTo(1))));
+      ITEMS.registerItem("energy_armor", EnergyArmorItem::new, new Item.Properties().stacksTo(1));
   public static final DeferredItem<ActiveCamouflageItem> ACTIVE_CAMOUFLAGE =
       ITEMS.registerItem(
-          "active_camouflage", (properties -> new ActiveCamouflageItem(properties.stacksTo(1))));
+          "active_camouflage", ActiveCamouflageItem::new, new Item.Properties().stacksTo(1));
   public static final DeferredItem<MiningHandItem> MINING_HAND =
-      ITEMS.registerItem("mining_hand", (properties -> new MiningHandItem(properties.stacksTo(1))));
-
-  public static final DeferredItem<BlockItem> CORE_WORKBENCH =
-      ITEMS.registerSimpleBlockItem(TCABlocks.CORE_WORKBENCH);
+      ITEMS.registerItem("mining_hand", MiningHandItem::new, new Item.Properties().stacksTo(1));
 
   public static final DeferredItem<DeferredSpawnEggItem> CYBORG_SPAWN_EGG =
       ITEMS.registerItem(
           "cyborg_spawn_egg",
           (properties) ->
               new DeferredSpawnEggItem(TCAEntities.CYBORG, 0x787878, 0xDEDEDE, properties));
+
+  public static final DeferredItem<DeferredSpawnEggItem> CYBORG_SCOUT_SPAWN_EGG =
+      ITEMS.registerItem(
+          "cyborg_scout_spawn_egg",
+          (properties) ->
+              new DeferredSpawnEggItem(TCAEntities.CYBORG_SCOUT, 0x676767, 0xFFAEAE, properties));
+
+  public static final DeferredItem<BlockItem> CORE_WORKBENCH =
+      ITEMS.registerSimpleBlockItem(TCABlocks.CORE_WORKBENCH);
+
+  public static final DeferredItem<BlockItem> CYBORG_BEACON =
+      ITEMS.registerSimpleBlockItem(TCABlocks.CYBORG_BEACON);
 
   public static void register(IEventBus bus) {
     ITEMS.register(bus);

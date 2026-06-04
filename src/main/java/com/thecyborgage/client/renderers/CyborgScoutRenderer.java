@@ -1,7 +1,7 @@
 package com.thecyborgage.client.renderers;
 
 import com.thecyborgage.TheCyborgAgeMod;
-import com.thecyborgage.entities.CyborgEntity;
+import com.thecyborgage.entities.CyborgScoutEntity;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.ModelLayers;
@@ -10,11 +10,13 @@ import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.resources.ResourceLocation;
 
-public class CyborgRenderer extends HumanoidMobRenderer<CyborgEntity, PlayerModel<CyborgEntity>> {
+public class CyborgScoutRenderer
+    extends HumanoidMobRenderer<CyborgScoutEntity, PlayerModel<CyborgScoutEntity>> {
   private static final ResourceLocation TEXTURE =
-      ResourceLocation.fromNamespaceAndPath(TheCyborgAgeMod.MOD_ID, "textures/entity/cyborg.png");
+      ResourceLocation.fromNamespaceAndPath(
+          TheCyborgAgeMod.MOD_ID, "textures/entity/cyborg_scout.png");
 
-  public CyborgRenderer(EntityRendererProvider.Context context) {
+  public CyborgScoutRenderer(EntityRendererProvider.Context context) {
     super(context, new PlayerModel<>(context.bakeLayer(ModelLayers.PLAYER), false), 0.5F);
 
     this.addLayer(
@@ -26,7 +28,7 @@ public class CyborgRenderer extends HumanoidMobRenderer<CyborgEntity, PlayerMode
   }
 
   @Override
-  public ResourceLocation getTextureLocation(CyborgEntity cyborgEntity) {
+  public ResourceLocation getTextureLocation(CyborgScoutEntity cyborgEntity) {
     return TEXTURE;
   }
 }

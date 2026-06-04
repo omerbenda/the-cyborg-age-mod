@@ -2,6 +2,7 @@ package com.thecyborgage.init;
 
 import com.thecyborgage.TheCyborgAgeMod;
 import com.thecyborgage.entities.CyborgEntity;
+import com.thecyborgage.entities.CyborgScoutEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -19,6 +20,15 @@ public class TCAEntities {
           "cyborg",
           (res) ->
               EntityType.Builder.of(CyborgEntity::new, MobCategory.MONSTER)
+                  .sized(0.6F, 1.8F)
+                  .clientTrackingRange(5)
+                  .build(res.toString()));
+
+  public static final Supplier<EntityType<CyborgScoutEntity>> CYBORG_SCOUT =
+      ENTITY_TYPES.register(
+          "cyborg_scout",
+          (res) ->
+              EntityType.Builder.of(CyborgScoutEntity::new, MobCategory.MONSTER)
                   .sized(0.6F, 1.8F)
                   .build(res.toString()));
 
