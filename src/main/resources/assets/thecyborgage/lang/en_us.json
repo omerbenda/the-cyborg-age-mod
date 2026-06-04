@@ -105,5 +105,6 @@
   "thecyborgage.cyborg_manual.name": "Cyborg Manual",
   "thecyborgage.cyborg_manual.landing_text": "Welcome to The Cyborg Age!",
   "thecyborgage.set_energy_command.singular": "Set energy to %d for 1 player",
-  "thecyborgage.set_energy_command.plural": "Set energy to %d for %d players"
+  "thecyborgage.set_energy_command.plural": "Set energy to %d for %d players",
+  "subtitles.thecyborgage.cyborg_scout.spawn": "Cyborg Scout Spawned"
 }

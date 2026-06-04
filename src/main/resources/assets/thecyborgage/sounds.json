@@ -1,0 +1,9 @@
+{
+  "cyborg_scout_spawn": {
+    "category": "hostile",
+    "subtitle": "subtitles.thecyborgage.cyborg_scout.spawn",
+    "sounds": [
+      "thecyborgage:entity/cyborg_scout_spawn"
+    ]
+  }
+}
