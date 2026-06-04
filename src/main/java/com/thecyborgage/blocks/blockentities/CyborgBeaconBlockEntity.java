@@ -4,6 +4,7 @@ import com.thecyborgage.blocks.CyborgBeaconBlock;
 import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.init.TCABlockEntities;
 import com.thecyborgage.init.TCAEntities;
+import com.thecyborgage.init.TCASounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -11,6 +12,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
@@ -107,6 +109,14 @@ public class CyborgBeaconBlockEntity extends BlockEntity {
         activeInvasionMobs.add(mob.getUUID());
       }
     }
+
+    level.playSound(
+        null,
+        pos,
+        TCASounds.CYBORG_BEACON_WAVE_START.get(),
+        SoundSource.BLOCKS,
+        2.0F,
+        0.9F + level.getRandom().nextFloat() * 0.2F);
   }
 
   private static void trySetFlashStage(Level level, BlockPos pos, BlockState state, int stage) {

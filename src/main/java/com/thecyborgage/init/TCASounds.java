@@ -21,6 +21,14 @@ public class TCASounds {
                   ResourceLocation.fromNamespaceAndPath(
                       TheCyborgAgeMod.MOD_ID, "cyborg_scout_spawn")));
 
+  public static final Supplier<SoundEvent> CYBORG_BEACON_WAVE_START =
+      SOUNDS.register(
+          "cyborg_beacon_wave_start",
+          () ->
+              SoundEvent.createVariableRangeEvent(
+                  ResourceLocation.fromNamespaceAndPath(
+                      TheCyborgAgeMod.MOD_ID, "cyborg_beacon_wave_start")));
+
   public static void register(IEventBus bus) {
     SOUNDS.register(bus);
   }

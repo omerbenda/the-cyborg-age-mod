@@ -5,5 +5,12 @@
     "sounds": [
       "thecyborgage:entity/cyborg_scout_spawn"
     ]
+  },
+  "cyborg_beacon_wave_start": {
+    "category": "blocks",
+    "subtitle": "subtitles.thecyborgage.cyborg_beacon.wave_start",
+    "sounds": [
+      "thecyborgage:block/cyborg_beacon_wave_start"
+    ]
   }
 }
