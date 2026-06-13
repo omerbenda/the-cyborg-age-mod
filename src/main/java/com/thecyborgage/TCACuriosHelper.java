@@ -64,7 +64,7 @@ public class TCACuriosHelper {
     IEnergyStorage coreEnergyStorage = optionalEnergyStorage.get();
     boolean isClientSide = entity.level().isClientSide();
 
-    return coreEnergyStorage.extractEnergy(energy, simulate || isClientSide) != -1;
+    return coreEnergyStorage.extractEnergy(energy, simulate || isClientSide) == energy;
   }
 
   public static Optional<IEnergyStorage> getEntityCoreEnergyStorage(LivingEntity entity) {

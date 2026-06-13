@@ -106,13 +106,15 @@ public class TCAItems {
           "active_camouflage", ActiveCamouflageItem::new, new Item.Properties().stacksTo(1));
   public static final DeferredItem<MiningHandItem> MINING_HAND =
       ITEMS.registerItem("mining_hand", MiningHandItem::new, new Item.Properties().stacksTo(1));
+  public static final DeferredItem<MetabolicChipItem> METABOLIC_CHIP =
+      ITEMS.registerItem(
+          "metabolic_chip", MetabolicChipItem::new, new Item.Properties().stacksTo(1));
 
   public static final DeferredItem<DeferredSpawnEggItem> CYBORG_SPAWN_EGG =
       ITEMS.registerItem(
           "cyborg_spawn_egg",
           (properties) ->
               new DeferredSpawnEggItem(TCAEntities.CYBORG, 0x787878, 0xDEDEDE, properties));
-
   public static final DeferredItem<DeferredSpawnEggItem> CYBORG_SCOUT_SPAWN_EGG =
       ITEMS.registerItem(
           "cyborg_scout_spawn_egg",
@@ -121,7 +123,6 @@ public class TCAItems {
 
   public static final DeferredItem<BlockItem> CORE_WORKBENCH =
       ITEMS.registerSimpleBlockItem(TCABlocks.CORE_WORKBENCH);
-
   public static final DeferredItem<BlockItem> CYBORG_BEACON =
       ITEMS.registerSimpleBlockItem(TCABlocks.CYBORG_BEACON);
 
