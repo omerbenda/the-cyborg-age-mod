@@ -156,7 +156,7 @@ public class TCAServerConfig {
     builder.push("metabolic_chip");
 
     this.metabolicChipEatDischarge =
-        builder.defineInRange("metabolic_chip_eat_discharge", 500, 0, Integer.MAX_VALUE);
+        builder.defineInRange("metabolic_chip_eat_discharge", 1500, 0, Integer.MAX_VALUE);
 
     this.metabolicChipHungerBonus =
         builder
