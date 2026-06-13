@@ -26,6 +26,7 @@ public class TCAServerConfig {
   public final ModConfigSpec.IntValue solarHatChargeRate;
   public final ModConfigSpec.IntValue playerRadarSearchTickRate;
   public final ModConfigSpec.IntValue playerRadarDischargeRate;
+  public final ModConfigSpec.DoubleValue playerRadarRange;
   public final ModConfigSpec.IntValue nightVisionLensDischargeRate;
   public final ModConfigSpec.DoubleValue thermalGeneratorTempCoefficient;
   public final ModConfigSpec.DoubleValue thermalGeneratorRainCoefficient;
@@ -103,6 +104,11 @@ public class TCAServerConfig {
 
     this.playerRadarDischargeRate =
         builder.defineInRange("player_radar_discharge_rate", 25, 0, Integer.MAX_VALUE);
+
+    this.playerRadarRange =
+        builder
+            .comment("Maximum range in blocks at which the Player Radar detects players. Set to -1 for infinite range.")
+            .defineInRange("player_radar_range", 5000.0D, -1.0D, Double.MAX_VALUE);
 
     builder.pop();
 

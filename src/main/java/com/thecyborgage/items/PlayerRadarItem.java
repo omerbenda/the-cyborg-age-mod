@@ -68,8 +68,12 @@ public class PlayerRadarItem extends Item implements ICurioItem {
     ServerLevel serverLevel = (ServerLevel) level;
     List<ServerPlayer> players = serverLevel.players();
 
+    double range = TCAServerConfig.CONFIG.playerRadarRange.getAsDouble();
+    double rangeSq = range * range;
+
     return players.stream()
         .filter((player) -> !player.is(entity))
+        .filter((player) -> range < 0 || entity.distanceToSqr(player) <= rangeSq)
         .min(Comparator.comparingDouble(entity::distanceToSqr));
   }
 
@@ -82,14 +86,14 @@ public class PlayerRadarItem extends Item implements ICurioItem {
     super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
 
     tooltipComponents.add(
-            Component.translatable("thecyborgage.player_radar.tooltip").withStyle(ChatFormatting.GRAY));
+        Component.translatable("thecyborgage.player_radar.tooltip").withStyle(ChatFormatting.GRAY));
 
     String nearestPlayer = stack.get(TCADataComponents.PLAYER_RADAR_NEAREST_PLAYER);
 
     if (nearestPlayer != null) {
       tooltipComponents.add(
-          Component.translatable(
-              "thecyborgage.player_radar.nearest_player_tooltip", nearestPlayer).withStyle(ChatFormatting.GRAY));
+          Component.translatable("thecyborgage.player_radar.nearest_player_tooltip", nearestPlayer)
+              .withStyle(ChatFormatting.GRAY));
     }
   }
 }
