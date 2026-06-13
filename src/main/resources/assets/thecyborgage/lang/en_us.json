@@ -66,6 +66,7 @@
   "thecyborgage.configuration.player_radar": "Player Radar",
   "thecyborgage.configuration.player_radar_search_rate": "Search Rate",
   "thecyborgage.configuration.player_radar_discharge_rate": "Discharge Rate",
+  "thecyborgage.configuration.player_radar_range": "Range",
   "thecyborgage.configuration.night_vision_lens": "Night Vision Lens",
   "thecyborgage.configuration.night_vision_lens_discharge_rate": "Discharge Rate",
   "thecyborgage.configuration.thermal_generator": "Thermal Generator",
