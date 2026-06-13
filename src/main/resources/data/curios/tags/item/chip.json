@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "thecyborgage:metabolic_chip"
+    "thecyborgage:metabolic_chip",
+    "thecyborgage:magnet_chip"
   ]
 }

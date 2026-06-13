@@ -38,6 +38,8 @@ public class TCAServerConfig {
   public final ModConfigSpec.BooleanValue miningHandIncreaseHarvest;
   public final ModConfigSpec.IntValue metabolicChipEatDischarge;
   public final ModConfigSpec.IntValue metabolicChipHungerBonus;
+  public final ModConfigSpec.IntValue magnetChipDischargeRate;
+  public final ModConfigSpec.DoubleValue magnetChipRange;
   public final ModConfigSpec.IntValue cyborgBeaconWaveCount;
   public final ModConfigSpec.IntValue cyborgBeaconWaveDelay;
   public final ModConfigSpec.IntValue cyborgBeaconCyborgsCount;
@@ -162,6 +164,20 @@ public class TCAServerConfig {
         builder
             .comment("Number of half-shanks added to food when the Metabolic Chip is equipped.")
             .defineInRange("metabolic_chip_hunger_bonus", 1, 0, Integer.MAX_VALUE);
+
+    builder.pop();
+
+    builder.push("magnet_chip");
+
+    this.magnetChipDischargeRate =
+        builder
+            .comment("Energy drained per tick while the Magnet Chip is attracting nearby items.")
+            .defineInRange("magnet_chip_discharge_rate", 10, 0, Integer.MAX_VALUE);
+
+    this.magnetChipRange =
+        builder
+            .comment("Radius in blocks within which the Magnet Chip attracts items.")
+            .defineInRange("magnet_chip_range", 8.0D, 0.0D, Double.MAX_VALUE);
 
     builder.pop();
 
