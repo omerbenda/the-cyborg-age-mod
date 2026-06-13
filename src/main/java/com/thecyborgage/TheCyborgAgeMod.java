@@ -1,8 +1,10 @@
 package com.thecyborgage;
 
+import com.thecyborgage.compat.MetabolicChipAppleSkinCompat;
 import com.thecyborgage.config.TCAClientConfig;
 import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.init.*;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.config.ModConfig;
 import org.slf4j.Logger;
 
@@ -30,5 +32,9 @@ public class TheCyborgAgeMod {
 
     modContainer.registerConfig(ModConfig.Type.SERVER, TCAServerConfig.CONFIG_SPEC);
     modContainer.registerConfig(ModConfig.Type.CLIENT, TCAClientConfig.CONFIG_SPEC);
+
+    if (ModList.get().isLoaded("appleskin")) {
+      MetabolicChipAppleSkinCompat.register();
+    }
   }
 }

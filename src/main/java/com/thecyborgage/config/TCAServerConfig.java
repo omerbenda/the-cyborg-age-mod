@@ -26,6 +26,7 @@ public class TCAServerConfig {
   public final ModConfigSpec.IntValue solarHatChargeRate;
   public final ModConfigSpec.IntValue playerRadarSearchTickRate;
   public final ModConfigSpec.IntValue playerRadarDischargeRate;
+  public final ModConfigSpec.DoubleValue playerRadarRange;
   public final ModConfigSpec.IntValue nightVisionLensDischargeRate;
   public final ModConfigSpec.DoubleValue thermalGeneratorTempCoefficient;
   public final ModConfigSpec.DoubleValue thermalGeneratorRainCoefficient;
@@ -36,6 +37,10 @@ public class TCAServerConfig {
   public final ModConfigSpec.IntValue miningHandDischarge;
   public final ModConfigSpec.DoubleValue miningHandValue;
   public final ModConfigSpec.BooleanValue miningHandIncreaseHarvest;
+  public final ModConfigSpec.IntValue metabolicChipEatDischarge;
+  public final ModConfigSpec.IntValue metabolicChipHungerBonus;
+  public final ModConfigSpec.IntValue magnetChipDischargeRate;
+  public final ModConfigSpec.DoubleValue magnetChipRange;
   public final ModConfigSpec.IntValue cyborgBeaconWaveCount;
   public final ModConfigSpec.IntValue cyborgBeaconWaveDelay;
   public final ModConfigSpec.IntValue cyborgBeaconCyborgsCount;
@@ -100,6 +105,11 @@ public class TCAServerConfig {
     this.playerRadarDischargeRate =
         builder.defineInRange("player_radar_discharge_rate", 25, 0, Integer.MAX_VALUE);
 
+    this.playerRadarRange =
+        builder
+            .comment("Maximum range in blocks at which the Player Radar detects players. Set to -1 for infinite range.")
+            .defineInRange("player_radar_range", 5000.0D, -1.0D, Double.MAX_VALUE);
+
     builder.pop();
 
     builder.push("night_vision_lens");
@@ -148,6 +158,32 @@ public class TCAServerConfig {
     this.miningHandValue = builder.defineInRange("mining_hand_value", 1.5D, 0.0D, Double.MAX_VALUE);
 
     this.miningHandIncreaseHarvest = builder.define("mining_hand_increase_harvest", true);
+
+    builder.pop();
+
+    builder.push("metabolic_chip");
+
+    this.metabolicChipEatDischarge =
+        builder.defineInRange("metabolic_chip_eat_discharge", 1500, 0, Integer.MAX_VALUE);
+
+    this.metabolicChipHungerBonus =
+        builder
+            .comment("Number of half-shanks added to food when the Metabolic Chip is equipped.")
+            .defineInRange("metabolic_chip_hunger_bonus", 1, 0, Integer.MAX_VALUE);
+
+    builder.pop();
+
+    builder.push("magnet_chip");
+
+    this.magnetChipDischargeRate =
+        builder
+            .comment("Energy drained per tick while the Magnet Chip is attracting nearby items.")
+            .defineInRange("magnet_chip_discharge_rate", 10, 0, Integer.MAX_VALUE);
+
+    this.magnetChipRange =
+        builder
+            .comment("Radius in blocks within which the Magnet Chip attracts items.")
+            .defineInRange("magnet_chip_range", 8.0D, 0.0D, Double.MAX_VALUE);
 
     builder.pop();
 

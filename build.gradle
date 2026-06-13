@@ -23,7 +23,14 @@ repositories {
         name = "Illusive Soulworks maven"
         url = "https://maven.theillusivec4.top/"
     }
-    maven { url 'https://maven.blamejared.com' }
+    maven {
+        name = "blamejared's maven (Patchouli)"
+        url 'https://maven.blamejared.com'
+    }
+    maven {
+        name = "Ryan Liptak's maven (Apple Skin)"
+        url = "https://maven.ryanliptak.com/"
+    }
 }
 
 base {
@@ -144,6 +151,9 @@ dependencies {
 
     compileOnly "vazkii.patchouli:Patchouli:${patchouli_version}:api"
     runtimeOnly "vazkii.patchouli:Patchouli:${patchouli_version}"
+
+    compileOnly "squeek.appleskin:appleskin-neoforge:${appleskin_version}:api"
+    localRuntime "squeek.appleskin:appleskin-neoforge:${appleskin_version}"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

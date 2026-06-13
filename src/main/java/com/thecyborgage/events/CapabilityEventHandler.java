@@ -26,6 +26,8 @@ public class CapabilityEventHandler {
     registerCurioItem(evt, TCAItems.CYBORG_VISOR);
     registerCurioItem(evt, TCAItems.PLAYER_RADAR);
     registerCurioItem(evt, TCAItems.MINING_HAND);
+    registerCurioItem(evt, TCAItems.METABOLIC_CHIP);
+    registerCurioItem(evt, TCAItems.MAGNET_CHIP);
 
     evt.registerItem(
         Capabilities.EnergyStorage.ITEM,

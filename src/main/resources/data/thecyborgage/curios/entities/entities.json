@@ -1,7 +1,6 @@
 {
   "entities": [
-    "minecraft:player",
-    "thecyborgage:cyborg"
+    "minecraft:player"
   ],
   "slots": [
     "head",
@@ -9,6 +8,7 @@
     "core",
     "eyes",
     "leg",
-    "hand"
+    "hand",
+    "chip"
   ]
 }

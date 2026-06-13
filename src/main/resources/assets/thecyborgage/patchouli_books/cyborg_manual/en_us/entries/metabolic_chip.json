@@ -1,0 +1,16 @@
+{
+  "name": "Metabolic Chip",
+  "icon": "thecyborgage:metabolic_chip",
+  "category": "thecyborgage:items_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "thecyborgage:metabolic_chip",
+      "text": "Increases the nutrition gained from eating food at the cost of energy."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "thecyborgage:metabolic_chip"
+    }
+  ]
+}
