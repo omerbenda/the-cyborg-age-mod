@@ -1,0 +1,16 @@
+{
+  "name": "Magnet Chip",
+  "icon": "thecyborgage:magnet_chip",
+  "category": "thecyborgage:items_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "thecyborgage:magnet_chip",
+      "text": "Attracts nearby items towards the player at the cost of energy."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "thecyborgage:magnet_chip"
+    }
+  ]
+}
