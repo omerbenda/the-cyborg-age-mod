@@ -36,6 +36,8 @@ public class TCAServerConfig {
   public final ModConfigSpec.IntValue miningHandDischarge;
   public final ModConfigSpec.DoubleValue miningHandValue;
   public final ModConfigSpec.BooleanValue miningHandIncreaseHarvest;
+  public final ModConfigSpec.IntValue metabolicChipEatDischarge;
+  public final ModConfigSpec.IntValue metabolicChipHungerBonus;
   public final ModConfigSpec.IntValue cyborgBeaconWaveCount;
   public final ModConfigSpec.IntValue cyborgBeaconWaveDelay;
   public final ModConfigSpec.IntValue cyborgBeaconCyborgsCount;
@@ -148,6 +150,18 @@ public class TCAServerConfig {
     this.miningHandValue = builder.defineInRange("mining_hand_value", 1.5D, 0.0D, Double.MAX_VALUE);
 
     this.miningHandIncreaseHarvest = builder.define("mining_hand_increase_harvest", true);
+
+    builder.pop();
+
+    builder.push("metabolic_chip");
+
+    this.metabolicChipEatDischarge =
+        builder.defineInRange("metabolic_chip_eat_discharge", 1500, 0, Integer.MAX_VALUE);
+
+    this.metabolicChipHungerBonus =
+        builder
+            .comment("Number of half-shanks added to food when the Metabolic Chip is equipped.")
+            .defineInRange("metabolic_chip_hunger_bonus", 1, 0, Integer.MAX_VALUE);
 
     builder.pop();
 

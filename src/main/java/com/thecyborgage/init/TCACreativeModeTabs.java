@@ -42,6 +42,7 @@ public class TCACreativeModeTabs {
                         output.accept(TCAItems.ENERGY_ARMOR);
                         output.accept(TCAItems.ACTIVE_CAMOUFLAGE);
                         output.accept(TCAItems.MINING_HAND);
+                        output.accept(TCAItems.METABOLIC_CHIP);
                       })
                   .build());
 
