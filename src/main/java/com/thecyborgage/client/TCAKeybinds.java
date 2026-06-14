@@ -12,7 +12,7 @@ public class TCAKeybinds {
           "key.thecyborgage.toggle_cyborg_jump_leg",
           KeyConflictContext.IN_GAME,
           InputConstants.Type.KEYSYM,
-          GLFW.GLFW_KEY_V,
+          GLFW.GLFW_KEY_UNKNOWN,
           "key.categories.thecyborgage");
 
   public static final KeyMapping TOGGLE_MAGNET_CHIP =
@@ -28,7 +28,7 @@ public class TCAKeybinds {
           "key.thecyborgage.open_toggle_circle",
           KeyConflictContext.IN_GAME,
           InputConstants.Type.KEYSYM,
-          GLFW.GLFW_KEY_G,
+          GLFW.GLFW_KEY_R,
           "key.categories.thecyborgage");
 
   public static boolean isPhysicallyDown(KeyMapping mapping) {
