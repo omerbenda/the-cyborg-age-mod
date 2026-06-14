@@ -50,6 +50,18 @@ public class VisorActionsScreen extends Screen {
                           !player.getData(TCAAttachments.CYBORG_JUMP_LEG_TOGGLE_STATE)))));
     }
 
+    if (TCACuriosHelper.getEntityCurioItem(player, TCAItems.MAGNET_CHIP.get()).isPresent()) {
+      list.add(
+          new CircleAction(
+              Component.translatable("thecyborgage.toggle_circle.toggle_magnet_chip"),
+              () -> player.getData(TCAAttachments.MAGNET_CHIP_TOGGLE_STATE),
+              () ->
+                  PacketDistributor.sendToServer(
+                      new ToggleValuePayload(
+                          ToggleValuePayload.ToggleValue.MAGNET_CHIP,
+                          !player.getData(TCAAttachments.MAGNET_CHIP_TOGGLE_STATE)))));
+    }
+
     return list;
   }
 

@@ -77,6 +77,7 @@ public class TheCyborgAgeClient {
   @SubscribeEvent
   public static void onRegisterKeybinds(RegisterKeyMappingsEvent evt) {
     evt.register(TCAKeybinds.TOGGLE_CYBORG_JUMP_LEG);
+    evt.register(TCAKeybinds.TOGGLE_MAGNET_CHIP);
     evt.register(TCAKeybinds.OPEN_TOGGLE_CIRCLE);
   }
 
@@ -89,6 +90,15 @@ public class TheCyborgAgeClient {
           new ToggleValuePayload(
               ToggleValuePayload.ToggleValue.CYBORG_JUMP_LEG,
               !player.getData(TCAAttachments.CYBORG_JUMP_LEG_TOGGLE_STATE)));
+    }
+
+    while (TCAKeybinds.TOGGLE_MAGNET_CHIP.consumeClick()) {
+      Player player = Minecraft.getInstance().player;
+
+      PacketDistributor.sendToServer(
+          new ToggleValuePayload(
+              ToggleValuePayload.ToggleValue.MAGNET_CHIP,
+              !player.getData(TCAAttachments.MAGNET_CHIP_TOGGLE_STATE)));
     }
 
     Minecraft mc = Minecraft.getInstance();

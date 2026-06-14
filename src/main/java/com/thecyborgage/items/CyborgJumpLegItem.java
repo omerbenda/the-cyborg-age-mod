@@ -75,8 +75,10 @@ public class CyborgJumpLegItem extends AttributeCyborgItem {
     boolean toggleState = player.getData(TCAAttachments.CYBORG_JUMP_LEG_TOGGLE_STATE);
 
     tooltipComponents.add(
-        toggleState
-            ? Component.translatable("thecyborgage.cyborg_jump_leg.enabled_tooltip")
-            : Component.translatable("thecyborgage.cyborg_jump_leg.disabled_tooltip"));
+        Component.translatable(
+                toggleState
+                    ? "thecyborgage.cyborg_jump_leg.enabled_tooltip"
+                    : "thecyborgage.cyborg_jump_leg.disabled_tooltip")
+            .withStyle(toggleState ? ChatFormatting.GREEN : ChatFormatting.RED));
   }
 }

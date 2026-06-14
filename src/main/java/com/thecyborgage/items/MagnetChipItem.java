@@ -2,10 +2,13 @@ package com.thecyborgage.items;
 
 import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.config.TCAServerConfig;
+import com.thecyborgage.init.TCAAttachments;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -27,6 +30,10 @@ public class MagnetChipItem extends Item implements ICurioItem {
     LivingEntity entity = slotContext.entity();
 
     if (entity.level().isClientSide() || entity.isCrouching()) {
+      return;
+    }
+
+    if (!entity.getData(TCAAttachments.MAGNET_CHIP_TOGGLE_STATE)) {
       return;
     }
 
@@ -67,5 +74,17 @@ public class MagnetChipItem extends Item implements ICurioItem {
 
     tooltipComponents.add(
         Component.translatable("thecyborgage.magnet_chip.tooltip").withStyle(ChatFormatting.GRAY));
+
+    Player player = Minecraft.getInstance().player;
+
+    if (player != null) {
+      boolean enabled = player.getData(TCAAttachments.MAGNET_CHIP_TOGGLE_STATE);
+      tooltipComponents.add(
+          Component.translatable(
+                  enabled
+                      ? "thecyborgage.magnet_chip.enabled_tooltip"
+                      : "thecyborgage.magnet_chip.disabled_tooltip")
+              .withStyle(enabled ? ChatFormatting.GREEN : ChatFormatting.RED));
+    }
   }
 }

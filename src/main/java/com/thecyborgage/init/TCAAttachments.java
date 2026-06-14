@@ -23,6 +23,16 @@ public class TCAAttachments {
                   .copyOnDeath()
                   .build());
 
+  public static final Supplier<AttachmentType<Boolean>> MAGNET_CHIP_TOGGLE_STATE =
+      ATTACHMENT_TYPES.register(
+          "magnet_chip_toggle_state",
+          () ->
+              AttachmentType.builder(() -> false)
+                  .serialize(Codec.BOOL)
+                  .sync(ByteBufCodecs.BOOL)
+                  .copyOnDeath()
+                  .build());
+
   public static final Supplier<AttachmentType<Boolean>> ACTIVE_CAMOUFLAGE_STATE =
       ATTACHMENT_TYPES.register(
           "active_camouflage_state",
