@@ -2,6 +2,7 @@ package com.thecyborgage.client;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
+import net.minecraft.client.Minecraft;
 import net.neoforged.neoforge.client.settings.KeyConflictContext;
 import org.lwjgl.glfw.GLFW;
 
@@ -13,4 +14,23 @@ public class TCAKeybinds {
           InputConstants.Type.KEYSYM,
           GLFW.GLFW_KEY_V,
           "key.categories.thecyborgage");
+
+  public static final KeyMapping OPEN_TOGGLE_CIRCLE =
+      new KeyMapping(
+          "key.thecyborgage.open_toggle_circle",
+          KeyConflictContext.IN_GAME,
+          InputConstants.Type.KEYSYM,
+          GLFW.GLFW_KEY_G,
+          "key.categories.thecyborgage");
+
+  public static boolean isPhysicallyDown(KeyMapping mapping) {
+    long window = Minecraft.getInstance().getWindow().getWindow();
+    InputConstants.Key key = mapping.getKey();
+
+    if (key.getType() == InputConstants.Type.MOUSE) {
+      return GLFW.glfwGetMouseButton(window, key.getValue()) == GLFW.GLFW_PRESS;
+    }
+
+    return GLFW.glfwGetKey(window, key.getValue()) == GLFW.GLFW_PRESS;
+  }
 }
