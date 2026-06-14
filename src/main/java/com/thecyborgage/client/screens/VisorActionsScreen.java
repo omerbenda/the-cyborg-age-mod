@@ -23,6 +23,8 @@ public class VisorActionsScreen extends Screen {
   private static final int COLOR_FILL_HOVERED = 0xDD006600;
   private static final int COLOR_BORDER = 0xFF00BB00;
   private static final int COLOR_BORDER_HOVERED = 0xFF44FF44;
+  private static final int COLOR_FILL_EMPTY = 0xCC333333;
+  private static final int COLOR_BORDER_EMPTY = 0xFF888888;
 
   private final List<CircleAction> actions;
   private int hoveredSegment = -1;
@@ -74,9 +76,9 @@ public class VisorActionsScreen extends Screen {
     hoveredSegment = n == 0 ? -1 : getHoveredSegment(mouseX, mouseY, cx, cy);
 
     if (n == 0) {
-      fillArc(graphics, cx, cy, INNER_RADIUS, OUTER_RADIUS, 0, TWO_PI, COLOR_FILL);
-      drawCircleBorder(graphics, cx, cy, OUTER_RADIUS, COLOR_BORDER);
-      drawCircleBorder(graphics, cx, cy, INNER_RADIUS, COLOR_BORDER);
+      fillArc(graphics, cx, cy, INNER_RADIUS, OUTER_RADIUS, 0, TWO_PI, COLOR_FILL_EMPTY);
+      drawCircleBorder(graphics, cx, cy, OUTER_RADIUS, COLOR_BORDER_EMPTY);
+      drawCircleBorder(graphics, cx, cy, INNER_RADIUS, COLOR_BORDER_EMPTY);
       graphics.drawCenteredString(
           this.font,
           Component.translatable("thecyborgage.toggle_circle.no_actions"),
