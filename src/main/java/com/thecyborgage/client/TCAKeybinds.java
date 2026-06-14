@@ -15,6 +15,14 @@ public class TCAKeybinds {
           GLFW.GLFW_KEY_V,
           "key.categories.thecyborgage");
 
+  public static final KeyMapping TOGGLE_MAGNET_CHIP =
+      new KeyMapping(
+          "key.thecyborgage.toggle_magnet_chip",
+          KeyConflictContext.IN_GAME,
+          InputConstants.Type.KEYSYM,
+          GLFW.GLFW_KEY_UNKNOWN,
+          "key.categories.thecyborgage");
+
   public static final KeyMapping OPEN_TOGGLE_CIRCLE =
       new KeyMapping(
           "key.thecyborgage.open_toggle_circle",

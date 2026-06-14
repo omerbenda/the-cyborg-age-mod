@@ -129,6 +129,25 @@ public class CyborgVisorClientEventHandler {
       drawHeight += font.lineHeight;
     }
 
+    Optional<ItemStack> optionalMagnetChip =
+        TCACuriosHelper.getEntityCurioItem(player, TCAItems.MAGNET_CHIP.get());
+
+    if (optionalMagnetChip.isPresent()) {
+      Component enabledText =
+          player.getData(TCAAttachments.MAGNET_CHIP_TOGGLE_STATE)
+              ? Component.translatable("thecyborgage.cyborg_visor.magnet_chip_enabled")
+              : Component.translatable("thecyborgage.cyborg_visor.magnet_chip_disabled");
+
+      graphics.drawString(
+          font,
+          enabledText,
+          window.getGuiScaledWidth() - font.width(enabledText),
+          drawHeight,
+          textColor);
+
+      drawHeight += font.lineHeight;
+    }
+
     Component actionsHint =
         Component.translatable(
             "thecyborgage.cyborg_visor.open_actions_hint",

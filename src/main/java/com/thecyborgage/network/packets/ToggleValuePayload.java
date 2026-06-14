@@ -34,5 +34,6 @@ public record ToggleValuePayload(ToggleValue value, boolean toggled)
 
   public enum ToggleValue {
     CYBORG_JUMP_LEG,
+    MAGNET_CHIP,
   }
 }
