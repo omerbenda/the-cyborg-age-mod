@@ -3,6 +3,7 @@ package com.thecyborgage.client.events;
 import com.mojang.blaze3d.platform.Window;
 import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.TheCyborgAgeMod;
+import com.thecyborgage.client.TCAKeybinds;
 import com.thecyborgage.config.TCAClientConfig;
 import com.thecyborgage.enums.RenderLocation;
 import com.thecyborgage.init.TCAAttachments;
@@ -127,6 +128,17 @@ public class CyborgVisorClientEventHandler {
 
       drawHeight += font.lineHeight;
     }
+
+    Component actionsHint =
+        Component.translatable(
+            "thecyborgage.cyborg_visor.open_actions_hint",
+            TCAKeybinds.OPEN_TOGGLE_CIRCLE.getTranslatedKeyMessage());
+    graphics.drawString(
+        font,
+        actionsHint,
+        window.getGuiScaledWidth() - font.width(actionsHint),
+        drawHeight,
+        textColor);
   }
 
   private static void renderNearCrosshair(GuiGraphics graphics) {
