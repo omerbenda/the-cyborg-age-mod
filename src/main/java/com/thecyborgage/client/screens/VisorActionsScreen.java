@@ -31,6 +31,7 @@ public class VisorActionsScreen extends Screen {
 
   public VisorActionsScreen(Player player) {
     super(Component.empty());
+
     this.actions = buildActions(player);
   }
 
@@ -63,6 +64,7 @@ public class VisorActionsScreen extends Screen {
       if (hoveredSegment >= 0 && hoveredSegment < actions.size()) {
         actions.get(hoveredSegment).onActivate().run();
       }
+
       this.onClose();
     }
   }
@@ -85,6 +87,7 @@ public class VisorActionsScreen extends Screen {
           cx,
           cy - this.font.lineHeight / 2,
           0xAAAAAA);
+
       return;
     }
 
@@ -141,9 +144,12 @@ public class VisorActionsScreen extends Screen {
       float nStart,
       float nEnd,
       int color) {
-    if (dxMax <= dxMin) return;
+    if (dxMax <= dxMin) {
+      return;
+    }
 
     int runStart = Integer.MIN_VALUE;
+
     for (int dx = dxMin; dx <= dxMax; dx++) {
       float na = normalizeAngle((float) Math.atan2(dy, dx));
       boolean in = (na >= nStart && na <= nEnd);
@@ -155,6 +161,7 @@ public class VisorActionsScreen extends Screen {
         runStart = Integer.MIN_VALUE;
       }
     }
+
     if (runStart != Integer.MIN_VALUE) {
       graphics.fill(cx + runStart, cy + dy, cx + dxMax + 1, cy + dy + 1, color);
     }
@@ -166,7 +173,11 @@ public class VisorActionsScreen extends Screen {
       float dyf = dy;
       float outerX2 = (radius + 1) * (radius + 1) - dyf * dyf;
       float innerX2 = (radius - 1) * (radius - 1) - dyf * dyf;
-      if (outerX2 <= 0) continue;
+
+      if (outerX2 <= 0) {
+        continue;
+      }
+
       int outerX = (int) Math.sqrt(outerX2);
       int innerX = innerX2 > 0 ? (int) Math.sqrt(innerX2) : 0;
       graphics.fill(cx - outerX, cy + dy, cx - innerX, cy + dy + 1, color);
@@ -176,6 +187,7 @@ public class VisorActionsScreen extends Screen {
 
   private static float normalizeAngle(float angle) {
     angle += (float) (Math.PI / 2);
+
     return ((angle % TWO_PI) + TWO_PI) % TWO_PI;
   }
 
@@ -213,6 +225,7 @@ public class VisorActionsScreen extends Screen {
     float angle = normalizeAngle((float) Math.atan2(dy, dx));
     int n = actions.size();
     int segment = (int) (angle / (TWO_PI / n));
+
     return Math.clamp(segment, 0, n - 1);
   }
 
