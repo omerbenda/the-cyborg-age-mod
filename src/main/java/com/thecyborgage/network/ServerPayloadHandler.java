@@ -4,12 +4,15 @@ import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.init.TCAAttachments;
 import com.thecyborgage.init.TCAItems;
+import com.thecyborgage.init.TCASounds;
 import com.thecyborgage.network.packets.TriggerActionPayload;
 import com.thecyborgage.network.packets.ToggleValuePayload;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
@@ -50,7 +53,9 @@ public class ServerPayloadHandler {
     double radius = TCAServerConfig.CONFIG.pulseChipRadius.get();
     double strength = TCAServerConfig.CONFIG.pulseChipStrength.get();
     AABB searchBox = player.getBoundingBox().inflate(radius);
-    List<LivingEntity> nearby = player.level().getEntitiesOfClass(LivingEntity.class, searchBox);
+    Level level = player.level();
+
+    List<LivingEntity> nearby = level.getEntitiesOfClass(LivingEntity.class, searchBox);
 
     for (LivingEntity target : nearby) {
       if (target == player) {
@@ -70,6 +75,14 @@ public class ServerPayloadHandler {
     player
         .getCooldowns()
         .addCooldown(TCAItems.PULSE_CHIP.get(), TCAServerConfig.CONFIG.pulseChipCooldown.get());
+
+    level.playSound(
+        null,
+        player.blockPosition(),
+        TCASounds.PULSE_CHIP_PULSE.get(),
+        SoundSource.PLAYERS,
+        2.0F,
+        0.9F + level.getRandom().nextFloat() * 0.2F);
   }
 
   public static void handleToggleValue(ToggleValuePayload payload, IPayloadContext context) {
