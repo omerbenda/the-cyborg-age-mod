@@ -33,7 +33,9 @@
       "thecyborgage:energy_armor",
       "thecyborgage:active_camouflage",
       "thecyborgage:mining_hand",
-      "thecyborgage:metabolic_chip"
+      "thecyborgage:metabolic_chip",
+      "thecyborgage:magnet_chip",
+      "thecyborgage:pulse_chip"
     ]
   }
 }

@@ -41,6 +41,10 @@ public class TCAServerConfig {
   public final ModConfigSpec.IntValue metabolicChipHungerBonus;
   public final ModConfigSpec.IntValue magnetChipDischargeRate;
   public final ModConfigSpec.DoubleValue magnetChipRange;
+  public final ModConfigSpec.IntValue pulseChipEnergyCost;
+  public final ModConfigSpec.DoubleValue pulseChipRadius;
+  public final ModConfigSpec.DoubleValue pulseChipStrength;
+  public final ModConfigSpec.IntValue pulseChipCooldown;
   public final ModConfigSpec.IntValue cyborgBeaconWaveCount;
   public final ModConfigSpec.IntValue cyborgBeaconWaveDelay;
   public final ModConfigSpec.IntValue cyborgBeaconCyborgsCount;
@@ -184,6 +188,30 @@ public class TCAServerConfig {
         builder
             .comment("Radius in blocks within which the Magnet Chip attracts items.")
             .defineInRange("magnet_chip_range", 8.0D, 0.0D, Double.MAX_VALUE);
+
+    builder.pop();
+
+    builder.push("pulse_chip");
+
+    this.pulseChipEnergyCost =
+        builder
+            .comment("Energy consumed per pulse activation.")
+            .defineInRange("pulse_chip_energy_cost", 2000, 0, Integer.MAX_VALUE);
+
+    this.pulseChipRadius =
+        builder
+            .comment("Radius in blocks within which the Pulse Chip pushes entities.")
+            .defineInRange("pulse_chip_radius", 8.0D, 0.0D, Double.MAX_VALUE);
+
+    this.pulseChipStrength =
+        builder
+            .comment("Knockback strength of the pulse.")
+            .defineInRange("pulse_chip_strength", 1.5D, 0.0D, Double.MAX_VALUE);
+
+    this.pulseChipCooldown =
+        builder
+            .comment("Cooldown in ticks between pulse activations.")
+            .defineInRange("pulse_chip_cooldown", 100, 1, Integer.MAX_VALUE);
 
     builder.pop();
 

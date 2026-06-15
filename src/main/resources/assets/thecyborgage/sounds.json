@@ -12,5 +12,12 @@
     "sounds": [
       "thecyborgage:block/cyborg_beacon_wave_start"
     ]
+  },
+  "pulse_chip_pulse": {
+    "category": "players",
+    "subtitle": "subtitles.thecyborgage.pulse_chip.pulse",
+    "sounds": [
+      "thecyborgage:entity/pulse_chip_pulse"
+    ]
   }
 }
