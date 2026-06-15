@@ -1,13 +1,77 @@
 package com.thecyborgage.network;
 
+import com.thecyborgage.TCACuriosHelper;
+import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.init.TCAAttachments;
+import com.thecyborgage.init.TCAItems;
+import com.thecyborgage.network.packets.TriggerActionPayload;
 import com.thecyborgage.network.packets.ToggleValuePayload;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
+import java.util.List;
+
 public class ServerPayloadHandler {
+  public static void handleTriggerAction(TriggerActionPayload payload, IPayloadContext context) {
+    context.enqueueWork(
+        () -> {
+          Player player = context.player();
+
+          if (payload.action() == TriggerActionPayload.TriggerAction.PULSE_CHIP) {
+            triggerPulseChip(player);
+          }
+        });
+  }
+
+  private static void triggerPulseChip(Player player) {
+    if (TCACuriosHelper.getEntityCurioItem(player, TCAItems.PULSE_CHIP.get()).isEmpty()) {
+      return;
+    }
+
+    if (player.getCooldowns().isOnCooldown(TCAItems.PULSE_CHIP.get())) {
+      return;
+    }
+
+    int energyCost = TCAServerConfig.CONFIG.pulseChipEnergyCost.get();
+
+    if (!TCACuriosHelper.consumeEntityCoreEnergy(player, energyCost)) {
+      player.sendSystemMessage(
+          Component.translatable("thecyborgage.system.pulse_chip_no_energy")
+              .withStyle(ChatFormatting.GRAY));
+
+      return;
+    }
+
+    double radius = TCAServerConfig.CONFIG.pulseChipRadius.get();
+    double strength = TCAServerConfig.CONFIG.pulseChipStrength.get();
+    AABB searchBox = player.getBoundingBox().inflate(radius);
+    List<LivingEntity> nearby = player.level().getEntitiesOfClass(LivingEntity.class, searchBox);
+
+    for (LivingEntity target : nearby) {
+      if (target == player) {
+        continue;
+      }
+
+      Vec3 direction = target.position().subtract(player.position());
+      double dist = direction.length();
+
+      if (dist > 0) {
+        Vec3 push = direction.normalize().scale(strength);
+        target.setDeltaMovement(target.getDeltaMovement().add(push.x, strength * 0.4, push.z));
+        target.hasImpulse = true;
+      }
+    }
+
+    player
+        .getCooldowns()
+        .addCooldown(TCAItems.PULSE_CHIP.get(), TCAServerConfig.CONFIG.pulseChipCooldown.get());
+  }
+
   public static void handleToggleValue(ToggleValuePayload payload, IPayloadContext context) {
     context.enqueueWork(
         () -> {

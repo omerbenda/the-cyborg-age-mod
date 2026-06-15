@@ -28,6 +28,7 @@ public class CapabilityEventHandler {
     registerCurioItem(evt, TCAItems.MINING_HAND);
     registerCurioItem(evt, TCAItems.METABOLIC_CHIP);
     registerCurioItem(evt, TCAItems.MAGNET_CHIP);
+    registerCurioItem(evt, TCAItems.PULSE_CHIP);
 
     evt.registerItem(
         Capabilities.EnergyStorage.ITEM,

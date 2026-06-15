@@ -4,7 +4,9 @@ import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.client.TCAKeybinds;
 import com.thecyborgage.init.TCAAttachments;
 import com.thecyborgage.init.TCAItems;
+import com.thecyborgage.network.packets.TriggerActionPayload;
 import com.thecyborgage.network.packets.ToggleValuePayload;
+import net.minecraft.client.Minecraft;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
@@ -60,6 +62,20 @@ public class VisorActionsScreen extends Screen {
                       new ToggleValuePayload(
                           ToggleValuePayload.ToggleValue.MAGNET_CHIP,
                           !player.getData(TCAAttachments.MAGNET_CHIP_TOGGLE_STATE)))));
+    }
+
+    if (TCACuriosHelper.getEntityCurioItem(player, TCAItems.PULSE_CHIP.get()).isPresent()) {
+      list.add(
+          new CircleAction(
+              Component.translatable("thecyborgage.toggle_circle.trigger_pulse_chip"),
+              () ->
+                  !Minecraft.getInstance()
+                      .player
+                      .getCooldowns()
+                      .isOnCooldown(TCAItems.PULSE_CHIP.get()),
+              () ->
+                  PacketDistributor.sendToServer(
+                      new TriggerActionPayload(TriggerActionPayload.TriggerAction.PULSE_CHIP))));
     }
 
     return list;

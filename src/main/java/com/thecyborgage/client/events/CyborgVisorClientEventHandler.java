@@ -148,6 +148,26 @@ public class CyborgVisorClientEventHandler {
       drawHeight += font.lineHeight;
     }
 
+    Optional<ItemStack> optionalPulseChip =
+        TCACuriosHelper.getEntityCurioItem(player, TCAItems.PULSE_CHIP.get());
+
+    if (optionalPulseChip.isPresent()) {
+      boolean ready = !player.getCooldowns().isOnCooldown(TCAItems.PULSE_CHIP.get());
+      Component pulseText =
+          ready
+              ? Component.translatable("thecyborgage.cyborg_visor.pulse_chip_ready")
+              : Component.translatable("thecyborgage.cyborg_visor.pulse_chip_cooldown");
+
+      graphics.drawString(
+          font,
+          pulseText,
+          window.getGuiScaledWidth() - font.width(pulseText),
+          drawHeight,
+          textColor);
+
+      drawHeight += font.lineHeight;
+    }
+
     Component actionsHint =
         Component.translatable(
             "thecyborgage.cyborg_visor.open_actions_hint",

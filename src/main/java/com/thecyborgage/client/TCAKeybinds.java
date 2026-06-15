@@ -23,6 +23,14 @@ public class TCAKeybinds {
           GLFW.GLFW_KEY_UNKNOWN,
           "key.categories.thecyborgage");
 
+  public static final KeyMapping TRIGGER_PULSE_CHIP =
+      new KeyMapping(
+          "key.thecyborgage.trigger_pulse_chip",
+          KeyConflictContext.IN_GAME,
+          InputConstants.Type.KEYSYM,
+          GLFW.GLFW_KEY_UNKNOWN,
+          "key.categories.thecyborgage");
+
   public static final KeyMapping OPEN_TOGGLE_CIRCLE =
       new KeyMapping(
           "key.thecyborgage.open_toggle_circle",

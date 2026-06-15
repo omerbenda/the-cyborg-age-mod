@@ -9,6 +9,7 @@ import com.thecyborgage.client.screens.VisorActionsScreen;
 import com.thecyborgage.init.TCAAttachments;
 import com.thecyborgage.init.TCAEntities;
 import com.thecyborgage.init.TCAItems;
+import com.thecyborgage.network.packets.TriggerActionPayload;
 import com.thecyborgage.network.packets.ToggleValuePayload;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -78,6 +79,7 @@ public class TheCyborgAgeClient {
   public static void onRegisterKeybinds(RegisterKeyMappingsEvent evt) {
     evt.register(TCAKeybinds.TOGGLE_CYBORG_JUMP_LEG);
     evt.register(TCAKeybinds.TOGGLE_MAGNET_CHIP);
+    evt.register(TCAKeybinds.TRIGGER_PULSE_CHIP);
     evt.register(TCAKeybinds.OPEN_TOGGLE_CIRCLE);
   }
 
@@ -99,6 +101,11 @@ public class TheCyborgAgeClient {
           new ToggleValuePayload(
               ToggleValuePayload.ToggleValue.MAGNET_CHIP,
               !player.getData(TCAAttachments.MAGNET_CHIP_TOGGLE_STATE)));
+    }
+
+    while (TCAKeybinds.TRIGGER_PULSE_CHIP.consumeClick()) {
+      PacketDistributor.sendToServer(
+          new TriggerActionPayload(TriggerActionPayload.TriggerAction.PULSE_CHIP));
     }
 
     Minecraft mc = Minecraft.getInstance();
