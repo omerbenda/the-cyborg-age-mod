@@ -5,16 +5,21 @@ import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.init.TCAAttachments;
 import com.thecyborgage.init.TCAItems;
 import com.thecyborgage.init.TCASounds;
+import com.thecyborgage.network.packets.PulseEffectPayload;
 import com.thecyborgage.network.packets.TriggerActionPayload;
 import com.thecyborgage.network.packets.ToggleValuePayload;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import java.util.List;
@@ -83,6 +88,22 @@ public class ServerPayloadHandler {
         SoundSource.PLAYERS,
         2.0F,
         0.9F + level.getRandom().nextFloat() * 0.2F);
+
+    if (level instanceof ServerLevel serverLevel) {
+      spawnPulseParticles(serverLevel, player);
+    }
+
+    PacketDistributor.sendToPlayer((ServerPlayer) player, new PulseEffectPayload());
+  }
+
+  private static void spawnPulseParticles(ServerLevel level, Player player) {
+    double x = player.getX();
+    double y = player.getY() + player.getBbHeight() * 0.5;
+    double z = player.getZ();
+
+    level.sendParticles(ParticleTypes.SONIC_BOOM, x, y, z, 1, 0, 0, 0, 0);
+    level.sendParticles(ParticleTypes.ELECTRIC_SPARK, x, y, z, 80, 2.8, 2.8, 2.8, 0.06);
+    level.sendParticles(ParticleTypes.GUST, x, y, z, 1, 0, 0, 0, 0);
   }
 
   public static void handleToggleValue(ToggleValuePayload payload, IPayloadContext context) {

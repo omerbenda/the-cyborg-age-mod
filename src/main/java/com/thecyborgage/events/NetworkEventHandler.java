@@ -1,7 +1,9 @@
 package com.thecyborgage.events;
 
 import com.thecyborgage.TheCyborgAgeMod;
+import com.thecyborgage.network.ClientPayloadHandler;
 import com.thecyborgage.network.ServerPayloadHandler;
+import com.thecyborgage.network.packets.PulseEffectPayload;
 import com.thecyborgage.network.packets.TriggerActionPayload;
 import com.thecyborgage.network.packets.ToggleValuePayload;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -24,5 +26,10 @@ public class NetworkEventHandler {
         TriggerActionPayload.TYPE,
         TriggerActionPayload.STREAM_CODEC,
         ServerPayloadHandler::handleTriggerAction);
+
+    registrar.playToClient(
+        PulseEffectPayload.TYPE,
+        PulseEffectPayload.STREAM_CODEC,
+        ClientPayloadHandler::handlePulseEffect);
   }
 }

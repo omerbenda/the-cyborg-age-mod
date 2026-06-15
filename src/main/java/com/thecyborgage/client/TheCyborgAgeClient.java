@@ -4,11 +4,13 @@ import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.TheCyborgAgeMod;
 import com.thecyborgage.client.models.PlayerRadarModel;
 import com.thecyborgage.client.models.SolarHatModel;
+import com.thecyborgage.client.events.PulseChipClientEffectHandler;
 import com.thecyborgage.client.renderers.*;
 import com.thecyborgage.client.screens.VisorActionsScreen;
 import com.thecyborgage.init.TCAAttachments;
 import com.thecyborgage.init.TCAEntities;
 import com.thecyborgage.init.TCAItems;
+import com.thecyborgage.network.ClientPayloadHandler;
 import com.thecyborgage.network.packets.TriggerActionPayload;
 import com.thecyborgage.network.packets.ToggleValuePayload;
 import net.minecraft.client.Minecraft;
@@ -41,6 +43,7 @@ public class TheCyborgAgeClient {
   @SubscribeEvent
   public static void onClientSetup(FMLClientSetupEvent evt) {
     registerRenderers();
+    ClientPayloadHandler.setPulseFlashCallback(PulseChipClientEffectHandler::triggerFlash);
   }
 
   private static void registerRenderers() {
