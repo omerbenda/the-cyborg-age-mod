@@ -139,7 +139,6 @@
   "thecyborgage.system.cyborg_jump_leg_state_disabled": "Cyborg Jump Leg disabled",
   "thecyborgage.system.magnet_chip_state_enabled": "Magnet Chip enabled",
   "thecyborgage.system.magnet_chip_state_disabled": "Magnet Chip disabled",
-  "thecyborgage.system.pulse_chip_no_energy": "Not enough energy for Pulse Chip",
   "thecyborgage.cyborg_manual.name": "Cyborg Manual",
   "thecyborgage.cyborg_manual.landing_text": "Welcome to The Cyborg Age!",
   "thecyborgage.set_energy_command.singular": "Set energy to %d for 1 player",

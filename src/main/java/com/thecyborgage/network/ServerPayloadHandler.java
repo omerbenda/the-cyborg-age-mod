@@ -45,10 +45,6 @@ public class ServerPayloadHandler {
     int energyCost = TCAServerConfig.CONFIG.pulseChipEnergyCost.get();
 
     if (!TCACuriosHelper.consumeEntityCoreEnergy(player, energyCost)) {
-      player.sendSystemMessage(
-          Component.translatable("thecyborgage.system.pulse_chip_no_energy")
-              .withStyle(ChatFormatting.GRAY));
-
       return;
     }
 
