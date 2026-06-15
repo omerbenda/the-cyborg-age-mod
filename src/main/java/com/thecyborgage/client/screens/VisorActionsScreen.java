@@ -2,17 +2,19 @@ package com.thecyborgage.client.screens;
 
 import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.client.TCAKeybinds;
+import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.init.TCAAttachments;
 import com.thecyborgage.init.TCAItems;
 import com.thecyborgage.network.packets.TriggerActionPayload;
 import com.thecyborgage.network.packets.ToggleValuePayload;
-import net.minecraft.client.Minecraft;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.network.PacketDistributor;
 
@@ -44,7 +46,12 @@ public class VisorActionsScreen extends Screen {
       list.add(
           new CircleAction(
               Component.translatable("thecyborgage.toggle_circle.toggle_jump_leg"),
-              () -> player.getData(TCAAttachments.CYBORG_JUMP_LEG_TOGGLE_STATE),
+              () ->
+                  player.getData(TCAAttachments.CYBORG_JUMP_LEG_TOGGLE_STATE)
+                      ? Component.translatable("thecyborgage.toggle_circle.on")
+                          .withStyle(ChatFormatting.GREEN)
+                      : Component.translatable("thecyborgage.toggle_circle.off")
+                          .withStyle(ChatFormatting.RED),
               () ->
                   PacketDistributor.sendToServer(
                       new ToggleValuePayload(
@@ -56,7 +63,12 @@ public class VisorActionsScreen extends Screen {
       list.add(
           new CircleAction(
               Component.translatable("thecyborgage.toggle_circle.toggle_magnet_chip"),
-              () -> player.getData(TCAAttachments.MAGNET_CHIP_TOGGLE_STATE),
+              () ->
+                  player.getData(TCAAttachments.MAGNET_CHIP_TOGGLE_STATE)
+                      ? Component.translatable("thecyborgage.toggle_circle.on")
+                          .withStyle(ChatFormatting.GREEN)
+                      : Component.translatable("thecyborgage.toggle_circle.off")
+                          .withStyle(ChatFormatting.RED),
               () ->
                   PacketDistributor.sendToServer(
                       new ToggleValuePayload(
@@ -68,11 +80,17 @@ public class VisorActionsScreen extends Screen {
       list.add(
           new CircleAction(
               Component.translatable("thecyborgage.toggle_circle.trigger_pulse_chip"),
-              () ->
-                  !Minecraft.getInstance()
-                      .player
-                      .getCooldowns()
-                      .isOnCooldown(TCAItems.PULSE_CHIP.get()),
+              () -> {
+                if (!player.getCooldowns().isOnCooldown(TCAItems.PULSE_CHIP.get())) {
+                  return Component.translatable("thecyborgage.toggle_circle.ready")
+                      .withStyle(ChatFormatting.GREEN);
+                }
+                float percent =
+                    player.getCooldowns().getCooldownPercent(TCAItems.PULSE_CHIP.get(), 0);
+                int remainingSeconds =
+                    Mth.ceil(percent * TCAServerConfig.CONFIG.pulseChipCooldown.get() / 20.0f);
+                return Component.literal(remainingSeconds + "s").withStyle(ChatFormatting.RED);
+              },
               () ->
                   PacketDistributor.sendToServer(
                       new TriggerActionPayload(TriggerActionPayload.TriggerAction.PULSE_CHIP))));
@@ -151,7 +169,11 @@ public class VisorActionsScreen extends Screen {
     for (int dy = -(int) outerR; dy <= (int) outerR; dy++) {
       float dyf = dy;
       float outerX2 = outerR * outerR - dyf * dyf;
-      if (outerX2 <= 0) continue;
+
+      if (outerX2 <= 0) {
+        continue;
+      }
+
       int outerX = (int) Math.sqrt(outerX2);
 
       float innerX2 = innerR * innerR - dyf * dyf;
@@ -227,18 +249,12 @@ public class VisorActionsScreen extends Screen {
     int textX = (int) (cx + Math.cos(atan2Angle) * midRadius);
     int textY = (int) (cy + Math.sin(atan2Angle) * midRadius);
 
-    boolean on = action.stateGetter().get();
     int lineHeight = this.font.lineHeight + 1;
     int startY = textY - lineHeight;
 
     graphics.drawCenteredString(this.font, action.label(), textX, startY, 0xFFFFFF);
     graphics.drawCenteredString(
-        this.font,
-        Component.translatable(
-            on ? "thecyborgage.toggle_circle.on" : "thecyborgage.toggle_circle.off"),
-        textX,
-        startY + lineHeight,
-        on ? 0x55FF55 : 0xFF5555);
+        this.font, action.stateLabel().get(), textX, startY + lineHeight, 0xFFFFFF);
   }
 
   private int getHoveredSegment(int mouseX, int mouseY, int cx, int cy) {
@@ -261,5 +277,5 @@ public class VisorActionsScreen extends Screen {
   public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {}
 
   private record CircleAction(
-      Component label, Supplier<Boolean> stateGetter, Runnable onActivate) {}
+      Component label, Supplier<Component> stateLabel, Runnable onActivate) {}
 }

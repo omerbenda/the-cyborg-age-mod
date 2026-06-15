@@ -123,6 +123,7 @@
   "thecyborgage.toggle_circle.trigger_pulse_chip": "Pulse",
   "thecyborgage.toggle_circle.on": "ON",
   "thecyborgage.toggle_circle.off": "OFF",
+  "thecyborgage.toggle_circle.ready": "READY",
   "thecyborgage.toggle_circle.no_actions": "No compatible items equipped",
   "curios.modifiers.leg": "When on leg:",
   "curios.modifiers.hand": "When on hand:",
