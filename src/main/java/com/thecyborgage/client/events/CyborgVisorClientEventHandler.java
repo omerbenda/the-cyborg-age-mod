@@ -5,6 +5,7 @@ import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.TheCyborgAgeMod;
 import com.thecyborgage.client.TCAKeybinds;
 import com.thecyborgage.config.TCAClientConfig;
+import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.enums.RenderLocation;
 import com.thecyborgage.init.TCAAttachments;
 import com.thecyborgage.init.TCADataComponents;
@@ -19,6 +20,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
+import net.minecraft.util.Mth;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 
 import java.util.Optional;
@@ -153,10 +155,17 @@ public class CyborgVisorClientEventHandler {
 
     if (optionalPulseChip.isPresent()) {
       boolean ready = !player.getCooldowns().isOnCooldown(TCAItems.PULSE_CHIP.get());
-      Component pulseText =
-          ready
-              ? Component.translatable("thecyborgage.cyborg_visor.pulse_chip_ready")
-              : Component.translatable("thecyborgage.cyborg_visor.pulse_chip_cooldown");
+      Component pulseText;
+      if (ready) {
+        pulseText = Component.translatable("thecyborgage.cyborg_visor.pulse_chip_ready");
+      } else {
+        float percent = player.getCooldowns().getCooldownPercent(TCAItems.PULSE_CHIP.get(), 0);
+        int remainingSeconds =
+            Mth.ceil(percent * TCAServerConfig.CONFIG.pulseChipCooldown.get() / 20.0f);
+        pulseText =
+            Component.translatable("thecyborgage.cyborg_visor.pulse_chip_cooldown")
+                .append(Component.literal(" (" + remainingSeconds + "s)"));
+      }
 
       graphics.drawString(
           font,
