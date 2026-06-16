@@ -154,17 +154,19 @@ public class CyborgVisorClientEventHandler {
         TCACuriosHelper.getEntityCurioItem(player, TCAItems.PULSE_CHIP.get());
 
     if (optionalPulseChip.isPresent()) {
-      boolean ready = !player.getCooldowns().isOnCooldown(TCAItems.PULSE_CHIP.get());
       Component pulseText;
-      if (ready) {
-        pulseText = Component.translatable("thecyborgage.cyborg_visor.pulse_chip_ready");
-      } else {
+      if (player.getCooldowns().isOnCooldown(TCAItems.PULSE_CHIP.get())) {
         float percent = player.getCooldowns().getCooldownPercent(TCAItems.PULSE_CHIP.get(), 0);
         int remainingSeconds =
             Mth.ceil(percent * TCAServerConfig.CONFIG.pulseChipCooldown.get() / 20.0f);
         pulseText =
             Component.translatable("thecyborgage.cyborg_visor.pulse_chip_cooldown")
                 .append(Component.literal(" (" + remainingSeconds + "s)"));
+      } else if (!TCACuriosHelper.consumeEntityCoreEnergy(
+          player, TCAServerConfig.CONFIG.pulseChipEnergyCost.get(), true)) {
+        pulseText = Component.translatable("thecyborgage.cyborg_visor.pulse_chip_no_energy");
+      } else {
+        pulseText = Component.translatable("thecyborgage.cyborg_visor.pulse_chip_ready");
       }
 
       graphics.drawString(

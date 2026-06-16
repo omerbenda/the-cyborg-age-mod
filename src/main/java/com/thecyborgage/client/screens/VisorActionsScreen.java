@@ -81,15 +81,23 @@ public class VisorActionsScreen extends Screen {
           new CircleAction(
               Component.translatable("thecyborgage.toggle_circle.trigger_pulse_chip"),
               () -> {
-                if (!player.getCooldowns().isOnCooldown(TCAItems.PULSE_CHIP.get())) {
-                  return Component.translatable("thecyborgage.toggle_circle.ready")
-                      .withStyle(ChatFormatting.GREEN);
+                if (player.getCooldowns().isOnCooldown(TCAItems.PULSE_CHIP.get())) {
+                  float percent =
+                      player.getCooldowns().getCooldownPercent(TCAItems.PULSE_CHIP.get(), 0);
+                  int remainingSeconds =
+                      Mth.ceil(percent * TCAServerConfig.CONFIG.pulseChipCooldown.get() / 20.0f);
+
+                  return Component.literal(remainingSeconds + "s").withStyle(ChatFormatting.RED);
                 }
-                float percent =
-                    player.getCooldowns().getCooldownPercent(TCAItems.PULSE_CHIP.get(), 0);
-                int remainingSeconds =
-                    Mth.ceil(percent * TCAServerConfig.CONFIG.pulseChipCooldown.get() / 20.0f);
-                return Component.literal(remainingSeconds + "s").withStyle(ChatFormatting.RED);
+
+                if (!TCACuriosHelper.consumeEntityCoreEnergy(
+                    player, TCAServerConfig.CONFIG.pulseChipEnergyCost.get(), true)) {
+                  return Component.translatable("thecyborgage.toggle_circle.no_energy")
+                      .withStyle(ChatFormatting.RED);
+                }
+
+                return Component.translatable("thecyborgage.toggle_circle.ready")
+                    .withStyle(ChatFormatting.GREEN);
               },
               () ->
                   PacketDistributor.sendToServer(
