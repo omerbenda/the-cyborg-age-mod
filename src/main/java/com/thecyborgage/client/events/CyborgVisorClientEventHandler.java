@@ -3,7 +3,9 @@ package com.thecyborgage.client.events;
 import com.mojang.blaze3d.platform.Window;
 import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.TheCyborgAgeMod;
+import com.thecyborgage.client.TCAKeybinds;
 import com.thecyborgage.config.TCAClientConfig;
+import com.thecyborgage.config.TCAServerConfig;
 import com.thecyborgage.enums.RenderLocation;
 import com.thecyborgage.init.TCAAttachments;
 import com.thecyborgage.init.TCADataComponents;
@@ -18,6 +20,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
+import net.minecraft.util.Mth;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 
 import java.util.Optional;
@@ -127,6 +130,65 @@ public class CyborgVisorClientEventHandler {
 
       drawHeight += font.lineHeight;
     }
+
+    Optional<ItemStack> optionalMagnetChip =
+        TCACuriosHelper.getEntityCurioItem(player, TCAItems.MAGNET_CHIP.get());
+
+    if (optionalMagnetChip.isPresent()) {
+      Component enabledText =
+          player.getData(TCAAttachments.MAGNET_CHIP_TOGGLE_STATE)
+              ? Component.translatable("thecyborgage.cyborg_visor.magnet_chip_enabled")
+              : Component.translatable("thecyborgage.cyborg_visor.magnet_chip_disabled");
+
+      graphics.drawString(
+          font,
+          enabledText,
+          window.getGuiScaledWidth() - font.width(enabledText),
+          drawHeight,
+          textColor);
+
+      drawHeight += font.lineHeight;
+    }
+
+    Optional<ItemStack> optionalPulseChip =
+        TCACuriosHelper.getEntityCurioItem(player, TCAItems.PULSE_CHIP.get());
+
+    if (optionalPulseChip.isPresent()) {
+      Component pulseText;
+      if (player.getCooldowns().isOnCooldown(TCAItems.PULSE_CHIP.get())) {
+        float percent = player.getCooldowns().getCooldownPercent(TCAItems.PULSE_CHIP.get(), 0);
+        int remainingSeconds =
+            Mth.ceil(percent * TCAServerConfig.CONFIG.pulseChipCooldown.get() / 20.0f);
+        pulseText =
+            Component.translatable("thecyborgage.cyborg_visor.pulse_chip_cooldown")
+                .append(Component.literal(" (" + remainingSeconds + "s)"));
+      } else if (!TCACuriosHelper.consumeEntityCoreEnergy(
+          player, TCAServerConfig.CONFIG.pulseChipEnergyCost.get(), true)) {
+        pulseText = Component.translatable("thecyborgage.cyborg_visor.pulse_chip_no_energy");
+      } else {
+        pulseText = Component.translatable("thecyborgage.cyborg_visor.pulse_chip_ready");
+      }
+
+      graphics.drawString(
+          font,
+          pulseText,
+          window.getGuiScaledWidth() - font.width(pulseText),
+          drawHeight,
+          textColor);
+
+      drawHeight += font.lineHeight;
+    }
+
+    Component actionsHint =
+        Component.translatable(
+            "thecyborgage.cyborg_visor.open_actions_hint",
+            TCAKeybinds.OPEN_TOGGLE_CIRCLE.getTranslatedKeyMessage());
+    graphics.drawString(
+        font,
+        actionsHint,
+        window.getGuiScaledWidth() - font.width(actionsHint),
+        drawHeight,
+        textColor);
   }
 
   private static void renderNearCrosshair(GuiGraphics graphics) {

@@ -29,6 +29,14 @@ public class TCASounds {
                   ResourceLocation.fromNamespaceAndPath(
                       TheCyborgAgeMod.MOD_ID, "cyborg_beacon_wave_start")));
 
+  public static final Supplier<SoundEvent> PULSE_CHIP_PULSE =
+      SOUNDS.register(
+          "pulse_chip_pulse",
+          () ->
+              SoundEvent.createVariableRangeEvent(
+                  ResourceLocation.fromNamespaceAndPath(
+                      TheCyborgAgeMod.MOD_ID, "pulse_chip_pulse")));
+
   public static void register(IEventBus bus) {
     SOUNDS.register(bus);
   }

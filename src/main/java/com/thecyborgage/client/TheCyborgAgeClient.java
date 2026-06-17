@@ -1,12 +1,15 @@
 package com.thecyborgage.client;
 
+import com.thecyborgage.TCACuriosHelper;
 import com.thecyborgage.TheCyborgAgeMod;
 import com.thecyborgage.client.models.PlayerRadarModel;
 import com.thecyborgage.client.models.SolarHatModel;
 import com.thecyborgage.client.renderers.*;
+import com.thecyborgage.client.screens.VisorActionsScreen;
 import com.thecyborgage.init.TCAAttachments;
 import com.thecyborgage.init.TCAEntities;
 import com.thecyborgage.init.TCAItems;
+import com.thecyborgage.network.packets.TriggerActionPayload;
 import com.thecyborgage.network.packets.ToggleValuePayload;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -29,6 +32,8 @@ import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 @Mod(value = TheCyborgAgeMod.MOD_ID, dist = Dist.CLIENT)
 @EventBusSubscriber(modid = TheCyborgAgeMod.MOD_ID, value = Dist.CLIENT)
 public class TheCyborgAgeClient {
+  private static boolean toggleCircleOpened = false;
+
   public TheCyborgAgeClient(ModContainer container) {
     container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
   }
@@ -73,6 +78,9 @@ public class TheCyborgAgeClient {
   @SubscribeEvent
   public static void onRegisterKeybinds(RegisterKeyMappingsEvent evt) {
     evt.register(TCAKeybinds.TOGGLE_CYBORG_JUMP_LEG);
+    evt.register(TCAKeybinds.TOGGLE_MAGNET_CHIP);
+    evt.register(TCAKeybinds.TRIGGER_PULSE_CHIP);
+    evt.register(TCAKeybinds.OPEN_TOGGLE_CIRCLE);
   }
 
   @SubscribeEvent
@@ -84,6 +92,39 @@ public class TheCyborgAgeClient {
           new ToggleValuePayload(
               ToggleValuePayload.ToggleValue.CYBORG_JUMP_LEG,
               !player.getData(TCAAttachments.CYBORG_JUMP_LEG_TOGGLE_STATE)));
+    }
+
+    while (TCAKeybinds.TOGGLE_MAGNET_CHIP.consumeClick()) {
+      Player player = Minecraft.getInstance().player;
+
+      PacketDistributor.sendToServer(
+          new ToggleValuePayload(
+              ToggleValuePayload.ToggleValue.MAGNET_CHIP,
+              !player.getData(TCAAttachments.MAGNET_CHIP_TOGGLE_STATE)));
+    }
+
+    while (TCAKeybinds.TRIGGER_PULSE_CHIP.consumeClick()) {
+      PacketDistributor.sendToServer(
+          new TriggerActionPayload(TriggerActionPayload.TriggerAction.PULSE_CHIP));
+    }
+
+    Minecraft mc = Minecraft.getInstance();
+    Player player = mc.player;
+
+    boolean holdKeyDown = TCAKeybinds.isPhysicallyDown(TCAKeybinds.OPEN_TOGGLE_CIRCLE);
+
+    if (player != null && mc.screen == null) {
+      if (holdKeyDown && !toggleCircleOpened) {
+        if (TCACuriosHelper.getEntityCurioItem(player, TCAItems.CYBORG_VISOR.get()).isPresent()) {
+          mc.setScreen(new VisorActionsScreen(player));
+        }
+
+        toggleCircleOpened = true;
+      }
+    }
+
+    if (!holdKeyDown) {
+      toggleCircleOpened = false;
     }
   }
 }

@@ -112,6 +112,9 @@ public class TCAItems {
   public static final DeferredItem<MagnetChipItem> MAGNET_CHIP =
       ITEMS.registerItem(
           "magnet_chip", MagnetChipItem::new, new Item.Properties().stacksTo(1));
+  public static final DeferredItem<PulseChipItem> PULSE_CHIP =
+      ITEMS.registerItem(
+          "pulse_chip", PulseChipItem::new, new Item.Properties().stacksTo(1));
 
   public static final DeferredItem<DeferredSpawnEggItem> CYBORG_SPAWN_EGG =
       ITEMS.registerItem(
