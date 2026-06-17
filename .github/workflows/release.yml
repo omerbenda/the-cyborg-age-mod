@@ -1,8 +1,7 @@
 name: Release
 
 on:
-  pull_request:
-    types: [closed]
+  push:
     branches:
       - '*/*/main'
 
@@ -11,7 +10,6 @@ permissions:
 
 jobs:
   release:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
@@ -26,13 +24,20 @@ jobs:
 
       - name: Extract release metadata
         id: meta
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          BRANCH="${{ github.event.pull_request.base.ref }}"
+          BRANCH="${{ github.ref_name }}"
           LOADER="${BRANCH%%/*}"
           MOD_ID="$(grep '^mod_id=' gradle.properties | cut -d'=' -f2)"
           MOD_VERSION="$(grep '^mod_version=' gradle.properties | cut -d'=' -f2)"
+          gh api "repos/${{ github.repository }}/commits/${{ github.sha }}/pulls" \
+            --jq '.[0].body' > pr_body.txt
           echo "tag=${LOADER}-${MOD_VERSION}" >> "$GITHUB_OUTPUT"
           echo "jar=build/libs/${MOD_ID}-${MOD_VERSION}.jar" >> "$GITHUB_OUTPUT"
+
+      - name: Make gradlew executable
+        run: chmod +x gradlew
 
       - name: Build
         run: ./gradlew build
@@ -42,5 +47,5 @@ jobs:
         with:
           tag_name: ${{ steps.meta.outputs.tag }}
           name: ${{ steps.meta.outputs.tag }}
-          body: ${{ github.event.pull_request.body }}
+          body_path: pr_body.txt
           files: ${{ steps.meta.outputs.jar }}
